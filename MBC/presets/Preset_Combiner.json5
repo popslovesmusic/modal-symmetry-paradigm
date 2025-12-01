@@ -1,0 +1,34 @@
+{
+  "id": "Preset_Combiner",
+  "type": "preset_box",
+  "description": "Demonstrates multi-channel identity-preserving summation via Bx_Sum. Often used for ψ waveform envelope introduction.",
+
+  "inputs": ["SemanticField[]"],
+  "outputs": ["CompositeField"],
+
+  "operators_used": ["Bx_SSum"],
+
+  "structure": {
+    "steps": [
+      {
+        "action": "sum",
+        "operator": "Bx_SSum",
+        "input": "$in[]",
+        "output": "$combined"
+      }
+    ]
+  },
+
+  "invariants": {
+    "Identity-Preservation": "Inputs must remain individually recoverable.",
+    "No-Destructive-Interference": "Semantic cancellation is forbidden."
+  },
+
+  "example_usage": [
+    {
+      "input": "[a, b, c]",
+      "output": "Composite(a+b+c)",
+      "note": "Demonstrates proto-superposition behavior inside a real Box."
+    }
+  ]
+}

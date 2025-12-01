@@ -1,0 +1,26 @@
+{
+  "tier_id": "T07",
+  "name": "LambdaCurvature_AxiomBox",
+  "axioms": [
+    {
+      "id": "A70_curvature_non_creative",
+      "statement": "λ curvature may modify geometry but must not create or destroy substances.",
+      "role": "monism_preservation"
+    },
+    {
+      "id": "A71_lambda_preserves_modal_identity",
+      "statement": "λ may bend structure but must not alter IGS/OA modal identity.",
+      "role": "modal_consistency"
+    },
+    {
+      "id": "A72_lambda_commutes_with_phi_pi",
+      "statement": "Semantic projection and evaluation must yield results equivalent before and after λ deformation.",
+      "role": "semantic_consistency"
+    },
+    {
+      "id": "A73_lambda_mu_compatibility",
+      "statement": "λ must preserve adjacency and μ-weight invariants except for their geometric layout.",
+      "role": "geometric_consistency"
+    }
+  ]
+}

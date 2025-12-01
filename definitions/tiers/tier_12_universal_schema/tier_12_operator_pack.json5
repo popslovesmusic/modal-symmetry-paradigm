@@ -1,0 +1,26 @@
+{
+  "tier_id": "T12",
+  "name": "OmegaGlobalConstraints_OperatorPack",
+  "operators": [
+    {
+      "id": "Omega",
+      "kind": "global_constraint_root",
+      "description": "Root Ω operator enforcing global semantic consistency and normal forms."
+    },
+    {
+      "id": "omega_consistency",
+      "kind": "global_constraint_check",
+      "description": "Checks global invariants across all tiers (δ–ρ)."
+    },
+    {
+      "id": "omega_normalize",
+      "kind": "normal_form_collapse",
+      "description": "Collapses a Box or network into global normal form."
+    },
+    {
+      "id": "omega_global_nf",
+      "kind": "ultimate_state_resolver",
+      "description": "Resolves contradictions, eliminates extraneous structure, and ensures universal NF."
+    }
+  ]
+}

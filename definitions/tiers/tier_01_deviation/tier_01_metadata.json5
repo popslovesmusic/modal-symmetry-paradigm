@@ -1,0 +1,22 @@
+{
+  "tier_id": "T01",
+  "name": "DeviationCore",
+  "version": "0.1.0",
+  "description": "Defines the fundamental deviation operator D and its first four expressions: δ0 (permission), δ1 (polarity), δ2 (proto-structure), δ3 (coherent overlay), δ4 (classical structure).",
+  "scope": [
+    "root_operator_D",
+    "delta_expressions",
+    "modal_prestructure"
+  ],
+  "dependencies": [
+    "T00"
+  ],
+  "provides": [
+    "D",
+    "delta0",
+    "delta1",
+    "delta2",
+    "delta3",
+    "delta4"
+  ]
+}

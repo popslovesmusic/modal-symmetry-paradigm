@@ -1,0 +1,79 @@
+{
+  id: "MSP_REWRITE_SYSTEM",
+  name: "MSP Foundational Rewrite System",
+  family: "MSP",
+  version: "1.0.0",
+
+  allowed_rewrite_kinds: [
+    "SYMMETRY_REWRITE",
+    "PERMUTATION_REWRITE",
+    "EQUIVALENCE_REWRITE",
+    "NEUTRAL_EXTENSION"
+  ],
+
+  rules: [
+    {
+      id: "MSP_RW1_SYMMETRY_REWRITE",
+      kind: "SYMMETRY_REWRITE",
+      informal: "Applies a symmetry transformation from group S to a configuration C.",
+      pattern: "C",
+      replacement: "s(C)",
+      constraints: [
+        "The element s must belong to the symmetry group S.",
+        "The resulting configuration must be MSP-equivalent to the original.",
+        "The number of modes in the configuration must remain unchanged."
+      ]
+    },
+
+    {
+      id: "MSP_RW2_PERMUTE",
+      kind: "PERMUTATION_REWRITE",
+      informal: "Reorders the modes of a configuration without altering the multiset of modes.",
+      pattern: "(m1, m2, ..., mn)",
+      replacement: "(m_pi(1), m_pi(2), ..., m_pi(n))",
+      constraints: [
+        "The permutation pi must be a bijection on the indices.",
+        "The multiset of modes must remain identical.",
+        "The number of modes must remain unchanged."
+      ]
+    },
+
+    {
+      id: "MSP_RW3_EQUIVALENCE_RECONFIGURE",
+      kind: "EQUIVALENCE_REWRITE",
+      informal: "Rewrites a configuration into another configuration that is MSP-equivalent.",
+      pattern: "C",
+      replacement: "C_prime",
+      constraints: [
+        "The result must be equivalent to the original configuration under the MSP symmetry group.",
+        "The number of modes must remain unchanged.",
+        "All relabeling must be realizable by compositions of symmetry operations."
+      ]
+    },
+
+    {
+      id: "MSP_RW4_NEUTRAL_EXTENSION",
+      kind: "NEUTRAL_EXTENSION",
+      informal: "Extends a configuration by adding an additional mode without introducing geometry or semantics.",
+      pattern: "C",
+      replacement: "(C, m_i)",
+      constraints: [
+        "The additional mode must belong to the modal space M.",
+        "No geometry, polarity, or temporal ordering may be introduced at the MSP level."
+      ]
+    }
+  ],
+
+  forbidden_rewrites: [
+    {
+      id: "MSP_FORBID_ANNIHILATION",
+      description: "No rewrite may delete primitive modes from the modal space M."
+    },
+    {
+      id: "MSP_FORBID_DIMENSION_ASSIGNMENT",
+      description: "Geometry, time, polarity, and semantic dimensions cannot be assigned at the MSP level."
+    }
+  ],
+
+  notes: "This rewrite system defines all legal transformations at the MSP level. Higher-tier rewrite systems must preserve these constraints and may only refine structures built upon MSP-admissible configurations."
+}

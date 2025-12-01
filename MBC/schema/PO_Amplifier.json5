@@ -1,0 +1,35 @@
+{
+  "id": "PO_Amplifier",
+  "type": "proto_operator",
+  "tier": "MSP-Proto",
+
+  "description": "Intensifies modal distinctions in MSP fusion. Produces proto-contrast enabling deviation geometry.",
+
+  "msp_origin": {
+    "fusion_modes": ["MSP_B", "MSP_D"],
+    "mechanism": "Scaling of modal intensity",
+    "boundary_conditions": "No polarity or sign"
+  },
+
+  "semantic_role": {
+    "creates": "proto-contrast",
+    "enables": ["δ-potential", "semantic distinction"],
+    "forbids": ["truth-evaluation", "polarity"]
+  },
+
+  "proto_invariants": {
+    "Contrast-Monotonicity": "Ordering must be preserved.",
+    "MSP-Purity": "Cannot introduce new modal classes.",
+    "No-Polarity": "Cannot induce sign or direction."
+  },
+
+  "emergence_examples": [
+    { "example": "Weak modal difference becomes δ-seed." }
+  ],
+
+  "lineage": {
+    "precedes": ["Tier_01_δ-operators"],
+    "supports": ["deviation geometry"],
+    "cannot_replace": ["λ-deformation"]
+  }
+}

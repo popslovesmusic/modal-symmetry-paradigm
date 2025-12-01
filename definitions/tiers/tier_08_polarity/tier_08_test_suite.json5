@@ -1,0 +1,34 @@
+{
+  "tier_id": "T08",
+  "name": "PsiWave_TestSuite",
+  "tests": [
+    {
+      "id": "T80_mode_definition",
+      "description": "Verify ψ_mode assigns a complete oscillation mode.",
+      "inputs": [
+        "psi_mode",
+        "Bx3"
+      ],
+      "expected": "pass_if_mode_complete"
+    },
+    {
+      "id": "T81_interference_phase_rules",
+      "description": "Ensure ψ_interfere respects phase and amplitude rules.",
+      "inputs": [
+        "psi_interfere",
+        "Bx6"
+      ],
+      "expected": "pass_if_phase_behavior_correct"
+    },
+    {
+      "id": "T82_wave_propagation_mu_lambda",
+      "description": "Check ψ wave propagation respects μ adjacency and λ curvature.",
+      "inputs": [
+        "psi_propagate",
+        "mu_adj",
+        "lambda_curve"
+      ],
+      "expected": "pass_if_propagation_respects_geometry"
+    }
+  ]
+}

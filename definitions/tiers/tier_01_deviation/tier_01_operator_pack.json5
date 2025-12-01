@@ -1,0 +1,41 @@
+{
+  "tier_id": "T01",
+  "name": "DeviationCore_OperatorPack",
+  "operators": [
+    {
+      "id": "D",
+      "kind": "root_deviation",
+      "description": "Single fundamental deviation operator."
+    },
+    {
+      "id": "delta0",
+      "kind": "expression_of_D",
+      "level": 0,
+      "description": "Permission for differentiation."
+    },
+    {
+      "id": "delta1",
+      "kind": "expression_of_D",
+      "level": 1,
+      "description": "Polarity-level deviation."
+    },
+    {
+      "id": "delta2",
+      "kind": "expression_of_D",
+      "level": 2,
+      "description": "Proto-structure (foam-level) deviation."
+    },
+    {
+      "id": "delta3",
+      "kind": "expression_of_D",
+      "level": 3,
+      "description": "Coherent overlay (quantum-like) deviation."
+    },
+    {
+      "id": "delta4",
+      "kind": "expression_of_D",
+      "level": 4,
+      "description": "Classical structure (determinacy) deviation."
+    }
+  ]
+}

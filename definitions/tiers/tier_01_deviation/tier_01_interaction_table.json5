@@ -1,0 +1,36 @@
+{
+  "tier_id": "T01",
+  "name": "DeviationCore_InteractionTable",
+  "interactions": [
+    {
+      "id": "I10_delta0_permission",
+      "operator": "delta0",
+      "effect": "enable_modal_differentiation",
+      "description": "δ0 enables the emergence of modal distinction (IGS / OA) without creating it."
+    },
+    {
+      "id": "I11_delta1_polarity",
+      "operator": "delta1",
+      "effect": "apply_polarity",
+      "description": "δ1 applies ±1 polarity to existing modal states."
+    },
+    {
+      "id": "I12_delta2_proto_structure",
+      "operator": "delta2",
+      "effect": "introduce_proto_structure",
+      "description": "δ2 creates minimal internal variation ('foam')."
+    },
+    {
+      "id": "I13_delta3_coherent_overlay",
+      "operator": "delta3",
+      "effect": "allow_superposition",
+      "description": "δ3 allows coherent overlay of modal states (superposition-like behavior)."
+    },
+    {
+      "id": "I14_delta4_collapse",
+      "operator": "delta4",
+      "effect": "resolve_overlay",
+      "description": "δ4 resolves coherent overlays into determinate structure."
+    }
+  ]
+}

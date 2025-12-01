@@ -1,0 +1,17 @@
+{
+  "tier_id": "T07",
+  "name": "LambdaCurvature_ModulePack",
+  "modules": [
+    {
+      "id": "M70_lambda_curvature_core",
+      "description": "Core λ machinery for curvature and structural deformation.",
+      "includes": [
+        "tier_07_metadata.json5",
+        "tier_07_operator_pack.json5",
+        "tier_07_interaction_table.json5",
+        "tier_07_axiom_box.json5",
+        "tier_07_rewrite_system.json5"
+      ]
+    }
+  ]
+}

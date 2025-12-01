@@ -1,0 +1,30 @@
+{
+  "tier_id": "T01",
+  "name": "DeviationCore_ModulePack",
+  "modules": [
+    {
+      "id": "M10_deviation_root",
+      "description": "Root deviation operator and expressions.",
+      "includes": [
+        "tier_01_metadata.json5",
+        "tier_01_operator_pack.json5",
+        "tier_01_interaction_table.json5",
+        "tier_01_axiom_box.json5",
+        "tier_01_rewrite_system.json5"
+      ]
+    },
+    {
+      "id": "M11_deviation_boxes",
+      "description": "References to Bx1–Bx7 (V, dual-modal, symmetry, polarity, δ2–δ4).",
+      "box_refs": [
+        "Bx1",
+        "Bx2",
+        "Bx3",
+        "Bx4",
+        "Bx5",
+        "Bx6",
+        "Bx7"
+      ]
+    }
+  ]
+}

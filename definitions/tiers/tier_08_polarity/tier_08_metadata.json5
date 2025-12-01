@@ -1,0 +1,27 @@
+{
+  "tier_id": "T08",
+  "name": "PsiWave",
+  "version": "0.1.0",
+  "description": "Defines ψ operators governing oscillatory modes, wave propagation, phase interactions, and harmonic composition in Box structures. ψ introduces temporal and frequency-like dynamics.",
+  "scope": [
+    "oscillation_modes",
+    "phase_relations",
+    "wave_propagation",
+    "harmonic_interaction"
+  ],
+  "dependencies": [
+    "T00",
+    "T01",
+    "T02",
+    "T03",
+    "T04",
+    "T05",
+    "T06",
+    "T07"
+  ],
+  "provides": [
+    "psi_mode",
+    "psi_interfere",
+    "psi_propagate"
+  ]
+}

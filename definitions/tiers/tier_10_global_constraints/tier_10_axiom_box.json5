@@ -1,0 +1,26 @@
+{
+  "tier_id": "T10",
+  "name": "ThetaPolarityLogic_AxiomBox",
+  "axioms": [
+    {
+      "id": "A100_polarity_conservation",
+      "statement": "Θ polarity cannot be created or destroyed; it can only be reassigned or flipped.",
+      "role": "conservation"
+    },
+    {
+      "id": "A101_polarity_tensor_sign",
+      "statement": "Polarity tensors must preserve their net polarity count across all Θ operations.",
+      "role": "tensor_consistency"
+    },
+    {
+      "id": "A102_truth_polarity_bridge",
+      "statement": "Π evaluation must not violate Θ polarity orientation.",
+      "role": "truth_logic_coherence"
+    },
+    {
+      "id": "A103_theta_commutes_with_phi_sigma",
+      "statement": "Semantic projection and aggregation must respect polarity assignments.",
+      "role": "semantic_structure_consistency"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "tier_id": "T07",
+  "name": "LambdaCurvature_TestSuite",
+  "tests": [
+    {
+      "id": "T70_curvature_non_creative",
+      "description": "Verify λ curvature modifies geometry without creating new nodes.",
+      "inputs": [
+        "lambda_bend",
+        "Bx2"
+      ],
+      "expected": "pass_if_no_nodes_created"
+    },
+    {
+      "id": "T71_lambda_phi_pi_commutation",
+      "description": "Test that λ deformation commutes with Φ and Π.",
+      "inputs": [
+        "lambda_curve",
+        "phi_structure",
+        "pi_consistency"
+      ],
+      "expected": "pass_if_results_equivalent"
+    },
+    {
+      "id": "T72_lambda_mu_consistency",
+      "description": "Ensure λ preserves μ adjacency invariants.",
+      "inputs": [
+        "lambda_flow",
+        "mu_adj"
+      ],
+      "expected": "pass_if_adjacency_preserved_invariantly"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "tier_id": "T03",
+  "name": "HigherDeviation_RewriteSystem",
+  "rules": [
+    {
+      "id": "R30_unknown_delta_collapse",
+      "pattern": "delta(n > 12)",
+      "rewrite_to": "delta12",
+      "description": "Collapse unknown deviation levels into δ12 (max known)."
+    },
+    {
+      "id": "R31_reorder_delta",
+      "pattern": "delta(n) applied without delta(n-1)",
+      "rewrite_to": "apply_delta(n-1)_first",
+      "description": "Ensures proper hierarchical ordering."
+    },
+    {
+      "id": "R32_expression_unification",
+      "pattern": "multiple higher deviation operators",
+      "rewrite_to": "D with {delta5..delta12}",
+      "description": "Unify all higher δs as expressions of D."
+    }
+  ],
+  "normal_form_description": "All higher deviations must appear as δ5–δ12 in proper order, descending from D."
+}

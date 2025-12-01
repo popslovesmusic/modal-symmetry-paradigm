@@ -1,0 +1,44 @@
+{
+  "box_id": "Bx4",
+  "box_type": "expression",
+  "name": "PolarityBox",
+  "description": "Defines the ±1 polarity conditions (real / imaginary) applied to the OA and IGS modal expressions.",
+  "ports": [],
+  "operators": [
+    {
+      "id": "delta1",
+      "type": "expression_of_D",
+      "description": "First expression-layer deviation that enables polarity conditions."
+    }
+  ],
+  "states": [
+    "+1",
+    "-1"
+  ],
+  "relations": [
+    {
+      "id": "R_plus",
+      "applies_to": [
+        "OA",
+        "IGS"
+      ],
+      "state": "+1",
+      "description": "Real-expressive polarity."
+    },
+    {
+      "id": "R_minus",
+      "applies_to": [
+        "OA",
+        "IGS"
+      ],
+      "state": "-1",
+      "description": "Imaginary-expressive polarity."
+    }
+  ],
+  "invariants": [
+    "no_new_modal_ports_created",
+    "polarity_is_expression_not_substance",
+    "polarity_must_not_break_symmetry_relation",
+    "delta1_is_single_expression_of_D"
+  ]
+}

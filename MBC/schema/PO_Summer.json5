@@ -1,0 +1,35 @@
+{
+  "id": "PO_Summer",
+  "type": "proto_operator",
+  "tier": "MSP-Proto",
+
+  "description": "Combines multiple MSP modal channels without collapse. Creates proto-superposition necessary for ψ-wave emergence.",
+
+  "msp_origin": {
+    "fusion_modes": ["MSP_A", "MSP_B", "MSP_E"],
+    "mechanism": "Modal superposition",
+    "boundary_conditions": "Channels must remain separable"
+  },
+
+  "semantic_role": {
+    "creates": "proto-superposition",
+    "enables": ["wave-potential", "oscillation freedom"],
+    "forbids": ["evaluation", "collapse"]
+  },
+
+  "proto_invariants": {
+    "Identity-Preservation": "Channels must remain distinguishable.",
+    "Superposition-Purity": "No destructive interference allowed.",
+    "Non-Evaluative": "May not reduce modal content."
+  },
+
+  "emergence_examples": [
+    { "example": "Three MSP modes form envelope for ψ-wave." }
+  ],
+
+  "lineage": {
+    "precedes": ["Tier_06_ψ-operators"],
+    "supports": ["wave emergence"],
+    "cannot_replace": ["Σ-summation"]
+  }
+}

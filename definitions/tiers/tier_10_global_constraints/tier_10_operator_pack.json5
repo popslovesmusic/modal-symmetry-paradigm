@@ -1,0 +1,26 @@
+{
+  "tier_id": "T10",
+  "name": "ThetaPolarityLogic_OperatorPack",
+  "operators": [
+    {
+      "id": "Theta",
+      "kind": "polarity_root",
+      "description": "Root Θ operator managing logical orientation and polarity tensors."
+    },
+    {
+      "id": "theta_assign",
+      "kind": "polarity_assignment",
+      "description": "Assigns logical polarity (Θ+ / Θ−) to Box states or relations."
+    },
+    {
+      "id": "theta_flip",
+      "kind": "polarity_inversion",
+      "description": "Flips polarity in controlled contexts while preserving invariants."
+    },
+    {
+      "id": "theta_route",
+      "kind": "logic_routing",
+      "description": "Routes logical flow based on polarity orientation in a relation network."
+    }
+  ]
+}

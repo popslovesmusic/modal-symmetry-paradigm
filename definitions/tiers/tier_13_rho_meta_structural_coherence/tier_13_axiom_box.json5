@@ -1,0 +1,20 @@
+{
+  "axioms": [
+    {
+      "id": "rho_1",
+      "statement": "All valid structures across T00–T12 must admit a global coherent alignment."
+    },
+    {
+      "id": "rho_2",
+      "statement": "Any inconsistency between tiers must be resolved via ρ-unification rather than local override."
+    },
+    {
+      "id": "rho_3",
+      "statement": "The global normal form (ρ-NF) is unique and invariant under all rewrite sequences."
+    },
+    {
+      "id": "rho_4",
+      "statement": "ρ-coherence supersedes but does not violate Ω-normalization."
+    }
+  ]
+}

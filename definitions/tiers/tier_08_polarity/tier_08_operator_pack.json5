@@ -1,0 +1,26 @@
+{
+  "tier_id": "T08",
+  "name": "PsiWave_OperatorPack",
+  "operators": [
+    {
+      "id": "Psi",
+      "kind": "wave_root",
+      "description": "Root ψ operator describing oscillatory dynamics."
+    },
+    {
+      "id": "psi_mode",
+      "kind": "oscillation_constructor",
+      "description": "Assigns or constructs an oscillatory mode for a Box or relation."
+    },
+    {
+      "id": "psi_interfere",
+      "kind": "interaction",
+      "description": "Combines oscillatory modes via constructive/destructive interference."
+    },
+    {
+      "id": "psi_propagate",
+      "kind": "wave_flow",
+      "description": "Propagates oscillatory state across adjacency, curvature, and influence fields."
+    }
+  ]
+}

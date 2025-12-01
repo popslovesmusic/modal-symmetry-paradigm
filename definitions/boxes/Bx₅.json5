@@ -1,0 +1,31 @@
+{
+  "box_id": "Bx5",
+  "box_type": "deviation",
+  "name": "StructuralDeviationBox_delta2",
+  "description": "Earliest expression of structural deviation. δ2 introduces proto-form ('foam-level') distinctions without full geometry.",
+  "ports": [],
+  "operators": [
+    {
+      "id": "delta2",
+      "type": "expression_of_D",
+      "description": "Structural deviation operator enabling proto-structure."
+    }
+  ],
+  "states": [
+    "micro_variation",
+    "proto_form"
+  ],
+  "relations": [
+    {
+      "id": "foam_relation",
+      "type": "micro_distinction",
+      "description": "Earliest distinguishable internal variations produced by δ2."
+    }
+  ],
+  "invariants": [
+    "no_geometric_commitment",
+    "structure_is_expression_not_substance",
+    "delta2_extends_delta1_without_replacing",
+    "proto_variation_cannot_violate_modal_structure"
+  ]
+}

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>MBC JSON5 Schema Validator</title>
+
+<!-- AJV (JSON Schema Validator) -->
+<script src="https://cdn.jsdelivr.net/npm/ajv@8/dist/ajv.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/ajv-formats/dist/ajv-formats.min.js"></script>
+
+<!-- JSON5 Parser -->
+<script src="https://cdn.jsdelivr.net/npm/json5/dist/index.min.js"></script>
+
+<style>
+body { font-family: Arial; padding: 20px; }
+textarea { width: 100%; height: 200px; }
+pre { background:#f0f0f0; padding:10px; }
+</style>
+</head>
+<body>
+
+<h2>MBC JSON5 Schema Validator</h2>
+
+<h3>Schema (JSON5)</h3>
+<textarea id="schema"></textarea>
+
+<h3>Data to Validate (JSON5)</h3>
+<textarea id="data"></textarea>
+
+<button onclick="runValidation()">Validate</button>
+
+<h3>Result</h3>
+<pre id="output"></pre>
+
+<script>
+function runValidation() {
+    const schemaInput = document.getElementById("schema").value;
+    const dataInput = document.getElementById("data").value;
+
+    let schema, data;
+    let output = "";
+
+    try {
+        schema = JSON5.parse(schemaInput);
+    } catch (err) {
+        document.getElementById("output").textContent =
+            "Schema JSON5 parse error:\n" + err;
+        return;
+    }
+
+    try {
+        data = JSON5.parse(dataInput);
+    } catch (err) {
+        document.getElementById("output").textContent =
+            "Data JSON5 parse error:\n" + err;
+        return;
+    }
+
+    // Setup AJV
+    const ajv = new Ajv({ allErrors: true });
+    addFormats(ajv);
+
+    let validate;
+    try {
+        validate = ajv.compile(schema);
+    } catch (err) {
+        document.getElementById("output").textContent =
+            "Schema compile error:\n" + err;
+        return;
+    }
+
+    const valid = validate(data);
+
+    if (valid) {
+        output = "VALID ✓\nThe JSON5 data matches the schema.";
+    } else {
+        output = "INVALID ✗\n\nErrors:\n" + JSON.stringify(validate.errors, null, 2);
+    }
+
+    document.getElementById("output").textContent = output;
+}
+</script>
+
+</body>
+</html>

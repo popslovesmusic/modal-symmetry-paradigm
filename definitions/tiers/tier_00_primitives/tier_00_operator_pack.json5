@@ -1,0 +1,33 @@
+{
+  "tier_id": "T00",
+  "name": "MetaStructure_OperatorPack",
+  "operators": [
+    {
+      "id": "D",
+      "kind": "root_deviation",
+      "description": "Single fundamental deviation operator. All δ_n are expressions of D performing the same action at different levels.",
+      "expressions": [
+        "delta0",
+        "delta1",
+        "delta2",
+        "delta3",
+        "delta4"
+      ]
+    },
+    {
+      "id": "BoxCreate",
+      "kind": "meta",
+      "description": "Creates a new Box instance conforming to the core Box schema."
+    },
+    {
+      "id": "BoxLink",
+      "kind": "meta",
+      "description": "Defines a link or reference between two Box instances without modifying their internal invariants."
+    },
+    {
+      "id": "InvariantCheck",
+      "kind": "meta",
+      "description": "Checks whether a Box satisfies all of its own declared invariants."
+    }
+  ]
+}

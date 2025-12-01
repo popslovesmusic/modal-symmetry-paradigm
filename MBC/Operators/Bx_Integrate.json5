@@ -1,0 +1,30 @@
+{
+  "id": "Bx_Integrate",
+  "type": "functional_operator",
+  "proto_origin": "PO_Integrator",
+
+  "description": "Performs semantic integration within a Box. Accumulates structural or modal content into smooth, continuous forms.",
+
+  "io_signature": {
+    "input": ["SemanticField", "ModalSeries"],
+    "output": ["IntegratedField"]
+  },
+
+  "functional_role": {
+    "performs": "continuous semantic accumulation",
+    "supports": ["δ-curvature continuity", "Σ-contraction preparation"],
+    "forbids": ["truth evaluation", "polarity routing"]
+  },
+
+  "operator_invariants": {
+    "Continuity-Preservation": "Result must not introduce discontinuities.",
+    "Order-Invariance": "Integration must be commutative over unordered inputs.",
+    "Non-Synthetic": "May not introduce new semantic classes."
+  },
+
+  "computational_examples": [
+    {
+      "example": "Integrate({a,b,c}) → smooth field enabling δ curvature extraction later."
+    }
+  ]
+}

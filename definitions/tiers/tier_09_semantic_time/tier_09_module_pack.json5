@@ -1,0 +1,17 @@
+{
+  "tier_id": "T09",
+  "name": "SigmaSummation_ModulePack",
+  "modules": [
+    {
+      "id": "M90_sigma_core",
+      "description": "Core Σ machinery for structural aggregation.",
+      "includes": [
+        "tier_09_metadata.json5",
+        "tier_09_operator_pack.json5",
+        "tier_09_interaction_table.json5",
+        "tier_09_axiom_box.json5",
+        "tier_09_rewrite_system.json5"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "tier_id": "T12",
+  "name": "OmegaGlobalConstraints_ModulePack",
+  "modules": [
+    {
+      "id": "M120_omega_global_core",
+      "description": "Core Ω machinery for global constraints and normalization.",
+      "includes": [
+        "tier_12_metadata.json5",
+        "tier_12_operator_pack.json5",
+        "tier_12_interaction_table.json5",
+        "tier_12_axiom_box.json5",
+        "tier_12_rewrite_system.json5"
+      ]
+    }
+  ]
+}

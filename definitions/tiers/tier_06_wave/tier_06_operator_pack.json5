@@ -1,0 +1,26 @@
+{
+  "tier_id": "T06",
+  "name": "MuLocalWeight_OperatorPack",
+  "operators": [
+    {
+      "id": "Mu",
+      "kind": "local_weight_root",
+      "description": "Root μ operator defining micro-local weighting and adjacency."
+    },
+    {
+      "id": "mu_weight",
+      "kind": "weight_assignment",
+      "description": "Assigns a non-negative weight to a relation or port connection."
+    },
+    {
+      "id": "mu_adj",
+      "kind": "adjacency_constructor",
+      "description": "Defines micro-adjacency between Box nodes or modal states."
+    },
+    {
+      "id": "mu_field",
+      "kind": "influence_field",
+      "description": "Generates or updates a μ-field representing local influence gradients."
+    }
+  ]
+}

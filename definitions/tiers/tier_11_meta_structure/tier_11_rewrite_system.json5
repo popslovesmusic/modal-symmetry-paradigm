@@ -1,0 +1,25 @@
+{
+  "tier_id": "T11",
+  "name": "ChiEvolution_RewriteSystem",
+  "rules": [
+    {
+      "id": "R110_collapse_redundant_steps",
+      "pattern": "chi_step(chi_step(X)) with no effective change",
+      "rewrite_to": "chi_step(X)",
+      "description": "Collapses redundant χ-steps that do not alter semantic state."
+    },
+    {
+      "id": "R111_chi_flow_normalization",
+      "pattern": "unordered_sequence_of_chi_steps",
+      "rewrite_to": "ordered_sequence_respecting_time",
+      "description": "Orders evolution steps to respect forward semantic time."
+    },
+    {
+      "id": "R112_history_idempotence",
+      "pattern": "chi_history(chi_history(X))",
+      "rewrite_to": "chi_history(X)",
+      "description": "Prevents nested or duplicated evolution traces."
+    }
+  ],
+  "normal_form_description": "A χ-evolution structure is in normal form when χ-steps are ordered forward in time, redundant no-op steps removed, and history recorded at most once."
+}

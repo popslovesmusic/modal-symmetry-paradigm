@@ -1,0 +1,18 @@
+{
+  "tier": 13,
+  "name": "RhoMetaStructuralCoherence",
+  "symbol": "ρ",
+  "description": "Tier 13 implements the coherence logic that binds all lower tiers into a structurally unified whole. It encodes the executable form of MSC (Meta-Structural Coherence).",
+  "role_in_mbc": "Final Tier. Enforces global cross-layer alignment, coherence, admissibility, and structural closure across the entire MBC operator hierarchy.",
+  "dependencies": [
+    "tier_00 through tier_12",
+    "msc_meta_theory",
+    "msp_modal_primitives"
+  ],
+  "provides": [
+    "rho_coherence_operator",
+    "cross_layer_alignment_engine",
+    "global_structure_validator",
+    "coherence_normal_form"
+  ]
+}

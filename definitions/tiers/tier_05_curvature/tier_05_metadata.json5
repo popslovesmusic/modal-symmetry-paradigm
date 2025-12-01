@@ -1,0 +1,24 @@
+{
+  "tier_id": "T05",
+  "name": "PiEvaluation",
+  "version": "0.1.0",
+  "description": "Defines Π evaluation operators that determine semantic admissibility, truth-like consistency, and selection among alternative Φ projections. Π does not create new structure; it validates or invalidates existing ones.",
+  "scope": [
+    "pi_evaluation",
+    "pi_consistency",
+    "semantic_admissibility",
+    "projection_selection"
+  ],
+  "dependencies": [
+    "T00",
+    "T01",
+    "T02",
+    "T03",
+    "T04"
+  ],
+  "provides": [
+    "pi0",
+    "pi_consistency",
+    "pi_select"
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  // Proto-Operator: Amplifier
+  // MSP → Proto-layer → Tier-00
+
+  "id": "PO_Amplifier",
+  "type": "proto_operator",
+  "tier": "MSP-Proto",
+  "description": "Amplifies modal distinctions, intensifying contrast in MSP fused structures. Produces proto-contrast necessary for δ-deviation emergence.",
+
+  "msp_origin": {
+    "fusion_modes": ["MSP_Mode_B", "MSP_Mode_D"],
+    "mechanism": "Modal scaling (pre-functional)",
+    "boundary_conditions": "Only amplifies modal gradients; cannot generate new classes"
+  },
+
+  "semantic_role": {
+    "creates": "proto-contrast",
+    "enables": ["deviation-potential", "semantic-distinction"],
+    "forbids": ["truth-evaluation", "projection", "polarity"]
+  },
+
+  "proto_invariants": {
+    "Contrast-Monotonicity": "Amplification must preserve ordering of modal intensities.",
+    "MSP-Class-Purity": "Cannot introduce non-MSP modal types.",
+    "No-Polarity-Induction": "Amplifier may not produce signed structures (reserved for Θ and Π)."
+  },
+
+  "emergence_examples": [
+    {
+      "example": "Amplifying a weak modal difference yields a proto-deviation basis used by δ-geometry."
+    },
+    {
+      "example": "Amplifier enhances modal separation that Φ later interprets as projection weight."
+    }
+  ],
+
+  "lineage": {
+    "precedes": ["Tier_00_Primitive_DeltaSeed", "Tier_01_δ-operators"],
+    "supports": ["Deviation curvature", "Semantic differential structure"],
+    "cannot_replace": ["λ-deformation", "ψ-oscillation"]
+  }
+}

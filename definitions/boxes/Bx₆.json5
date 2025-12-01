@@ -1,0 +1,31 @@
+{
+  "box_id": "Bx6",
+  "box_type": "deviation",
+  "name": "QuantumDeviationBox_delta3",
+  "description": "δ3 introduces coherent modal overlays (superposition-like distinctions) without geometric or physical commitment.",
+  "ports": [],
+  "operators": [
+    {
+      "id": "delta3",
+      "type": "expression_of_D",
+      "description": "Quantum-level deviation operator enabling coherent modal overlays."
+    }
+  ],
+  "states": [
+    "coherent_overlay",
+    "indeterminate_modal_superposition"
+  ],
+  "relations": [
+    {
+      "id": "superpositional_relation",
+      "type": "coexistence",
+      "description": "Modal states can coexist without collapse under δ3."
+    }
+  ],
+  "invariants": [
+    "no_collapse_without_higher_deviation",
+    "superposition_does_not_break_symmetry_or_polarity",
+    "quantum_deviation_extends_structural_deviation",
+    "coherent_overlays_do_not_create_substances"
+  ]
+}

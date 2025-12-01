@@ -1,0 +1,35 @@
+{
+  "id": "PO_Binder",
+  "type": "proto_operator",
+  "tier": "MSP-Proto",
+
+  "description": "Creates proto-coherence across MSP modes. Produces unified modal zones that later anchor structural continuity and federated geometry (ρ).",
+
+  "msp_origin": {
+    "fusion_modes": ["MSP_A", "MSP_B"],
+    "mechanism": "Pre-coherent fusion",
+    "boundary_conditions": "No semantic bonding yet"
+  },
+
+  "semantic_role": {
+    "creates": "proto-coherent fields",
+    "enables": ["layer cohesion", "structural stability"],
+    "forbids": ["evaluation", "normalization"]
+  },
+
+  "proto_invariants": {
+    "Coherence-Invariant": "Bound zones must remain unified.",
+    "No-Normalization": "Cannot enforce magnitude or shape.",
+    "Pre-Semantic": "Cannot assign meaning."
+  },
+
+  "emergence_examples": [
+    { "example": "Binder produces pre-coherent zones that ρ later federates into structured layers." }
+  ],
+
+  "lineage": {
+    "precedes": ["Tier_11_ρ-operators"],
+    "supports": ["layer cohesion"],
+    "cannot_replace": ["Ω-normalization", "ρ-federation"]
+  }
+}

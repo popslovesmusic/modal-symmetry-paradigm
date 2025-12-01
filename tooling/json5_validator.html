@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON5 Schema Validator</title>
+    <script src="https://cdn.jsdelivr.net/npm/json5@2.2.3/dist/index.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ajv@8.12.0/dist/ajv.min.js"></script>
+    <style>
+        body { font-family: sans-serif; margin: 2em; }
+        #result { margin-top: 1em; padding: 1em; border: 1px solid #ccc; }
+        .success { background-color: #e9fde9; border-color: #3c763d; }
+        .error { background-color: #f2dede; border-color: #a94442; }
+    </style>
+</head>
+<body>
+    <h1>JSON5 Schema Validator</h1>
+    <div>
+        <label for="dataFile">Data File (JSON5):</label>
+        <input type="file" id="dataFile" accept=".json5">
+    </div>
+    <div style="margin-top: 1em;">
+        <label for="schemaFile">Schema File (JSON5):</label>
+        <input type="file" id="schemaFile" accept=".json5">
+    </div>
+    <button style="margin-top: 1em;" onclick="validate()">Validate</button>
+    <div id="result"></div>
+
+    <script>
+        async function validate() {
+            const dataFileInput = document.getElementById('dataFile');
+            const schemaFileInput = document.getElementById('schemaFile');
+            const resultDiv = document.getElementById('result');
+
+            resultDiv.innerHTML = '';
+            resultDiv.className = '';
+
+            if (dataFileInput.files.length === 0 || schemaFileInput.files.length === 0) {
+                resultDiv.innerHTML = 'Please select both a data file and a schema file.';
+                resultDiv.className = 'error';
+                return;
+            }
+
+            const dataFile = dataFileInput.files[0];
+            const schemaFile = schemaFileInput.files[0];
+
+            try {
+                const dataContent = await dataFile.text();
+                const schemaContent = await schemaFile.text();
+
+                const data = JSON5.parse(dataContent);
+                const schema = JSON5.parse(schemaContent);
+
+                const ajv = new Ajv();
+                const validate = ajv.compile(schema);
+                const valid = validate(data);
+
+                if (valid) {
+                    resultDiv.innerHTML = 'Validation successful!';
+                    resultDiv.className = 'success';
+                } else {
+                    let errorHtml = 'Validation failed:<ul>';
+                    for (const error of validate.errors) {
+                        errorHtml += `<li><strong>${error.instancePath || 'root'}</strong>: ${error.message}</li>`;
+                    }
+                    errorHtml += '</ul>';
+                    resultDiv.innerHTML = errorHtml;
+                    resultDiv.className = 'error';
+                }
+            } catch (error) {
+                resultDiv.innerHTML = 'An error occurred: ' + error.message;
+                resultDiv.className = 'error';
+            }
+        }
+    </script>
+</body>
+</html>

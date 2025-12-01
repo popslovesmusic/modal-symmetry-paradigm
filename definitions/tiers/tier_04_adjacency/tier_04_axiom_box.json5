@@ -1,0 +1,26 @@
+{
+  "tier_id": "T04",
+  "name": "PhiProjection_AxiomBox",
+  "axioms": [
+    {
+      "id": "A40_semantic_non_destructive",
+      "statement": "Φ mappings must not destroy or create substances; they change interpretation only.",
+      "role": "safety"
+    },
+    {
+      "id": "A41_projection_commutes_with_D",
+      "statement": "Φ must commute with deviation: Φ ∘ δn = δn ∘ Φ.",
+      "role": "operator_consistency"
+    },
+    {
+      "id": "A42_phi_identity",
+      "statement": "Φ0 acts as the identity mapping: Φ0(X) = X.",
+      "role": "identity"
+    },
+    {
+      "id": "A43_phi_preserves_invariants",
+      "statement": "Semantic projection must preserve invariants declared by the target Box.",
+      "role": "invariant_preservation"
+    }
+  ]
+}

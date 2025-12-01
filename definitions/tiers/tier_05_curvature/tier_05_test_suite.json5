@@ -1,0 +1,34 @@
+{
+  "tier_id": "T05",
+  "name": "PiEvaluation_TestSuite",
+  "tests": [
+    {
+      "id": "T50_pi0_identity",
+      "description": "Confirm Pi0(X) = X for consistent Boxes.",
+      "inputs": [
+        "pi0",
+        "Bx3"
+      ],
+      "expected": "pass_if_output_equals_input"
+    },
+    {
+      "id": "T51_pi_phi_commutation",
+      "description": "Verify Π treats equivalent Φ mappings equivalently.",
+      "inputs": [
+        "phi_structure",
+        "pi_consistency"
+      ],
+      "expected": "pass_if_phi_pi_commute"
+    },
+    {
+      "id": "T52_pi_selection_test",
+      "description": "Check that Pi_select chooses the most invariant-preserving Φ mapping.",
+      "inputs": [
+        "pi_select",
+        "Bx4",
+        "Bx5"
+      ],
+      "expected": "pass_if_selected_projection_is_minimal_change"
+    }
+  ]
+}

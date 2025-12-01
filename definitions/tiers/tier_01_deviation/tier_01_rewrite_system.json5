@@ -1,0 +1,19 @@
+{
+  "tier_id": "T01",
+  "name": "DeviationCore_RewriteSystem",
+  "rules": [
+    {
+      "id": "R10_delta_collapse",
+      "pattern": "delta(n > 4)",
+      "rewrite_to": "delta4",
+      "description": "Collapse unknown δ-levels beyond δ4 to the nearest known level."
+    },
+    {
+      "id": "R11_delta_normalize",
+      "pattern": "multiple_D_expressions",
+      "rewrite_to": "D with {delta0..delta4}",
+      "description": "Normalize multiple deviation operators into D with expression set δ0–δ4."
+    }
+  ],
+  "normal_form_description": "All deviations expressed as one of δ0 through δ4, unified under D."
+}

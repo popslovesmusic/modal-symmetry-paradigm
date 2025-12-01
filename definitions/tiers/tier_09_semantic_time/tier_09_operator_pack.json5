@@ -1,0 +1,26 @@
+{
+  "tier_id": "T09",
+  "name": "SigmaSummation_OperatorPack",
+  "operators": [
+    {
+      "id": "Sigma",
+      "kind": "summation_root",
+      "description": "Root Σ operator responsible for aggregation and cumulative structural combination."
+    },
+    {
+      "id": "sigma_combine",
+      "kind": "binary_aggregation",
+      "description": "Aggregates two Boxes or structures into a combined composite."
+    },
+    {
+      "id": "sigma_fold",
+      "kind": "iterated_composition",
+      "description": "Sequentially folds a list of Boxes into a nested aggregate structure."
+    },
+    {
+      "id": "sigma_reduce",
+      "kind": "reduction_operator",
+      "description": "Reduces a composite structure to a minimal invariant-preserving form."
+    }
+  ]
+}

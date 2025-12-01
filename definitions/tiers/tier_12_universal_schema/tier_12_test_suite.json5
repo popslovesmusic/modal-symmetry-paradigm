@@ -1,0 +1,33 @@
+{
+  "tier_id": "T12",
+  "name": "OmegaGlobalConstraints_TestSuite",
+  "tests": [
+    {
+      "id": "T120_global_consistency",
+      "description": "Verify all lower-tier structures satisfy Ω global constraints.",
+      "inputs": [
+        "omega_consistency",
+        "FullStackNetwork"
+      ],
+      "expected": "pass_if_all_invariants_hold"
+    },
+    {
+      "id": "T121_global_normal_form",
+      "description": "Ensure any structure collapses to a unique global NF.",
+      "inputs": [
+        "omega_normalize",
+        "CompositeBox"
+      ],
+      "expected": "pass_if_nf_unique"
+    },
+    {
+      "id": "T122_no_contradiction_rule",
+      "description": "Check that contradictions are resolved or correctly mapped to exception-Boxes.",
+      "inputs": [
+        "omega_global_nf",
+        "ConflictingBox"
+      ],
+      "expected": "pass_if_contradictions_resolved"
+    }
+  ]
+}

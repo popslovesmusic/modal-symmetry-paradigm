@@ -1,0 +1,35 @@
+{
+  "tier_id": "T09",
+  "name": "SigmaSummation_TestSuite",
+  "tests": [
+    {
+      "id": "T90_box_combine_test",
+      "description": "Verify sigma_combine creates a composite with merged states and relations.",
+      "inputs": [
+        "sigma_combine",
+        "Bx3",
+        "Bx4"
+      ],
+      "expected": "pass_if_composite_correct"
+    },
+    {
+      "id": "T91_fold_order_independence",
+      "description": "Ensure folding results are invariant under permutation of semantically equivalent Boxes.",
+      "inputs": [
+        "sigma_fold",
+        "Bx4",
+        "Bx4"
+      ],
+      "expected": "pass_if_commutativity_holds"
+    },
+    {
+      "id": "T92_reduce_normal_form",
+      "description": "Confirm sigma_reduce produces a unique stable invariant-preserving form.",
+      "inputs": [
+        "sigma_reduce",
+        "Bx5"
+      ],
+      "expected": "pass_if_normal_form_stable"
+    }
+  ]
+}

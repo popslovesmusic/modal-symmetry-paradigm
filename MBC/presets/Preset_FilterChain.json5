@@ -1,0 +1,42 @@
+{
+  "id": "Preset_FilterChain",
+  "type": "preset_box",
+  "description": "Two-stage semantic filtering using Bx_Filter. Useful for Φ-projection preparation, semantic isolation, and modal cleansing.",
+
+  "inputs": ["SemanticField"],
+  "outputs": ["FilteredField"],
+
+  "operators_used": ["Bx_Filter"],
+
+  "structure": {
+    "steps": [
+      {
+        "action": "filter",
+        "operator": "Bx_Filter",
+        "input": "$in",
+        "mask": "Mask_A",
+        "output": "$stage1"
+      },
+      {
+        "action": "filter",
+        "operator": "Bx_Filter",
+        "input": "$stage1",
+        "mask": "Mask_B",
+        "output": "$filtered"
+      }
+    ]
+  },
+
+  "invariants": {
+    "Identity-Safe": "Filtering must not delete semantic identity.",
+    "Monotonic-Attenuation": "Each stage must not amplify content."
+  },
+
+  "example_usage": [
+    {
+      "input": "Field[F1,F2,F3]",
+      "output": "Field[F2]",
+      "note": "Basic demo of chained selective attenuation."
+    }
+  ]
+}

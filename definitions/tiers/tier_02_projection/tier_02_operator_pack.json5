@@ -1,0 +1,21 @@
+{
+  "tier_id": "T02",
+  "name": "ModalityCore_OperatorPack",
+  "operators": [
+    {
+      "id": "MakeDualModalSubstrate",
+      "kind": "constructor",
+      "description": "Instantiates a dual-modal substrate Box with IGS and OA modes and two ports."
+    },
+    {
+      "id": "ApplyZeroSymmetry",
+      "kind": "relation_constructor",
+      "description": "Creates the 0-symmetry relation between IGS and OA without altering them."
+    },
+    {
+      "id": "ApplyPolarity",
+      "kind": "expression",
+      "description": "Applies ±1 polarity conditions to existing IGS/OA modal states."
+    }
+  ]
+}

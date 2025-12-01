@@ -1,0 +1,42 @@
+{
+  // Proto-Operator: Integrator
+  // MSP → Proto-layer → Tier-00
+
+  "id": "PO_Integrator",
+  "type": "proto_operator",
+  "tier": "MSP-Proto",
+  "description": "Aggregates modal MSP primitives into a continuous proto-dimension. Establishes integrative latent structure before the existence of MBC operators.",
+
+  "msp_origin": {
+    "fusion_modes": ["MSP_Mode_A", "MSP_Mode_C"],
+    "mechanism": "Continuous modal blending",
+    "boundary_conditions": "Pre-functional; no evaluation structure"
+  },
+
+  "semantic_role": {
+    "creates": "latent-continuous structure",
+    "enables": ["dimension-formation", "proto-adjacency"],
+    "forbids": ["causal evaluation", "projection", "rewrite"]
+  },
+
+  "proto_invariants": {
+    "Continuity-Invariant": "Integrator action must preserve continuity of modal blending.",
+    "Non-Directional-Invariant": "Integrator may not induce a direction, polarity, or gradient.",
+    "Fusion-Purity-Invariant": "Modal fusion must reflect MSP primitive purity; no synthetic classes allowed."
+  },
+
+  "emergence_examples": [
+    {
+      "example": "Integrator applied to dual MSP modes yields a proto-axis enabling Tier-00 Primitive-Line."
+    },
+    {
+      "example": "Aggregator fusion creates smooth modal transitions that δ later interprets as curvature potential."
+    }
+  ],
+
+  "lineage": {
+    "precedes": ["Tier_00_Primitive_Line", "Tier_00_Primitive_Continuum"],
+    "supports": ["δ-curvature", "μ-adjacency grid"],
+    "cannot_replace": ["δ-operators", "Φ-projectors", "Π-evaluators"]
+  }
+}

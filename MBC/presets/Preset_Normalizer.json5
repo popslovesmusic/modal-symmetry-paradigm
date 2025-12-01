@@ -1,0 +1,36 @@
+{
+  "id": "Preset_Normalizer",
+  "type": "preset_box",
+  "description": "Example normalization Box using Bx_Transform with a normalization rule. Demonstrates structural regularization inside a Box.",
+
+  "inputs": ["SemanticField"],
+  "outputs": ["NormalizedField"],
+
+  "operators_used": ["Bx_Transform"],
+
+  "structure": {
+    "steps": [
+      {
+        "action": "transform",
+        "operator": "Bx_Transform",
+        "rule": "NormalizeRule",
+        "input": "$in",
+        "output": "$norm"
+      }
+    ]
+  },
+
+  "invariants": {
+    "Rewrite-Safety": "Normalization must follow rewrite constraints.",
+    "Dimensional-Stability": "Normalization must not increase dimension.",
+    "Semantic-Conservation": "Identity must be preserved."
+  },
+
+  "example_usage": [
+    {
+      "input": "Field({0.2, 5.1, 10.7})",
+      "output": "Field({0.02, 0.51, 1.00})",
+      "note": "Illustrates rewrite-safe normalization inside an MBC Box."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "tier_id": "T04",
+  "name": "PhiProjection_InteractionTable",
+  "interactions": [
+    {
+      "id": "I40_phi0_identity",
+      "operator": "phi0",
+      "effect": "return_same_box",
+      "description": "Φ0 returns the Box unchanged; used as a normalization base case."
+    },
+    {
+      "id": "I41_phi_structure",
+      "operator": "phi_structure",
+      "effect": "map_pattern",
+      "description": "Maps structural patterns but leaves modal identities unaltered."
+    },
+    {
+      "id": "I42_phi_projection_map",
+      "operator": "phi_projection_map",
+      "effect": "semantic_translation",
+      "description": "Translates a Box into a new semantic frame while preserving invariants."
+    }
+  ]
+}

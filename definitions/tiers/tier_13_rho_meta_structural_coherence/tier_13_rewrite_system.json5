@@ -1,0 +1,21 @@
+{
+  "rewrite_rules": [
+    {
+      "pattern": "inconsistent_cross_tier_state",
+      "rewrite_to": "rho_unified_state",
+      "note": "ρ resolves all cross-tier mismatches."
+    },
+    {
+      "pattern": "multiple_local_nfs",
+      "rewrite_to": "global_rho_nf",
+      "note": "Local NFs collapse into a single ρ-level NF."
+    },
+    {
+      "pattern": "misaligned_schema_application",
+      "rewrite_to": "rho_schema_aligned",
+      "note": "MSC schemas take precedence in ρ normalization."
+    }
+  ],
+  "termination_condition": "system_reached_rho_nf",
+  "confluence": true
+}

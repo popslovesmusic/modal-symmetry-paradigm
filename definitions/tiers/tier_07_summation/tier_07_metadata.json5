@@ -1,0 +1,26 @@
+{
+  "tier_id": "T07",
+  "name": "LambdaCurvature",
+  "version": "0.1.0",
+  "description": "Defines λ curvature operators for representing structural deformation, geometric bend, and modulation of relational patterns. λ modifies adjacency geometry but preserves Box identities and invariants.",
+  "scope": [
+    "curvature_assignment",
+    "geometric_deformation",
+    "structure_bending",
+    "mu_interaction_modulation"
+  ],
+  "dependencies": [
+    "T00",
+    "T01",
+    "T02",
+    "T03",
+    "T04",
+    "T05",
+    "T06"
+  ],
+  "provides": [
+    "lambda_curve",
+    "lambda_bend",
+    "lambda_flow"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "id": "PO_Integrator",
+  "type": "proto_operator",
+  "tier": "MSP-Proto",
+
+  "description": "Aggregates MSP modal primitives into continuous proto-dimensional structure. Establishes integration necessary for Tier-00 continuity.",
+
+  "msp_origin": {
+    "fusion_modes": ["MSP_A", "MSP_C"],
+    "mechanism": "Modal blending without evaluation",
+    "boundary_conditions": "Pre-functional; dimension only"
+  },
+
+  "semantic_role": {
+    "creates": "latent-continuous axis",
+    "enables": ["proto-dimension", "continuity substrate"],
+    "forbids": ["gradient", "direction", "truth-evaluation"]
+  },
+
+  "proto_invariants": {
+    "Continuity-Invariant": "Integrator must preserve continuity.",
+    "Fusion-Purity": "No synthetic classes allowed.",
+    "Pre-Functional": "Must not evaluate or rewrite."
+  },
+
+  "emergence_examples": [
+    { "example": "Two MSP modes form a proto-axis supporting δ-curvature later." }
+  ],
+
+  "lineage": {
+    "precedes": ["Tier_00_Primitive_Continuum"],
+    "supports": ["δ-curvature potential"],
+    "cannot_replace": ["δ-operators", "Φ-projectors"]
+  }
+}

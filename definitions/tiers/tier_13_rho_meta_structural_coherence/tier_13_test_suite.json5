@@ -1,0 +1,34 @@
+{
+  // Test Suite — ρ-Meta-Structural Coherence
+  "tests": {
+    "coherence_tests": [
+      {
+        "name": "Cross-Tier Structural Coherence",
+        "input": ["tier_00_primitives", "tier_12_universal_schema"],
+        "expected": "ρ-stable"
+      }
+    ],
+    "stability_tests": [
+      {
+        "name": "Fold-Unfold Structural Stability",
+        "input": "structure_X",
+        "transform": "fold_unfold",
+        "expected": "ρ-stable"
+      }
+    ],
+    "harmonization_tests": [
+      {
+        "name": "Projection-Evaluation Harmonization",
+        "input": ["Φ-projection", "Π-evaluation"],
+        "expected": "ρ-harmonized"
+      }
+    ],
+    "resolution_tests": [
+      {
+        "name": "Contradiction Resolution",
+        "input": "conflict(A,B)",
+        "expected": "resolved"
+      }
+    ]
+  }
+}

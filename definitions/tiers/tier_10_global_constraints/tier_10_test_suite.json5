@@ -1,0 +1,34 @@
+{
+  "tier_id": "T10",
+  "name": "ThetaPolarityLogic_TestSuite",
+  "tests": [
+    {
+      "id": "T100_polarity_conservation",
+      "description": "Check that Θ operations never create or destroy polarity.",
+      "inputs": [
+        "theta_assign",
+        "theta_flip",
+        "Bx4"
+      ],
+      "expected": "pass_if_polarity_count_preserved"
+    },
+    {
+      "id": "T101_polarity_tensor_consistency",
+      "description": "Verify polarity tensors preserve net sign across operations.",
+      "inputs": [
+        "theta_assign",
+        "theta_route"
+      ],
+      "expected": "pass_if_tensor_consistent"
+    },
+    {
+      "id": "T102_truth_polarity_bridge",
+      "description": "Ensure Π evaluation does not contradict Θ polarity.",
+      "inputs": [
+        "pi_consistency",
+        "theta_route"
+      ],
+      "expected": "pass_if_no_polarity_violation"
+    }
+  ]
+}

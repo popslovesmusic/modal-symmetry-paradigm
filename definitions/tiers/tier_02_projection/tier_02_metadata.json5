@@ -1,0 +1,21 @@
+{
+  "tier_id": "T02",
+  "name": "Modality_Core",
+  "version": "0.1.0",
+  "description": "Defines the dual-modal substrate (IGS/OA), the symmetry relation (0), and polarity expressions (±1) applied to the substrate.",
+  "scope": [
+    "dual_modal_substrate",
+    "symmetry_zero",
+    "polarity_plus_minus_one"
+  ],
+  "dependencies": [
+    "T00",
+    "T01"
+  ],
+  "provides": [
+    "IGS",
+    "OA",
+    "zero_symmetry",
+    "polarity_plus_minus"
+  ]
+}

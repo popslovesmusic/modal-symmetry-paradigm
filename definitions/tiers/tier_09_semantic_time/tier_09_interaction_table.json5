@@ -1,0 +1,27 @@
+{
+  "tier_id": "T09",
+  "name": "SigmaSummation_InteractionTable",
+  "interactions": [
+    {
+      "id": "I90_combine_boxes",
+      "operator": "sigma_combine",
+      "target": "BoxPair",
+      "effect": "create_composite",
+      "description": "Combines two Boxes into a composite Box with merged states and relations."
+    },
+    {
+      "id": "I91_fold_sequence",
+      "operator": "sigma_fold",
+      "target": "BoxList",
+      "effect": "iterated_aggregation",
+      "description": "Applies sequential aggregation to produce a higher-order composite."
+    },
+    {
+      "id": "I92_reduce_composite",
+      "operator": "sigma_reduce",
+      "target": "CompositeBox",
+      "effect": "simplify_structure",
+      "description": "Simplifies a composite Box while preserving invariants."
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "tier_id": "T04",
+  "name": "PhiProjection_ModulePack",
+  "modules": [
+    {
+      "id": "M40_phi_projection_core",
+      "description": "Core semantic projection machinery.",
+      "includes": [
+        "tier_04_metadata.json5",
+        "tier_04_operator_pack.json5",
+        "tier_04_interaction_table.json5",
+        "tier_04_axiom_box.json5",
+        "tier_04_rewrite_system.json5"
+      ]
+    }
+  ]
+}

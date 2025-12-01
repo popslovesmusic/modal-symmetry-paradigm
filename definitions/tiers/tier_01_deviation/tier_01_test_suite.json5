@@ -1,0 +1,30 @@
+{
+  "tier_id": "T01",
+  "name": "DeviationCore_TestSuite",
+  "tests": [
+    {
+      "id": "T10_D_unity",
+      "description": "Verify that all δ_n unify under root operator D.",
+      "inputs": [
+        "tier_01_operator_pack.json5"
+      ],
+      "expected": "pass_if_all_delta_n_reference_D"
+    },
+    {
+      "id": "T11_delta_hierarchy",
+      "description": "Verify that δ0 < δ1 < δ2 < δ3 < δ4.",
+      "inputs": [
+        "tier_01_interaction_table.json5"
+      ],
+      "expected": "pass_if_hierarchy_correct"
+    },
+    {
+      "id": "T12_no_substance_creation",
+      "description": "Check that δ-expressions create distinctions but not new substances.",
+      "inputs": [
+        "tier_01_axiom_box.json5"
+      ],
+      "expected": "pass_if_axioms_respected"
+    }
+  ]
+}

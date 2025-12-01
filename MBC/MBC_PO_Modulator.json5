@@ -1,0 +1,35 @@
+{
+  "id": "PO_Modulator",
+  "type": "proto_operator",
+  "tier": "MSP-Proto",
+
+  "description": "Introduces proto-frequency variation across MSP modal blends. Creates pre-oscillatory patterns for ψ-wave formation.",
+
+  "msp_origin": {
+    "fusion_modes": ["MSP_D", "MSP_E"],
+    "mechanism": "Frequency-shaping",
+    "boundary_conditions": "Amplitude must remain unassigned"
+  },
+
+  "semantic_role": {
+    "creates": "proto-frequency",
+    "enables": ["oscillation basis", "semantic resonance potential"],
+    "forbids": ["phase assignment", "amplitude weighting"]
+  },
+
+  "proto_invariants": {
+    "Frequency-Purity": "Frequencies must come from MSP modes only.",
+    "Non-Phasic": "Cannot generate phase.",
+    "Non-Amplifying": "Cannot modify intensity."
+  },
+
+  "emergence_examples": [
+    { "example": "Proto-frequency patterns become ψ-oscillation modes." }
+  ],
+
+  "lineage": {
+    "precedes": ["Tier_06_ψ-operators"],
+    "supports": ["oscillation patterns"],
+    "cannot_replace": ["ψ-operators", "λ-deformation"]
+  }
+}

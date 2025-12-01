@@ -1,0 +1,25 @@
+{
+  "tier_id": "T06",
+  "name": "MuLocalWeight_RewriteSystem",
+  "rules": [
+    {
+      "id": "R60_weight_merge",
+      "pattern": "multiple_weights_on_same_relation",
+      "rewrite_to": "single_weight = sum(weights)",
+      "description": "Merges multiple μ-weight assignments on a single relation."
+    },
+    {
+      "id": "R61_zero_weight_elimination",
+      "pattern": "weight = 0",
+      "rewrite_to": "remove_weight_annotation",
+      "description": "Removes unnecessary zero-weight labels."
+    },
+    {
+      "id": "R62_adjacency_normalization",
+      "pattern": "unordered_pair_adjacency",
+      "rewrite_to": "store_as_ordered_pair_with_symmetry_flag",
+      "description": "Normalizes adjacency for canonical representation."
+    }
+  ],
+  "normal_form_description": "A μ-structure is in normal form when all weights are merged, zero weights removed, and adjacencies stored canonically."
+}

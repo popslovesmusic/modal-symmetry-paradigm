@@ -1,0 +1,26 @@
+{
+  "tier_id": "T11",
+  "name": "ChiEvolution_AxiomBox",
+  "axioms": [
+    {
+      "id": "A110_forward_flow",
+      "statement": "χ evolution must not reverse semantic time; evolution chains are forward-directed.",
+      "role": "time_orientation"
+    },
+    {
+      "id": "A111_continuity",
+      "statement": "χ evolution must be continuous unless explicitly defined as discrete; no spontaneous jumps without specification.",
+      "role": "evolution_regularity"
+    },
+    {
+      "id": "A112_chi_respects_invariants",
+      "statement": "χ operations must respect Box invariants or explicitly record invariant-breaking events.",
+      "role": "consistency_tracking"
+    },
+    {
+      "id": "A113_chi_compatible_with_delta_phi_pi",
+      "statement": "χ evolution must be compatible with deviation, projection, and evaluation; evolution cannot annul δ–Φ–Π structure.",
+      "role": "stack_coherence"
+    }
+  ]
+}

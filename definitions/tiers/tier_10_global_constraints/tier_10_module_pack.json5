@@ -1,0 +1,17 @@
+{
+  "tier_id": "T10",
+  "name": "ThetaPolarityLogic_ModulePack",
+  "modules": [
+    {
+      "id": "M100_theta_logic_core",
+      "description": "Core polarity logic machinery for Θ.",
+      "includes": [
+        "tier_10_metadata.json5",
+        "tier_10_operator_pack.json5",
+        "tier_10_interaction_table.json5",
+        "tier_10_axiom_box.json5",
+        "tier_10_rewrite_system.json5"
+      ]
+    }
+  ]
+}

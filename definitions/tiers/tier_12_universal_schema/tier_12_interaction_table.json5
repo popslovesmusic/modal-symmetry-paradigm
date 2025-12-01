@@ -1,0 +1,27 @@
+{
+  "tier_id": "T12",
+  "name": "OmegaGlobalConstraints_InteractionTable",
+  "interactions": [
+    {
+      "id": "I120_global_constraint_check",
+      "operator": "omega_consistency",
+      "target": "BoxNetwork",
+      "effect": "validate_cross_tier_structure",
+      "description": "Checks whether all lower-tier invariants and structures hold under global analysis."
+    },
+    {
+      "id": "I121_global_normalization",
+      "operator": "omega_normalize",
+      "target": "BoxNetwork",
+      "effect": "collapse_to_global_nf",
+      "description": "Collapses a multipolar structure into a consistent Ω-normal form."
+    },
+    {
+      "id": "I122_global_nf_resolution",
+      "operator": "omega_global_nf",
+      "target": "Box",
+      "effect": "resolve_final_state",
+      "description": "Produces the globally stable, invariant-preserving form that all evaluations reduce to."
+    }
+  ]
+}

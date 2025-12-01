@@ -1,0 +1,30 @@
+{
+  "id": "Bx_Amplify",
+  "type": "functional_operator",
+  "proto_origin": "PO_Amplifier",
+
+  "description": "Increases semantic, modal, or structural intensity. Produces stronger gradients or distinctions.",
+
+  "io_signature": {
+    "input": ["SemanticField"],
+    "output": ["EnhancedField"]
+  },
+
+  "functional_role": {
+    "performs": "scalar amplification of semantic gradients",
+    "supports": ["δ-deviation", "Θ-polarity enhancement"],
+    "forbids": ["creation of new classes", "binary evaluation"]
+  },
+
+  "operator_invariants": {
+    "Monotonicity": "Amplification must preserve original ordering.",
+    "MagnitudeBound": "Amplification must remain finite.",
+    "No-Polarity-Creation": "Cannot induce new signed structures."
+  },
+
+  "computational_examples": [
+    {
+      "example": "Amplify(Δsmall) → Δlarge deviation seed for δ-tier processing."
+    }
+  ]
+}

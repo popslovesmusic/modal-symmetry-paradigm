@@ -1,0 +1,29 @@
+{
+  "tier_id": "T04",
+  "name": "PhiProjection_OperatorPack",
+  "operators": [
+    {
+      "id": "Phi",
+      "kind": "projection_root",
+      "description": "The root projection operator enabling semantic mapping between Box structures."
+    },
+    {
+      "id": "phi0",
+      "kind": "projection",
+      "level": 0,
+      "description": "Identity-like baseline mapping preserving exact structure: Φ0(X) = X."
+    },
+    {
+      "id": "phi_structure",
+      "kind": "projection",
+      "level": 1,
+      "description": "Maps structural patterns without transporting modal identity."
+    },
+    {
+      "id": "phi_projection_map",
+      "kind": "projection",
+      "level": 2,
+      "description": "General semantic mapping between Boxes; alters descriptive frame but not underlying substance."
+    }
+  ]
+}

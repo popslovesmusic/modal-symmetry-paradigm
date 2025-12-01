@@ -1,0 +1,17 @@
+{
+  "tier_id": "T08",
+  "name": "PsiWave_ModulePack",
+  "modules": [
+    {
+      "id": "M80_wave_core",
+      "description": "Core machinery for ψ oscillation, interference, and propagation.",
+      "includes": [
+        "tier_08_metadata.json5",
+        "tier_08_operator_pack.json5",
+        "tier_08_interaction_table.json5",
+        "tier_08_axiom_box.json5",
+        "tier_08_rewrite_system.json5"
+      ]
+    }
+  ]
+}

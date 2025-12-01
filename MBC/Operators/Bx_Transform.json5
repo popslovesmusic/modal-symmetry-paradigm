@@ -1,0 +1,47 @@
+{
+  "id": "Bx_Transform",
+  "type": "functional_operator",
+  "proto_origin": [
+    "PO_Integrator",
+    "PO_Amplifier",
+    "PO_Summer",
+    "PO_Modulator",
+    "PO_Filter",
+    "PO_Separator",
+    "PO_Divider"
+  ],
+
+  "description": "General-purpose structural transformer that performs controlled reconfiguration of semantic or modal fields according to rewrite or Box rules.",
+
+  "io_signature": {
+    "input": ["SemanticField", "TransformRule"],
+    "output": ["SemanticField"]
+  },
+
+  "functional_role": {
+    "performs": [
+      "modal reshaping",
+      "structural reconfiguration",
+      "dimensional adjustment",
+      "semantic remapping"
+    ],
+    "supports": [
+      "rewrite systems",
+      "cross-tier normalization",
+      "semantic evolution"
+    ],
+    "forbids": ["arbitrary destruction", "cross-tier violation"]
+  },
+
+  "operator_invariants": {
+    "Rewrite-Safety": "Transform must obey tier rewrite constraints.",
+    "Semantic-Conservation": "Cannot remove semantic identity.",
+    "Dimensional-Stability": "May not increase dimension unless allowed by Tier."
+  },
+
+  "computational_examples": [
+    {
+      "example": "Transform(field, rule_δ→Φ) → semantic projection-ready field."
+    }
+  ]
+}

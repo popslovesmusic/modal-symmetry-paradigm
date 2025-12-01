@@ -1,0 +1,23 @@
+{
+  "tier_id": "T04",
+  "name": "PhiProjection",
+  "version": "0.1.0",
+  "description": "Defines the Φ projection operator family for semantic mapping, transporting patterns across modalities, deviations, and structures. Φ does not alter underlying substances but changes interpretive frames.",
+  "scope": [
+    "phi_mapping",
+    "semantic_projection",
+    "cross_modal_translation",
+    "structure_preservation"
+  ],
+  "dependencies": [
+    "T00",
+    "T01",
+    "T02",
+    "T03"
+  ],
+  "provides": [
+    "phi0",
+    "phi_structure",
+    "phi_projection_map"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "tier_id": "T10",
+  "name": "ThetaPolarityLogic_RewriteSystem",
+  "rules": [
+    {
+      "id": "R100_merge_polarity_annotations",
+      "pattern": "multiple_polarity_tags_on_same_element",
+      "rewrite_to": "single_canonical_polarity",
+      "description": "Normalizes multiple polarity annotations to a single canonical tag."
+    },
+    {
+      "id": "R101_flip_twice_elimination",
+      "pattern": "theta_flip(theta_flip(X))",
+      "rewrite_to": "X",
+      "description": "Double inversion returns to the original polarity."
+    },
+    {
+      "id": "R102_routing_collapse",
+      "pattern": "theta_route(theta_route(X))",
+      "rewrite_to": "theta_route(X)",
+      "description": "Collapses redundant routing passes."
+    }
+  ],
+  "normal_form_description": "A Θ-polarized structure is in normal form when polarity tags are canonical, double inversions removed, and routing is applied only once."
+}

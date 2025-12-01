@@ -1,0 +1,127 @@
+{
+  id: "MSP_TIER_INDEX_BINDER",
+  name: "MSP Tier-Index Binder",
+  family: "MSP",
+  version: "1.1.0",
+
+  purpose: "Bind MSP as Tier -1 and establish canonical tier ordering and import dependencies for the complete 14-tier IGSOA/MBC architecture.",
+
+  tier_order: [
+    { tier: -1, id: "MSP_SYSTEM", name: "Modal Symmetry Paradigm" },
+
+    { tier: 0, id: "TIER_00_PRIMITIVES", name: "Primitive Structures" },
+    { tier: 1, id: "TIER_01_DELTA_GEOMETRY", name: "Deviation Geometry" },
+    { tier: 2, id: "TIER_02_PHI_PROJECTION", name: "Semantic Projection" },
+    { tier: 3, id: "TIER_03_PI_EVALUATION", name: "Truth and Causality Evaluation" },
+    { tier: 4, id: "TIER_04_MU_LOCAL_WEIGHT", name: "Local Weight and Micro-Adjacency" },
+    { tier: 5, id: "TIER_05_LAMBDA_CURVATURE", name: "Curvature and Deformation" },
+    { tier: 6, id: "TIER_06_PSI_WAVEFORM", name: "Wave and Mode Interaction" },
+    { tier: 7, id: "TIER_07_SIGMA_SUMMATION", name: "Summation and Contraction" },
+    { tier: 8, id: "TIER_08_THETA_POLARITY", name: "Polarity and Logic Routing" },
+    { tier: 9, id: "TIER_09_CHI_SEMANTIC_TIME", name: "Semantic Evolution" },
+    { tier: 10, id: "TIER_10_OMEGA_CONSTRAINTS", name: "Global Constraints and Normalization" },
+    { tier: 11, id: "TIER_11_RHO_LAYERING", name: "Layering and Meta-Structure Federation" },
+    { tier: 12, id: "TIER_12_XI_UNIVERSAL_SCHEMA", name: "Universal Schema Operators" }
+  ],
+
+  load_order: {
+    first: "MSP_SYSTEM",
+    sequence: [
+      "TIER_00_PRIMITIVES",
+      "TIER_01_DELTA_GEOMETRY",
+      "TIER_02_PHI_PROJECTION",
+      "TIER_03_PI_EVALUATION",
+      "TIER_04_MU_LOCAL_WEIGHT",
+      "TIER_05_LAMBDA_CURVATURE",
+      "TIER_06_PSI_WAVEFORM",
+      "TIER_07_SIGMA_SUMMATION",
+      "TIER_08_THETA_POLARITY",
+      "TIER_09_CHI_SEMANTIC_TIME",
+      "TIER_10_OMEGA_CONSTRAINTS",
+      "TIER_11_RHO_LAYERING",
+      "TIER_12_XI_UNIVERSAL_SCHEMA"
+    ]
+  },
+
+  imports: {
+    MSP_SYSTEM: [],
+
+    TIER_00_PRIMITIVES: ["MSP_SYSTEM"],
+
+    TIER_01_DELTA_GEOMETRY: [
+      "MSP_SYSTEM",
+      "TIER_00_PRIMITIVES"
+    ],
+
+    TIER_02_PHI_PROJECTION: [
+      "MSP_SYSTEM",
+      "TIER_00_PRIMITIVES",
+      "TIER_01_DELTA_GEOMETRY"
+    ],
+
+    TIER_03_PI_EVALUATION: [
+      "MSP_SYSTEM",
+      "TIER_02_PHI_PROJECTION"
+    ],
+
+    TIER_04_MU_LOCAL_WEIGHT: [
+      "MSP_SYSTEM",
+      "TIER_00_PRIMITIVES"
+    ],
+
+    TIER_05_LAMBDA_CURVATURE: [
+      "MSP_SYSTEM",
+      "TIER_01_DELTA_GEOMETRY"
+    ],
+
+    TIER_06_PSI_WAVEFORM: [
+      "MSP_SYSTEM",
+      "TIER_00_PRIMITIVES"
+    ],
+
+    TIER_07_SIGMA_SUMMATION: [
+      "MSP_SYSTEM"
+    ],
+
+    TIER_08_THETA_POLARITY: [
+      "MSP_SYSTEM"
+    ],
+
+    TIER_09_CHI_SEMANTIC_TIME: [
+      "MSP_SYSTEM"
+    ],
+
+    TIER_10_OMEGA_CONSTRAINTS: [
+      "MSP_SYSTEM",
+      "TIER_00_PRIMITIVES",
+      "TIER_01_DELTA_GEOMETRY"
+    ],
+
+    TIER_11_RHO_LAYERING: [
+      "MSP_SYSTEM",
+      "TIER_10_OMEGA_CONSTRAINTS"
+    ],
+
+    TIER_12_XI_UNIVERSAL_SCHEMA: [
+      "MSP_SYSTEM",
+      "TIER_11_RHO_LAYERING"
+    ]
+  },
+
+  constraints: {
+    preserve_msp_invariants: true,
+    forbid_reordering: true,
+    forbid_cycles: true,
+    all_tiers_depend_on_msp: true,
+    allow_extension_above_tier_12: true
+  },
+
+  agent_hints: {
+    treat_as_root_index: true,
+    verify_msp_first: true,
+    enforce_import_closure: true,
+    reject_out_of_order_loading: true
+  },
+
+  notes: "This binder defines the complete 14-tier hierarchy: MSP as Tier -1, followed by Tier 00 through Tier 12. All tiers must inherit MSP constraints and reference MSP_SYSTEM as their primordial foundation."
+}

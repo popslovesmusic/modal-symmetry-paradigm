@@ -1,0 +1,26 @@
+{
+  "tier_id": "T07",
+  "name": "LambdaCurvature_OperatorPack",
+  "operators": [
+    {
+      "id": "Lambda",
+      "kind": "curvature_root",
+      "description": "Root λ operator: introduces curvature and deformation into relation networks."
+    },
+    {
+      "id": "lambda_curve",
+      "kind": "curvature_assignment",
+      "description": "Assigns curvature to weighted or adjacent relations."
+    },
+    {
+      "id": "lambda_bend",
+      "kind": "structural_deformation",
+      "description": "Applies controllable bending/deformation to local structural patterns."
+    },
+    {
+      "id": "lambda_flow",
+      "kind": "geometric_flow",
+      "description": "Propagates curvature through adjacency and μ-weight fields."
+    }
+  ]
+}

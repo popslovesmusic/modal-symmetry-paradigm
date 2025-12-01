@@ -1,0 +1,25 @@
+{
+  "tier_id": "T00",
+  "name": "MetaStructure_RewriteSystem",
+  "rules": [
+    {
+      "id": "R00_canonical_box_fields",
+      "pattern": "Box without required fields",
+      "rewrite_to": "Box with all required schema fields present (even if empty arrays).",
+      "description": "Ensures every Box matches the canonical schema."
+    },
+    {
+      "id": "R01_empty_null_normalization",
+      "pattern": "Missing optional sections (ports/operators/states/relations/invariants)",
+      "rewrite_to": "Explicit empty arrays for missing sections.",
+      "description": "Normalizes Box structure for easier agent parsing."
+    },
+    {
+      "id": "R02_D_unification",
+      "pattern": "Multiple independent deviation operators",
+      "rewrite_to": "Single D with multiple δ_n expressions.",
+      "description": "Enforces the single-operator view of deviation."
+    }
+  ],
+  "normal_form_description": "A Box is in normal form when it has all required schema fields, explicit arrays for optional sections, and all deviation operators factored through D."
+}

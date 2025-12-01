@@ -1,0 +1,54 @@
+{
+  "tier_id": "T03",
+  "name": "HigherDeviation_OperatorPack",
+  "operators": [
+    {
+      "id": "delta5",
+      "kind": "expression_of_D",
+      "level": 5,
+      "description": "Emergent structure deviation."
+    },
+    {
+      "id": "delta6",
+      "kind": "expression_of_D",
+      "level": 6,
+      "description": "Autopoietic/self-maintaining deviation."
+    },
+    {
+      "id": "delta7",
+      "kind": "expression_of_D",
+      "level": 7,
+      "description": "Cognitive deviation (internal modeling)."
+    },
+    {
+      "id": "delta8",
+      "kind": "expression_of_D",
+      "level": 8,
+      "description": "Symbolic deviation (symbolic systems)."
+    },
+    {
+      "id": "delta9",
+      "kind": "expression_of_D",
+      "level": 9,
+      "description": "Meta-cognitive deviation (self-modeling)."
+    },
+    {
+      "id": "delta10",
+      "kind": "expression_of_D",
+      "level": 10,
+      "description": "Reflexive systemic deviation (self-consistency)."
+    },
+    {
+      "id": "delta11",
+      "kind": "expression_of_D",
+      "level": 11,
+      "description": "Semantic-network deviation (global semantic field)."
+    },
+    {
+      "id": "delta12",
+      "kind": "expression_of_D",
+      "level": 12,
+      "description": "Global coherence deviation (system-wide consistency)."
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "id": "PO_Separator",
+  "type": "proto_operator",
+  "tier": "MSP-Proto",
+
+  "description": "Disentangles blended MSP modal structures, providing proto-independence required for δ, Φ, and Π semantics.",
+
+  "msp_origin": {
+    "fusion_modes": ["MSP_E"],
+    "mechanism": "Modal disentanglement",
+    "boundary_conditions": "Cannot erase fused channels"
+  },
+
+  "semantic_role": {
+    "creates": "proto-independence",
+    "enables": ["clean evaluation paths", "projection independence"],
+    "forbids": ["collapse", "segmentation", "truth evaluation"]
+  },
+
+  "proto_invariants": {
+    "Independence-Purity": "Separated modes must remain independent.",
+    "Non-Collapsing": "Cannot delete modal channels.",
+    "Non-Evaluative": "Cannot form truth boundaries."
+  },
+
+  "emergence_examples": [
+    { "example": "Separator disentangles MSP modes so Π evaluation can later form truth contours cleanly." }
+  ],
+
+  "lineage": {
+    "precedes": ["δ", "Φ", "Π"],
+    "supports": ["semantic clarity", "clean evaluation"],
+    "cannot_replace": ["Π-evaluation", "Θ-polarity"]
+  }
+}

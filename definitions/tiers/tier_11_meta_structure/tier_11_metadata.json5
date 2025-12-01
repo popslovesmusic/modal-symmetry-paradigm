@@ -1,0 +1,30 @@
+{
+  "tier_id": "T11",
+  "name": "ChiEvolution",
+  "version": "0.1.0",
+  "description": "Defines χ evolution operators for semantic time, directed change, and evolution chains over Box structures. χ governs how structures move, grow, and transform along a semantic time axis.",
+  "scope": [
+    "semantic_time",
+    "evolution_steps",
+    "forward_flow",
+    "continuous_vs_discrete_change"
+  ],
+  "dependencies": [
+    "T00",
+    "T01",
+    "T02",
+    "T03",
+    "T04",
+    "T05",
+    "T06",
+    "T07",
+    "T08",
+    "T09",
+    "T10"
+  ],
+  "provides": [
+    "chi_step",
+    "chi_flow",
+    "chi_history"
+  ]
+}

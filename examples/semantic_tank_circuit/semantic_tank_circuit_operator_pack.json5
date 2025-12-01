@@ -1,0 +1,249 @@
+{
+  "pack_id": "SemanticTankCircuit_OperatorPack",
+  "version": "1.0-ad-hoc",
+  "description": "Operator pack implementing the Semantic Tank Circuit: an oscillatory δ–Φ–ψ engine for semantic resonance, stabilization, and emergent structure generation.",
+  "dependencies": [
+    "tier_01_operator_pack.json5",
+    "tier_02_operator_pack.json5",
+    "tier_03_operator_pack.json5",
+    "tier_06_operator_pack.json5",
+    "tier_08_operator_pack.json5",
+    "tier_12_operator_pack.json5",
+    "tier_13_operator_pack.json5"
+  ],
+  "operators": [
+    {
+      "id": "stc_init",
+      "symbol": "STC₀",
+      "kind": "initializer",
+      "tier_binding": "meta",
+      "description": "Initializes a Semantic Tank Circuit for a given Box or semantic region.",
+      "inputs": [
+        "BoxRef",
+        "initial_delta_level",
+        "initial_phi_level",
+        "polarity_state"
+      ],
+      "outputs": [
+        "stc_handle"
+      ],
+      "preconditions": [
+        "BoxRef is structurally valid under Ω.",
+        "polarity_state is admissible under Θ."
+      ],
+      "postconditions": [
+        "An STC instance is registered with δ, Φ, ψ, Π, Θ, Ω, ρ hooks.",
+        "delta_store and phi_store are set to initial levels."
+      ]
+    },
+    {
+      "id": "stc_charge_delta",
+      "symbol": "Δ⁺",
+      "kind": "delta_charge_operator",
+      "tier_binding": "T01",
+      "description": "Adds semantic difference energy into the δ-store of the Semantic Tank Circuit.",
+      "inputs": [
+        "stc_handle",
+        "delta_increment"
+      ],
+      "outputs": [
+        "updated_delta_level"
+      ],
+      "preconditions": [
+        "stc_handle is active.",
+        "delta_increment >= 0."
+      ],
+      "postconditions": [
+        "delta_store := delta_store + delta_increment.",
+        "ψ frequency may be updated pending evaluation."
+      ]
+    },
+    {
+      "id": "stc_discharge_to_phi",
+      "symbol": "Δ→Φ",
+      "kind": "delta_to_phi_transfer",
+      "tier_binding": "T01→T02",
+      "description": "Transfers accumulated δ difference energy into Φ projection, turning tension into structured form.",
+      "inputs": [
+        "stc_handle",
+        "transfer_fraction"
+      ],
+      "outputs": [
+        "updated_delta_level",
+        "updated_phi_level"
+      ],
+      "preconditions": [
+        "0 < transfer_fraction <= 1.",
+        "delta_store > 0.",
+        "Π-admissibility check passes for current δ-state."
+      ],
+      "postconditions": [
+        "delta_store := delta_store * (1 - transfer_fraction).",
+        "phi_store := phi_store + (delta_store * transfer_fraction).",
+        "ψ recomputed as f(delta_store, phi_store, polarity_state)."
+      ]
+    },
+    {
+      "id": "stc_charge_phi",
+      "symbol": "Φ⁺",
+      "kind": "phi_charge_operator",
+      "tier_binding": "T02",
+      "description": "Accumulates interpretive tension and form in Φ, preparing for semantic release.",
+      "inputs": [
+        "stc_handle",
+        "phi_increment"
+      ],
+      "outputs": [
+        "updated_phi_level"
+      ],
+      "preconditions": [
+        "phi_increment >= 0.",
+        "Θ polarity is compatible with current ψ-mode."
+      ],
+      "postconditions": [
+        "phi_store := phi_store + phi_increment.",
+        "ψ frequency updated accordingly."
+      ]
+    },
+    {
+      "id": "stc_release_to_delta",
+      "symbol": "Φ→Δ",
+      "kind": "phi_to_delta_transfer",
+      "tier_binding": "T02→T01",
+      "description": "Releases accumulated projection-form back into δ, generating new distinctions.",
+      "inputs": [
+        "stc_handle",
+        "release_fraction"
+      ],
+      "outputs": [
+        "updated_phi_level",
+        "updated_delta_level"
+      ],
+      "preconditions": [
+        "0 < release_fraction <= 1.",
+        "phi_store > 0.",
+        "Π-admissibility check passes for the projected form."
+      ],
+      "postconditions": [
+        "phi_store := phi_store * (1 - release_fraction).",
+        "delta_store := delta_store + (phi_store * release_fraction).",
+        "New distinctions may be instantiated in the target BoxRef."
+      ]
+    },
+    {
+      "id": "stc_compute_psi",
+      "symbol": "ψ̂",
+      "kind": "mode_frequency_solver",
+      "tier_binding": "T06",
+      "description": "Computes the emergent ψ-mode (semantic oscillation frequency) from δ and Φ levels.",
+      "inputs": [
+        "stc_handle"
+      ],
+      "outputs": [
+        "psi_frequency"
+      ],
+      "preconditions": [
+        "stc_handle references valid delta_store and phi_store."
+      ],
+      "postconditions": [
+        "ψ-frequency updated using module rule: psi = f(delta_store, phi_store, polarity_state, normalization_state)."
+      ]
+    },
+    {
+      "id": "stc_step_cycle",
+      "symbol": "Ωψ-step",
+      "kind": "cycle_step_operator",
+      "tier_binding": "multi_tier",
+      "description": "Performs a single semantic oscillation step: δ charge → Φ projection → ψ update → evaluation and normalization.",
+      "inputs": [
+        "stc_handle",
+        "cycle_parameters"
+      ],
+      "outputs": [
+        "cycle_trace_entry",
+        "updated_state_summary"
+      ],
+      "preconditions": [
+        "Π(admissibility) must succeed.",
+        "Θ(polarity) must be consistent with requested oscillation mode.",
+        "No global Ω-constraints currently violated."
+      ],
+      "postconditions": [
+        "delta_store and phi_store updated according to cycle rules.",
+        "ψ-frequency updated.",
+        "Cycle trace recorded in χ/trace layer.",
+        "State re-checked under Ω and ρ."
+      ]
+    },
+    {
+      "id": "stc_resonance_lock",
+      "symbol": "ψ-lock",
+      "kind": "resonance_mode_operator",
+      "tier_binding": "T06→T13",
+      "description": "Locks the STC into a stable resonance band if ψ meets coherence conditions under ρ.",
+      "inputs": [
+        "stc_handle",
+        "target_band"
+      ],
+      "outputs": [
+        "resonance_state"
+      ],
+      "preconditions": [
+        "ψ-frequency within an allowed band under Ω.",
+        "ρ-coherence evaluation returns true for the candidate band."
+      ],
+      "postconditions": [
+        "STC marked as operating in stable resonance.",
+        "Resulting meaning-attractor registered as a stable semantic structure."
+      ]
+    },
+    {
+      "id": "stc_damp",
+      "symbol": "ψ-damp",
+      "kind": "damping_operator",
+      "tier_binding": "T12",
+      "description": "Reduces oscillation amplitude to restore global stability when semantic energy is excessive.",
+      "inputs": [
+        "stc_handle",
+        "damping_factor"
+      ],
+      "outputs": [
+        "updated_delta_level",
+        "updated_phi_level",
+        "updated_psi_amplitude"
+      ],
+      "preconditions": [
+        "damping_factor in (0, 1].",
+        "Ω detects amplitude or energy exceeding configured bounds."
+      ],
+      "postconditions": [
+        "delta_store and phi_store scaled toward equilibrium.",
+        "ψ-amplitude decreased.",
+        "System moves closer to globally normalized state."
+      ]
+    },
+    {
+      "id": "stc_terminate",
+      "symbol": "STC⊘",
+      "kind": "termination_operator",
+      "tier_binding": "meta",
+      "description": "Gracefully terminates a Semantic Tank Circuit instance and collapses its state into a final normalized structure.",
+      "inputs": [
+        "stc_handle"
+      ],
+      "outputs": [
+        "final_semantic_structure",
+        "final_state_trace"
+      ],
+      "preconditions": [
+        "ρ-coherence evaluation must pass for termination.",
+        "All outstanding cycles must be resolved or damped."
+      ],
+      "postconditions": [
+        "STC instance inactive.",
+        "Final structure registered as ρ-NF-compatible.",
+        "Full trace made available to χ history layer."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  // Proto-Operator: Summer
+  // MSP → Proto-layer → Tier-00
+
+  "id": "PO_Summer",
+  "type": "proto_operator",
+  "tier": "MSP-Proto",
+  "description": "Combines multiple MSP modal channels without collapse or loss of identity. Creates proto-superposition structures required for ψ-wave emergence.",
+
+  "msp_origin": {
+    "fusion_modes": ["MSP_Mode_A", "MSP_Mode_B", "MSP_Mode_E"],
+    "mechanism": "Modal superposition (pre-functional)",
+    "boundary_conditions": "Input modes must remain individually recoverable"
+  },
+
+  "semantic_role": {
+    "creates": "proto-superposition",
+    "enables": ["wave-potential", "oscillatory freedom"],
+    "forbids": ["normalization", "evaluation", "gradient-formation"]
+  },
+
+  "proto_invariants": {
+    "Identity-Preservation": "All MSP input channels must remain uniquely identifiable.",
+    "Superposition-Purity": "No destructive interference permitted at this stage.",
+    "Non-Evaluative": "Summation may not reduce modal structure to a single evaluative state."
+  },
+
+  "emergence_examples": [
+    {
+      "example": "Summation of three MSP modes forms the proto-wave envelope later formalized in the ψ-Family."
+    },
+    {
+      "example": "Summer preserves modal identity such that future Φ-projection can identify semantic classes cleanly."
+    }
+  ],
+
+  "lineage": {
+    "precedes": ["Tier_00_Primitive_Envelope", "Tier_06_ψ-operators"],
+    "supports": ["Wave emergence", "Oscillation mode formation"],
+    "cannot_replace": ["Σ-summation", "Ω-normalization"]
+  }
+}

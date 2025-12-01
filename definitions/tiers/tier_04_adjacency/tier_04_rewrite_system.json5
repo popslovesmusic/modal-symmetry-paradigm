@@ -1,0 +1,25 @@
+{
+  "tier_id": "T04",
+  "name": "PhiProjection_RewriteSystem",
+  "rules": [
+    {
+      "id": "R40_phi_chain_normalization",
+      "pattern": "phi_projection_map(phi_projection_map(X))",
+      "rewrite_to": "phi_projection_map(X)",
+      "description": "Collapses chained projection mappings into a single projection."
+    },
+    {
+      "id": "R41_phi_delta_commutation",
+      "pattern": "phi_projection_map(delta_n(X))",
+      "rewrite_to": "delta_n(phi_projection_map(X))",
+      "description": "Enforces the commuting axiom between Φ and δn."
+    },
+    {
+      "id": "R42_phi_identity_elimination",
+      "pattern": "phi0(X)",
+      "rewrite_to": "X",
+      "description": "Eliminates unnecessary Φ0 calls."
+    }
+  ],
+  "normal_form_description": "A Box is in Φ-normal form when projection has at most one Φ-operator applied, Φ0 is eliminated, and Φ commutes with deviation operators."
+}

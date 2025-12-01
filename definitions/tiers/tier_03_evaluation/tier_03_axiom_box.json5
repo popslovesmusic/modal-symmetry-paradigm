@@ -1,0 +1,26 @@
+{
+  "tier_id": "T03",
+  "name": "HigherDeviation_AxiomBox",
+  "axioms": [
+    {
+      "id": "A30_delta_monotonicity",
+      "statement": "δ(n+1) depends on δ(n) but may not bypass it.",
+      "role": "hierarchy"
+    },
+    {
+      "id": "A31_no_new_substance",
+      "statement": "Higher deviations do not create new substances; they reorganize existing distinctions.",
+      "role": "monism"
+    },
+    {
+      "id": "A32_internalization_rule",
+      "statement": "δ7–δ9 require an internal model; deviation applies to internal relational structures.",
+      "role": "internal_structure"
+    },
+    {
+      "id": "A33_global_coherence_requirement",
+      "statement": "δ12 applies only after δ0–δ11 have established multi-scale structure.",
+      "role": "dependency"
+    }
+  ]
+}

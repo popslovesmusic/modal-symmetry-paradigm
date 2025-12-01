@@ -1,0 +1,31 @@
+{
+  "tier_id": "T03",
+  "name": "HigherDeviation",
+  "version": "0.1.0",
+  "description": "Defines higher-level deviation expressions δ5–δ12, corresponding to emergent, autopoietic, cognitive, symbolic, meta-cognitive, semantic-network, and global-coherence deviations. All are expressions of D.",
+  "scope": [
+    "delta5_emergence",
+    "delta6_autopoiesis",
+    "delta7_cognitive",
+    "delta8_symbolic",
+    "delta9_meta_cognitive",
+    "delta10_reflexive",
+    "delta11_semantic_network",
+    "delta12_global_coherence"
+  ],
+  "dependencies": [
+    "T00",
+    "T01",
+    "T02"
+  ],
+  "provides": [
+    "delta5",
+    "delta6",
+    "delta7",
+    "delta8",
+    "delta9",
+    "delta10",
+    "delta11",
+    "delta12"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "tier_id": "T10",
+  "name": "ThetaPolarityLogic",
+  "version": "0.1.0",
+  "description": "Defines Θ polarity logic operators governing logical orientation, polarity tensors, truth–polarity routing, and consistency of logical sign across structural transformations.",
+  "scope": [
+    "logical_polarity",
+    "polarity_tensors",
+    "logical_routing",
+    "truth_polarity_bridge"
+  ],
+  "dependencies": [
+    "T00",
+    "T01",
+    "T02",
+    "T03",
+    "T04",
+    "T05",
+    "T06",
+    "T07",
+    "T08",
+    "T09"
+  ],
+  "provides": [
+    "theta_assign",
+    "theta_flip",
+    "theta_route"
+  ]
+}

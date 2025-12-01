@@ -1,0 +1,26 @@
+{
+  "tier_id": "T02",
+  "name": "ModalityCore_ModulePack",
+  "modules": [
+    {
+      "id": "M20_modality_core",
+      "description": "Core modality definitions and rules.",
+      "includes": [
+        "tier_02_metadata.json5",
+        "tier_02_operator_pack.json5",
+        "tier_02_interaction_table.json5",
+        "tier_02_axiom_box.json5",
+        "tier_02_rewrite_system.json5"
+      ]
+    },
+    {
+      "id": "M21_modality_boxes",
+      "description": "References to concrete modality-related Boxes.",
+      "box_refs": [
+        "Bx2",
+        "Bx3",
+        "Bx4"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "tier_id": "T02",
+  "name": "ModalityCore_InteractionTable",
+  "interactions": [
+    {
+      "id": "I20_make_dual_modal",
+      "operator": "MakeDualModalSubstrate",
+      "target": "Box",
+      "effect": "create_dual_modal_structure",
+      "description": "Converts a generic Box into a dual-modal substrate with ports IGS and OA."
+    },
+    {
+      "id": "I21_apply_zero_symmetry",
+      "operator": "ApplyZeroSymmetry",
+      "target": "DualModalSubstrateBox",
+      "effect": "add_symmetry_relation",
+      "description": "Adds a bidirectional balanced relation IGS ↔ OA."
+    },
+    {
+      "id": "I22_apply_polarity",
+      "operator": "ApplyPolarity",
+      "target": "DualModalSubstrateBox",
+      "effect": "annotate_with_polarity",
+      "description": "Labels IGS and OA with ±1 expressive states."
+    }
+  ]
+}

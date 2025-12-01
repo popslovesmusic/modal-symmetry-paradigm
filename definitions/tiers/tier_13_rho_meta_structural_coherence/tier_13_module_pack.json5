@@ -1,0 +1,28 @@
+{
+  "modules": [
+    {
+      "id": "GlobalCoherenceModule",
+      "provides": [
+        "rho_coherence_operator",
+        "rho_meta_alignment",
+        "rho_validation"
+      ]
+    },
+    {
+      "id": "CoherenceNFModule",
+      "provides": [
+        "global_rho_nf",
+        "multitier_nf_collapse",
+        "consistency_trace"
+      ]
+    },
+    {
+      "id": "InheritanceTraceModule",
+      "provides": [
+        "schema_lineage_mapping",
+        "operator_inheritance_graph",
+        "transitivity_validator"
+      ]
+    }
+  ]
+}

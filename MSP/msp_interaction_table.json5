@@ -1,0 +1,109 @@
+{
+  id: "MSP_INTERACTION_TABLE",
+  name: "MSP Cross-Tier Interaction Table",
+  family: "MSP",
+  version: "1.0.0",
+
+  // High-level semantics: how MSP constrains / interacts with other tiers
+  interactions: [
+    {
+      with_family: "TIER_00",
+      description: "Tier-00 primitive structures must be realizable as MSP-admissible modal configurations.",
+      constraints: [
+        "Every Tier-00 primitive type maps to at least one modal configuration C in MSP.",
+        "Tier-00 rewrites may not violate MSP modal invariants.",
+      ],
+    },
+
+    {
+      with_family: "DELTA", // Tier-01 δ
+      description: "δ-Geometry assigns deviation-curvature structure to MSP configurations.",
+      constraints: [
+        "δ-operators must commute with S: δ ∘ s = s ∘ δ.",
+        "δ-curvature may not change the underlying set of modes.",
+      ],
+    },
+
+    {
+      with_family: "PHI", // Tier-02 Φ
+      description: "Φ-Projection interprets configurations as semantic objects, but must preserve MSP modal equivalence.",
+      constraints: [
+        "If C₁ ≡ₘ C₂, then Φ(C₁) and Φ(C₂) must be semantically equivalent up to Φ-internal symmetry.",
+      ],
+    },
+
+    {
+      with_family: "PI", // Tier-03 Π
+      description: "Π-Evaluation (truth/causality) acts on structures built over MSP configurations.",
+      constraints: [
+        "Π must not distinguish configurations that are MSP-equivalent unless additional tier-structure justifies the distinction.",
+      ],
+    },
+
+    {
+      with_family: "MU",
+      description: "μ-local weighting assigns weights to adjacency graphs derived from MSP configurations.",
+      constraints: [
+        "μ must not remove MSP modes; weights apply only to relations/edges, not to mode existence.",
+      ],
+    },
+
+    {
+      with_family: "LAMBDA",
+      description: "λ-curvature deforms δ-geometry, but underlying modes remain governed by MSP.",
+      constraints: [
+        "λ may bend geometry, but may not bend/violate MSP symmetry group S.",
+      ],
+    },
+
+    {
+      with_family: "PSI",
+      description: "ψ-waveforms oscillate over configurations whose carrier is MSP modal space.",
+      constraints: [
+        "ψ modes (frequencies, phases) are assigned on top of MSP configurations.",
+        "No ψ operator may annihilate primitive modes.",
+      ],
+    },
+
+    {
+      with_family: "SIGMA",
+      description: "Σ performs summation/contraction over MSP-based structures.",
+      constraints: [
+        "Σ may contract composite structures, but MSP modal count conservation must hold at the foundational representation level.",
+      ],
+    },
+
+    {
+      with_family: "THETA",
+      description: "Θ-polarity assigns logical/semantic polarity to MSP-derived structures.",
+      constraints: [
+        "Polarity cannot change membership of modes in M.",
+      ],
+    },
+
+    {
+      with_family: "CHI",
+      description: "χ-semantic evolution advances configurations through time-like semantic steps.",
+      constraints: [
+        "χ-evolution is a sequence of MSP-admissible rewrites.",
+        "No χ-step may break MSP symmetry invariants.",
+      ],
+    },
+
+    {
+      with_family: "OMEGA",
+      description: "Ω-global constraints normalize and check consistency for MSP-based structures.",
+      constraints: [
+        "Ω may forbid certain configurations, but it may not retroactively change MSP axioms.",
+      ],
+    },
+
+    {
+      with_family: "RHO",
+      description: "ρ-layering federates multi-tier structures built over MSP.",
+      constraints: [
+        "ρ-layer identities are ultimately grounded in equivalence classes of MSP configurations.",
+      ],
+    },
+  ],
+}

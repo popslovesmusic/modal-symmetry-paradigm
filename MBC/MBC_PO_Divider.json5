@@ -1,0 +1,35 @@
+{
+  "id": "PO_Divider",
+  "type": "proto_operator",
+  "tier": "MSP-Proto",
+
+  "description": "Segments blended MSP modal content into proto-partitions. Enables discrete semantic structures later formalized by Π-evaluation and Σ-contraction.",
+
+  "msp_origin": {
+    "fusion_modes": ["MSP_C"],
+    "mechanism": "Proto-segmentation",
+    "boundary_conditions": "No binary evaluation allowed"
+  },
+
+  "semantic_role": {
+    "creates": "proto-partitions",
+    "enables": ["semantic segmentation", "future evaluation zones"],
+    "forbids": ["true/false evaluation", "polarity assignment"]
+  },
+
+  "proto_invariants": {
+    "Partition-Purity": "Divided regions must be internally uniform.",
+    "No-Binarity": "Division cannot create truth-values.",
+    "Non-Destructive": "Modal content cannot be erased."
+  },
+
+  "emergence_examples": [
+    { "example": "Divider prepares discrete segments later used by Π for truth-boundaries." }
+  ],
+
+  "lineage": {
+    "precedes": ["Tier_03_Π-operators", "Tier_07_Σ"],
+    "supports": ["semantic segmentation"],
+    "cannot_replace": ["Π-evaluation", "Σ-contraction"]
+  }
+}

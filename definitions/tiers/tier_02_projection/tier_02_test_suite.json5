@@ -1,0 +1,32 @@
+{
+  "tier_id": "T02",
+  "name": "ModalityCore_TestSuite",
+  "tests": [
+    {
+      "id": "T20_dual_modal_box_schema",
+      "description": "Verify the agent can construct a DualModalSubstrateBox with IGS/OA ports.",
+      "inputs": [
+        "MakeDualModalSubstrate"
+      ],
+      "expected": "pass_if_result_has_ports_[port_igs,port_oa]"
+    },
+    {
+      "id": "T21_symmetry_bidirectional",
+      "description": "Check that ApplyZeroSymmetry produces bidirectional relations.",
+      "inputs": [
+        "Bx2",
+        "ApplyZeroSymmetry"
+      ],
+      "expected": "pass_if_relations_include_IGS_to_OA_and_OA_to_IGS"
+    },
+    {
+      "id": "T22_polarity_expression_only",
+      "description": "Ensure polarity tagging does not create new ports or modes.",
+      "inputs": [
+        "Bx2",
+        "ApplyPolarity"
+      ],
+      "expected": "pass_if_ports_unchanged_and_states_include_+1_-1"
+    }
+  ]
+}

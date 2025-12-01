@@ -1,0 +1,54 @@
+{
+  "tier_id": "T03",
+  "name": "HigherDeviation_InteractionTable",
+  "interactions": [
+    {
+      "id": "I30_delta5_emergence",
+      "operator": "delta5",
+      "effect": "form_stable_patterns",
+      "description": "δ5 aggregates lower-level structures into emergent macro-patterns."
+    },
+    {
+      "id": "I31_delta6_autopoiesis",
+      "operator": "delta6",
+      "effect": "enable_self_maintenance",
+      "description": "δ6 creates loops that maintain structure against perturbation."
+    },
+    {
+      "id": "I32_delta7_cognition",
+      "operator": "delta7",
+      "effect": "construct_internal_models",
+      "description": "δ7 allows Boxes to represent external conditions internally."
+    },
+    {
+      "id": "I33_delta8_symbolic",
+      "operator": "delta8",
+      "effect": "enable_symbolic_processing",
+      "description": "δ8 introduces stable symbol-like tokens and relations."
+    },
+    {
+      "id": "I34_delta9_meta_cognition",
+      "operator": "delta9",
+      "effect": "enable_self_modeling",
+      "description": "δ9 allows systems to model their own state/operators."
+    },
+    {
+      "id": "I35_delta10_reflexive",
+      "operator": "delta10",
+      "effect": "enforce_systemic_self_consistency",
+      "description": "δ10 ensures reflexive closure and consistency of internal processes."
+    },
+    {
+      "id": "I36_delta11_semantic_network",
+      "operator": "delta11",
+      "effect": "maintain_semantic_relations",
+      "description": "δ11 stabilizes relational semantic networks."
+    },
+    {
+      "id": "I37_delta12_global_coherence",
+      "operator": "delta12",
+      "effect": "enforce_global_consistency",
+      "description": "δ12 integrates all structures into a globally coherent whole."
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "tier_id": "T06",
+  "name": "MuLocalWeight_TestSuite",
+  "tests": [
+    {
+      "id": "T60_weight_non_negative",
+      "description": "Verify μ assigned weights are non-negative.",
+      "inputs": [
+        "mu_weight",
+        "Bx4"
+      ],
+      "expected": "pass_if_weight>=0"
+    },
+    {
+      "id": "T61_adjacency_preserves_substance",
+      "description": "Ensure μ adjacency never creates new nodes.",
+      "inputs": [
+        "mu_adj",
+        "Bx2"
+      ],
+      "expected": "pass_if_no_new_nodes_created"
+    },
+    {
+      "id": "T62_mu_phi_pi_commutation",
+      "description": "Check μ operations commute with Φ and Π.",
+      "inputs": [
+        "mu_field",
+        "phi_structure",
+        "pi_consistency"
+      ],
+      "expected": "pass_if_mu_commutes_with_phi_and_pi"
+    }
+  ]
+}

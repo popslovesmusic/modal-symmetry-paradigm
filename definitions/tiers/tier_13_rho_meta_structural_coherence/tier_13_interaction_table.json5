@@ -1,0 +1,34 @@
+{
+  "interactions": [
+    {
+      "with": "delta_family",
+      "mode": "refinement",
+      "rule": "ρ resolves cross-scale δ-hierarchies and ensures deviation layers remain coherent."
+    },
+    {
+      "with": "phi_family",
+      "mode": "projection_alignment",
+      "rule": "ρ guarantees Φ projections remain consistent across structural levels."
+    },
+    {
+      "with": "pi_family",
+      "mode": "evaluation_stability",
+      "rule": "ρ enforces globally admissible evaluation states."
+    },
+    {
+      "with": "mu_lambda_psi_sigma_theta",
+      "mode": "structural_synchronization",
+      "rule": "ρ synchronizes micro-adjacency, curvature, waveforms, summation, and polarity operators."
+    },
+    {
+      "with": "chi_family",
+      "mode": "evolution_consistency",
+      "rule": "ρ ensures χ evolution is globally consistent with modal symmetry."
+    },
+    {
+      "with": "omega_family",
+      "mode": "nf_hierarchy",
+      "rule": "ρ sits above Ω and computes the final NF across the entire operator stack."
+    }
+  ]
+}

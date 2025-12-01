@@ -1,0 +1,104 @@
+{
+  id: "MSP_OPERATOR_PACK",
+  name: "MSP Operator Pack",
+  family: "MSP",
+  version: "1.0.0",
+
+  // Core data structures
+  structures: {
+    modal_space: {
+      symbol: "M",
+      description: "Set of primitive modes mᵢ (ontological potential units).",
+      type: "set",
+      elements_example: ["m0", "m1", "m2", "…"],
+    },
+
+    symmetry_group: {
+      symbol: "S",
+      description: "Group of symmetries acting on M, preserving modal identity.",
+      type: "group",
+      action: "S × M → M",
+    },
+
+    modal_configuration: {
+      symbol: "C",
+      description: "Finite ordered tuple of modes, a proto-state before geometry/time.",
+      type: "tuple",
+      schema: "(mₐ, m_b, …, m_n)",
+    },
+
+    modal_equivalence: {
+      symbol: "≡ₘ",
+      description: "Equivalence relation induced by S on configurations.",
+      definition: "C₁ ≡ₘ C₂  ⇔  ∃ s ∈ S such that C₂ = s(C₁).",
+    },
+  },
+
+  operators: [
+    {
+      id: "MSP_SYMMETRY_ACTION",
+      symbol: "s",
+      family: "MSP",
+      kind: "symmetry",
+      arity: 1,
+      signature: "s : M → M",
+      description: "Primitive symmetry action mapping one mode to another mode while preserving modal identity structure.",
+      constraints: [
+        "s is invertible (belongs to group S).",
+        "s does not create or annihilate modes.",
+        "s respects modal equivalence ≡ₘ.",
+      ],
+    },
+
+    {
+      id: "MSP_CONFIG_PERMUTE",
+      symbol: "Permute",
+      family: "MSP",
+      kind: "reordering",
+      arity: 1,
+      signature: "Permute : C → C",
+      description: "Reorders the modes inside a modal configuration without changing its multiset content.",
+      constraints: [
+        "Cardinality of configuration is preserved.",
+        "Multiset of modes is preserved.",
+        "No new modes introduced; none removed.",
+      ],
+    },
+
+    {
+      id: "MSP_CONFIG_RECONFIGURE",
+      symbol: "Reconfig",
+      family: "MSP",
+      kind: "equivalence_rewrite",
+      arity: 1,
+      signature: "Reconfig : C → C'",
+      description: "Rewrites a configuration into an MSP-equivalent configuration using the symmetry group S.",
+      constraints: [
+        "C' ≡ₘ C (modal equivalence).",
+        "Cardinality of configuration is preserved.",
+        "Modes may be relabeled only via symmetries in S.",
+      ],
+    },
+
+    {
+      id: "MSP_NEUTRAL_EXTENSION",
+      symbol: "Ext₀",
+      family: "MSP",
+      kind: "extension",
+      arity: 2,
+      signature: "Ext₀ : (C, mᵢ) → C'",
+      description: "Neutrally extends a configuration by appending an additional mode without assigning any geometry/time/semantics.",
+      constraints: [
+        "dimensionality remains undefined at MSP level.",
+        "No geometric, temporal, or evaluative structure is attached by Ext₀.",
+      ],
+    },
+  ],
+
+  // Global operator pack invariants
+  invariants: [
+    "All MSP operators preserve the set of modes M.",
+    "All MSP operators preserve modal equivalence classes induced by S.",
+    "No MSP operator introduces geometry, time, polarity, or truth structure.",
+  ],
+}

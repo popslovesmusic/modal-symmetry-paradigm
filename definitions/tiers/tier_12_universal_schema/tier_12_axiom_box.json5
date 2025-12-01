@@ -1,0 +1,26 @@
+{
+  "tier_id": "T12",
+  "name": "OmegaGlobalConstraints_AxiomBox",
+  "axioms": [
+    {
+      "id": "A120_global_consistency",
+      "statement": "All tiers must jointly satisfy global semantic consistency.",
+      "role": "universal_validity"
+    },
+    {
+      "id": "A121_global_normalization",
+      "statement": "Every Box or structure must collapse to a unique Ω-global normal form.",
+      "role": "canonical_form"
+    },
+    {
+      "id": "A122_federated_geometry",
+      "statement": "All geometric structures must align under a unified global geometry.",
+      "role": "geometric_unification"
+    },
+    {
+      "id": "A123_no_contradiction",
+      "statement": "Global contradictions must be resolved, suppressed, or mapped to permissible exception-Boxes.",
+      "role": "consistency_enforcement"
+    }
+  ]
+}

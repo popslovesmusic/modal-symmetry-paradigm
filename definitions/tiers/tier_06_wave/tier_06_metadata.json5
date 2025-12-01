@@ -1,0 +1,25 @@
+{
+  "tier_id": "T06",
+  "name": "MuLocalWeight",
+  "version": "0.1.0",
+  "description": "Defines μ operators that assign local weights to relations, represent micro-adjacency, and govern influence patterns in the Box network. μ never creates new nodes; it weights existing relations.",
+  "scope": [
+    "local_weight_assignment",
+    "micro_adjacency",
+    "influence_fields",
+    "adjacency_constraints"
+  ],
+  "dependencies": [
+    "T00",
+    "T01",
+    "T02",
+    "T03",
+    "T04",
+    "T05"
+  ],
+  "provides": [
+    "mu_weight",
+    "mu_adj",
+    "mu_field"
+  ]
+}

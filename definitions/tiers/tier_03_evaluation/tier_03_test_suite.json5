@@ -1,0 +1,30 @@
+{
+  "tier_id": "T03",
+  "name": "HigherDeviation_TestSuite",
+  "tests": [
+    {
+      "id": "T30_hierarchy_enforced",
+      "description": "Confirm δ5–δ12 can only apply after δ0–δ4.",
+      "inputs": [
+        "tier_03_interaction_table.json5"
+      ],
+      "expected": "pass_if_dependencies_respected"
+    },
+    {
+      "id": "T31_delta12_global_coherence",
+      "description": "Ensure δ12 enforces multi-scale coherence and depends on all prior δs.",
+      "inputs": [
+        "tier_03_axiom_box.json5"
+      ],
+      "expected": "pass_if_dependency_tree_satisfied"
+    },
+    {
+      "id": "T32_higher_delta_unification",
+      "description": "Check all δ5–δ12 unify under D.",
+      "inputs": [
+        "tier_03_operator_pack.json5"
+      ],
+      "expected": "pass_if_all_reference_D"
+    }
+  ]
+}

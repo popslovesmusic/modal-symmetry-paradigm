@@ -1,0 +1,30 @@
+{
+  "id": "Bx_Modulate",
+  "type": "functional_operator",
+  "proto_origin": "PO_Modulator",
+
+  "description": "Applies functional frequency, mode, or phase modulation to semantic fields. Enables ψ-oscillation effects.",
+
+  "io_signature": {
+    "input": ["SemanticField", "ModulationProfile"],
+    "output": ["ModulatedField"]
+  },
+
+  "functional_role": {
+    "performs": ["frequency shaping", "phase variation"],
+    "supports": ["ψ-wave operators", "semantic resonance"],
+    "forbids": ["truth evaluation", "polarity extraction"]
+  },
+
+  "operator_invariants": {
+    "Mode-Purity": "Modulated modes must derive from MSP roots.",
+    "Phase-Stability": "Must not create singularities.",
+    "Non-Evaluative": "Cannot collapse meaning."
+  },
+
+  "computational_examples": [
+    {
+      "example": "Modulate(field, ω) → oscillatory semantic field used by ψ-tier."
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  // META-SCHEMA: Validates all MBC schema files.
+  // This governs structural correctness of the schemas themselves.
+
+  "schema_id": "schema_schema",
+  "type": "object",
+
+  // All MBC schemas MUST contain these keys:
+  "required": [
+    "schema_id",
+    "type",
+    "properties"
+  ],
+
+  "properties": {
+    // Human-readable identifier for the schema
+    "schema_id": { "type": "string" },
+
+    // Should always be "object" for MBC schemas
+    "type": {
+      "type": "string",
+      "enum": ["object"]
+    },
+
+    // List of required top-level keys for the schema
+    "required": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+
+    // Allowed properties for the schema definition
+    "properties": {
+      "type": "object",
+      "additionalProperties": {
+        // Each property inside a schema must itself be a valid JSON Schema object
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "items": {
+            "type": ["object", "boolean"]
+          },
+          "properties": {
+            "type": "object"
+          },
+          "required": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "enum": {
+            "type": "array",
+            "items": {}
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+
+    // Optional but allowed:
+    "definitions": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+
+    "additionalProperties": {
+      "type": ["boolean", "object"]
+    }
+  }
+}

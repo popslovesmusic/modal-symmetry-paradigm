@@ -1,0 +1,27 @@
+{
+  "tier_id": "T08",
+  "name": "PsiWave_InteractionTable",
+  "interactions": [
+    {
+      "id": "I80_assign_mode",
+      "operator": "psi_mode",
+      "target": "Box",
+      "effect": "attach_mode",
+      "description": "Assigns an oscillation mode (frequency, phase) to a Box."
+    },
+    {
+      "id": "I81_interference",
+      "operator": "psi_interfere",
+      "target": "ModePair",
+      "effect": "mode_interaction",
+      "description": "Applies constructive or destructive interference based on phase relation."
+    },
+    {
+      "id": "I82_wave_propagation",
+      "operator": "psi_propagate",
+      "target": "MuField",
+      "effect": "wave_flow",
+      "description": "Propagates ψ-mode through μ-weights and λ-curved geometry."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "operators": [
+    {
+      "id": "rho_cohere",
+      "type": "global_coherence_operator",
+      "description": "Aligns all modal, structural, and operational tiers into a single coherent state."
+    },
+    {
+      "id": "rho_unify",
+      "type": "unification_operator",
+      "description": "Reconciles cross-tier inconsistencies by enforcing MSC schemas at runtime."
+    },
+    {
+      "id": "rho_normalize",
+      "type": "meta_normal_form",
+      "description": "Computes the final global normal form (ρ-NF) for any multi-tier Box configuration."
+    },
+    {
+      "id": "rho_trace",
+      "type": "coherence_trace_operator",
+      "description": "Computes lineage and inheritance traces across MSP → MSC → MBC structures."
+    }
+  ]
+}

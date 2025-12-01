@@ -1,0 +1,27 @@
+{
+  "tier_id": "T07",
+  "name": "LambdaCurvature_InteractionTable",
+  "interactions": [
+    {
+      "id": "I70_lambda_assign_curve",
+      "operator": "lambda_curve",
+      "target": "Relation",
+      "effect": "attach_curvature",
+      "description": "Attaches a curvature parameter κ to an existing relation."
+    },
+    {
+      "id": "I71_lambda_apply_bend",
+      "operator": "lambda_bend",
+      "target": "Box",
+      "effect": "deform_local_structure",
+      "description": "Modifies adjacency geometry while preserving modal and substance identity."
+    },
+    {
+      "id": "I72_lambda_flow_over_mu",
+      "operator": "lambda_flow",
+      "target": "MuField",
+      "effect": "propagate_curvature",
+      "description": "Propagates curvature across μ-weight and adjacency fields."
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  id: "MSP_MODULE_PACK",
+  name: "MSP Module Pack",
+  family: "MSP",
+  version: "1.0.0",
+
+  modules: [
+    {
+      id: "MSP_CORE_KERNEL",
+      name: "MSP Core Kernel",
+      description: "Initializes the modal space M, symmetry group S, modal configurations C, and modal equivalence relation. Provides foundational structures for all higher tiers.",
+      exports: [
+        "M",
+        "S",
+        "C",
+        "equiv_m"
+      ],
+      responsibilities: [
+        "Initialize the modal space M.",
+        "Initialize the symmetry group S.",
+        "Provide rules for constructing modal configurations.",
+        "Provide equivalence-checking predicates for modal equivalence."
+      ]
+    },
+
+    {
+      id: "MSP_SYMMETRY_ENGINE",
+      name: "MSP Symmetry Engine",
+      description: "Implements symmetry operations from group S and enforces group properties including closure, associativity, identity, and inverse.",
+      exports: [
+        "apply_symmetry",
+        "compose_symmetries",
+        "invert_symmetry"
+      ],
+      responsibilities: [
+        "Ensure that symmetry operations preserve modal identity.",
+        "Ensure commutation constraints between symmetry operations and higher-tier operators."
+      ]
+    },
+
+    {
+      id: "MSP_REWRITE_ENGINE",
+      name: "MSP Rewrite Engine",
+      description: "Implements all valid MSP rewrites including symmetry rewrites, permutation rewrites, equivalence rewrites, and neutral extensions. Enforces MSP invariants and forbids illegal rewrites.",
+      exports: [
+        "rewrite_symmetry",
+        "rewrite_permute",
+        "rewrite_equiv",
+        "rewrite_extend_neutral"
+      ],
+      responsibilities: [
+        "Verify compliance with MSP axioms in all rewrite operations.",
+        "Reject any operation that attempts to remove modes or assign geometry or temporal structure at the MSP level."
+      ]
+    },
+
+    {
+      id: "MSP_CONSISTENCY_MONITOR",
+      name: "MSP Consistency Monitor",
+      description: "Monitors operations from higher tiers to ensure compliance with MSP invariants. Provides audit functions and diagnostics for violations.",
+      exports: [
+        "check_msp_invariants",
+        "audit_operator"
+      ],
+      responsibilities: [
+        "Audit operators from delta, Phi, Pi, mu, lambda, psi, sigma, theta, chi, omega, and rho families.",
+        "Detect MSP invariant violations and produce diagnostic reports."
+      ]
+    }
+  ],
+
+  notes: "This module pack must be initialized before any tier-specific modules. All higher-tier components depend on the MSP foundation and must treat MSP structures as immutable."
+}

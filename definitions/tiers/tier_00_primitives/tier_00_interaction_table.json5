@@ -1,0 +1,34 @@
+{
+  "tier_id": "T00",
+  "name": "MetaStructure_InteractionTable",
+  "interactions": [
+    {
+      "id": "I00_box_create",
+      "from": "BoxCreate",
+      "to": "Box",
+      "effect": "instantiate",
+      "description": "Creates a new Box with a valid schema but no domain-specific content."
+    },
+    {
+      "id": "I01_box_link",
+      "from": "BoxLink",
+      "to": "BoxPair",
+      "effect": "reference",
+      "description": "Establishes a non-destructive reference relation between two Boxes."
+    },
+    {
+      "id": "I02_invariant_check",
+      "from": "InvariantCheck",
+      "to": "Box",
+      "effect": "validate",
+      "description": "Evaluates whether a Box satisfies its invariants; returns pass/fail."
+    },
+    {
+      "id": "I03_D_expression",
+      "from": "D",
+      "to": "delta_n",
+      "effect": "expression_of_D",
+      "description": "Interprets δ_n as an expression of the single root deviation operator D."
+    }
+  ]
+}

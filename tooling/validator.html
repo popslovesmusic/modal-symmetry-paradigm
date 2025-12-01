@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JSON / JSON5 + Schema Validator & Saver</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- JSON5 parser -->
+    <script src="https://cdn.jsdelivr.net/npm/json5@2.2.3/dist/index.min.js"></script>
+
+    <!-- AJV for JSON Schema validation -->
+    <script src="https://cdn.jsdelivr.net/npm/ajv@8/dist/ajv7.min.js"></script>
+
+    <style>
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            margin: 2em;
+            line-height: 1.4;
+        }
+
+        h1 { margin-top: 0; }
+
+        label { font-weight: 600; }
+
+        .row { margin-bottom: 1em; }
+
+        textarea {
+            width: 100%;
+            min-height: 230px;
+            font-family: "Fira Code", Consolas, monospace;
+            font-size: 0.95rem;
+            padding: 0.75em;
+            box-sizing: border-box;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            max-width: 380px;
+            padding: 0.4em 0.6em;
+            box-sizing: border-box;
+        }
+
+        select {
+            padding: 0.35em 0.6em;
+        }
+
+        button {
+            padding: 0.4em 0.9em;
+            margin-right: 0.5em;
+            cursor: pointer;
+        }
+
+        #result {
+            margin-top: 1em;
+            padding: 0.75em 1em;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        #result.empty { display: none; }
+        #result.success {
+            background-color: #e9fde9;
+            border-color: #3c763d;
+            color: #234522;
+        }
+        #result.error {
+            background-color: #f2dede;
+            border-color: #a94442;
+            color: #5f1a1a;
+        }
+
+        #saveSection {
+            margin-top: 1em;
+            padding: 0.75em 1em;
+            border: 1px dashed #aaa;
+            border-radius: 4px;
+        }
+        #saveSection.disabled { opacity: 0.5; }
+
+        .hint {
+            font-size: 0.85rem;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>JSON / JSON5 + Schema Validator & Saver</h1>
+
+    <!-- Mode selection -->
+    <div class="row">
+        <label for="modeSelect">Validate as:</label>
+        <select id="modeSelect">
+            <option value="json">JSON</option>
+            <option value="json5" selected>JSON5</option>
+        </select>
+    </div>
+
+    <!-- JSON input -->
+    <div class="row">
+        <label for="jsonInput">Paste JSON / JSON5 here:</label>
+        <textarea id="jsonInput" spellcheck="false"
+            placeholder="{ /* paste your JSON or JSON5 here */ }"></textarea>
+        <div class="hint">
+            Changes invalidate previous validation; you must re-validate before saving.
+        </div>
+    </div>
+
+    <!-- Schema input -->
+    <div class="row">
+        <label for="schemaInput">Paste JSON Schema (JSON5 allowed):</label>
+        <textarea id="schemaInput" spellcheck="false"
+            placeholder='{
+    // Example:
+    type: "object",
+    properties: {
+        name: { type: "string" },
+        age: { type: "number" }
+    },
+    required: ["name"]
+}'></textarea>
+        <div class="hint">Leave empty if you only want syntax validation.</div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="row">
+        <button id="validateBtn">Validate</button>
+        <button id="clearBtn" type="button">Clear</button>
+    </div>
+
+    <!-- Validation output -->
+    <div id="result" class="empty"></div>
+
+    <!-- Save section -->
+    <div id="saveSection" class="disabled">
+        <div class="row">
+            <label for="fileNameInput">File name:</label><br>
+            <input type="text" id="fileNameInput" placeholder="example_file">
+        </div>
+
+        <div class="row">
+            <label for="extSelect">Extension:</label>
+            <select id="extSelect">
+                <option value=".json5" selected>.json5</option>
+                <option value=".json">.json</option>
+            </select>
+        </div>
+
+        <div class="row">
+            <button id="saveBtn" disabled>Save File</button>
+            <span class="hint">Enabled only when content is valid.</span>
+        </div>
+    </div>
+
+    <script>
+        const modeSelect = document.getElementById('modeSelect');
+        const jsonInput = document.getElementById('jsonInput');
+        const schemaInput = document.getElementById('schemaInput');
+        const validateBtn = document.getElementById('validateBtn');
+        const clearBtn = document.getElementById('clearBtn');
+        const resultDiv = document.getElementById('result');
+
+        const saveSection = document.getElementById('saveSection');
+        const fileNameInput = document.getElementById('fileNameInput');
+        const extSelect = document.getElementById('extSelect');
+        const saveBtn = document.getElementById('saveBtn');
+
+        let lastIsValid = false;
+        let lastValidText = '';
+        let lastMode = 'json5';
+
+        function resetValidationState() {
+            lastIsValid = false;
+            lastValidText = '';
+            resultDiv.textContent = '';
+            resultDiv.className = 'empty';
+            saveBtn.disabled = true;
+            saveSection.classList.add('disabled');
+        }
+
+        function showSuccess(msg) {
+            resultDiv.textContent = msg;
+            resultDiv.className = 'success';
+        }
+
+        function showError(msg) {
+            resultDiv.textContent = msg;
+            resultDiv.className = 'error';
+        }
+
+        // ------------------------------------------------------------
+        // VALIDATION PIPELINE
+        // ------------------------------------------------------------
+        function validateCurrentText() {
+            resetValidationState();
+
+            const text = jsonInput.value;
+            const mode = modeSelect.value;
+            const schemaText = schemaInput.value.trim();
+
+            if (!text.trim()) {
+                showError('Input is empty. Paste JSON or JSON5 before validating.');
+                return;
+            }
+
+            let parsedData = null;
+
+            // ---------------------------------------
+            // STEP 1: Parse JSON or JSON5 input
+            // ---------------------------------------
+            try {
+                parsedData = mode === 'json' ? JSON.parse(text) : JSON5.parse(text);
+                showSuccess('Valid ' + mode.toUpperCase() + '.');
+            } catch (err) {
+                let msg = 'Invalid ' + mode.toUpperCase() + ':\n\n' + err.message;
+                if (err.lineNumber || err.columnNumber) {
+                    msg += '\n\nLocation: line ' + (err.lineNumber || '?') +
+                        ', column ' + (err.columnNumber || '?');
+                }
+                showError(msg);
+                return;
+            }
+
+            // ---------------------------------------
+            // STEP 2: Schema validation (optional)
+            // ---------------------------------------
+            if (schemaText.length > 0) {
+                let schemaObj = null;
+
+                // Parse schema as JSON5
+                try {
+                    schemaObj = JSON5.parse(schemaText);
+                } catch (err) {
+                    showError('Schema is not valid JSON5:\n\n' + err.message);
+                    return;
+                }
+
+                try {
+                    const ajv = new Ajv({ allErrors: true, strict: false });
+                    const validate = ajv.compile(schemaObj);
+                    const ok = validate(parsedData);
+
+                    if (!ok) {
+                        showError(
+                            "Schema validation FAILED:\n\n" +
+                            JSON.stringify(validate.errors, null, 2)
+                        );
+                        return;
+                    }
+
+                    showSuccess("Valid JSON/JSON5 + schema validation PASSED.");
+                } catch (err) {
+                    showError("Schema validation error:\n" + err.message);
+                    return;
+                }
+            }
+
+            // ---------------------------------------
+            // FINAL: Everything passed
+            // ---------------------------------------
+            lastIsValid = true;
+            lastValidText = text;
+            lastMode = mode;
+            saveBtn.disabled = false;
+            saveSection.classList.remove('disabled');
+
+            if (mode === 'json') extSelect.value = '.json';
+            else extSelect.value = '.json5';
+        }
+
+        // ------------------------------------------------------------
+        // SAVE FILE
+        // ------------------------------------------------------------
+        function saveToFile() {
+            if (!lastIsValid) {
+                alert('Content is not validated yet.');
+                return;
+            }
+
+            const rawName = (fileNameInput.value || '').trim();
+            const chosenExt = extSelect.value;
+
+            let fileName = rawName || 'data';
+            if (!fileName.includes('.')) fileName += chosenExt;
+
+            const blob = new Blob([lastValidText], {
+                type: 'application/json'
+            });
+
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+
+            a.href = url;
+            a.download = fileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+
+            URL.revokeObjectURL(url);
+        }
+
+        // ------------------------------------------------------------
+        // EVENT WIRING
+        // ------------------------------------------------------------
+        validateBtn.addEventListener('click', validateCurrentText);
+        saveBtn.addEventListener('click', saveToFile);
+        clearBtn.addEventListener('click', () => {
+            jsonInput.value = '';
+            schemaInput.value = '';
+            fileNameInput.value = '';
+            resetValidationState();
+        });
+
+        jsonInput.addEventListener('input', resetValidationState);
+        schemaInput.addEventListener('input', resetValidationState);
+        modeSelect.addEventListener('change', resetValidationState);
+    </script>
+
+</body>
+</html>

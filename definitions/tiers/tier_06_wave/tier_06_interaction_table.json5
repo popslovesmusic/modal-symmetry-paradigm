@@ -1,0 +1,27 @@
+{
+  "tier_id": "T06",
+  "name": "MuLocalWeight_InteractionTable",
+  "interactions": [
+    {
+      "id": "I60_mu_assign_weight",
+      "operator": "mu_weight",
+      "target": "Relation",
+      "effect": "attach_weight",
+      "description": "Attaches a non-negative weight to an existing relation."
+    },
+    {
+      "id": "I61_mu_construct_adjacency",
+      "operator": "mu_adj",
+      "target": "Box",
+      "effect": "create_micro_adjacency",
+      "description": "Constructs a micro-adjacency relation between Box elements."
+    },
+    {
+      "id": "I62_mu_update_field",
+      "operator": "mu_field",
+      "target": "Box",
+      "effect": "update_influence_field",
+      "description": "Updates μ-influence gradients based on local structure."
+    }
+  ]
+}

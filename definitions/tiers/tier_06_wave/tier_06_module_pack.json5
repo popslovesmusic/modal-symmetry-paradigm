@@ -1,0 +1,17 @@
+{
+  "tier_id": "T06",
+  "name": "MuLocalWeight_ModulePack",
+  "modules": [
+    {
+      "id": "M60_mu_local_weight_core",
+      "description": "Core μ machinery for adjacency and micro-weighting.",
+      "includes": [
+        "tier_06_metadata.json5",
+        "tier_06_operator_pack.json5",
+        "tier_06_interaction_table.json5",
+        "tier_06_axiom_box.json5",
+        "tier_06_rewrite_system.json5"
+      ]
+    }
+  ]
+}

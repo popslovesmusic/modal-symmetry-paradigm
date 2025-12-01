@@ -1,0 +1,38 @@
+{
+  "tier_id": "T00",
+  "name": "MetaStructure_TestSuite",
+  "tests": [
+    {
+      "id": "T00_box_schema_fields",
+      "description": "Verify that every known Box (Bx0–Bx7) has all required schema fields.",
+      "inputs": [
+        "Bx0",
+        "Bx1",
+        "Bx2",
+        "Bx3",
+        "Bx4",
+        "Bx5",
+        "Bx6",
+        "Bx7"
+      ],
+      "expected": "pass_if_all_boxes_match_schema"
+    },
+    {
+      "id": "T01_D_single_operator",
+      "description": "Verify that all deviation operators δ0–δ4 unify under root operator D.",
+      "inputs": [
+        "tier_00_operator_pack.json5"
+      ],
+      "expected": "pass_if_D_has_expressions_[delta0..delta4]"
+    },
+    {
+      "id": "T02_invariant_respect",
+      "description": "Check that no Tier 00 rule or operator explicitly violates a Box's own invariants.",
+      "inputs": [
+        "tier_00_axiom_box.json5",
+        "tier_00_rewrite_system.json5"
+      ],
+      "expected": "pass_if_no_conflicting_rules_found"
+    }
+  ]
+}

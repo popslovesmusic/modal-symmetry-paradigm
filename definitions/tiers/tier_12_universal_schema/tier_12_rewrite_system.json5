@@ -1,0 +1,25 @@
+{
+  "tier_id": "T12",
+  "name": "OmegaGlobalConstraints_RewriteSystem",
+  "rules": [
+    {
+      "id": "R120_collapse_multi_nf",
+      "pattern": "omega_normalize(omega_normalize(X))",
+      "rewrite_to": "omega_normalize(X)",
+      "description": "Ω-normalization is idempotent."
+    },
+    {
+      "id": "R121_remove_global_contradictions",
+      "pattern": "structure_with_conflicting_invariants",
+      "rewrite_to": "resolve_using_omega_global_nf",
+      "description": "Contradictory invariant clusters collapse into Ω-global NF."
+    },
+    {
+      "id": "R122_global_reordering",
+      "pattern": "unordered_cross_tier_structure",
+      "rewrite_to": "tier_aligned_structure",
+      "description": "Reorders structures to respect global tier hierarchy."
+    }
+  ],
+  "normal_form_description": "Ω-normal form is achieved when all contradictions are resolved, structure is globally aligned, and no further Ω-normalizations alter the state."
+}

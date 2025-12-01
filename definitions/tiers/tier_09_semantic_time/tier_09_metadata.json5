@@ -1,0 +1,28 @@
+{
+  "tier_id": "T09",
+  "name": "SigmaSummation",
+  "version": "0.1.0",
+  "description": "Defines Σ operators for aggregating structure, folding multiple Boxes into composites, and performing cumulative structural summation consistent with invariants and monistic constraints.",
+  "scope": [
+    "structural_aggregation",
+    "compositional_folding",
+    "summation_of_relations",
+    "multi_box_aggregation"
+  ],
+  "dependencies": [
+    "T00",
+    "T01",
+    "T02",
+    "T03",
+    "T04",
+    "T05",
+    "T06",
+    "T07",
+    "T08"
+  ],
+  "provides": [
+    "sigma_combine",
+    "sigma_fold",
+    "sigma_reduce"
+  ]
+}

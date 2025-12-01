@@ -1,0 +1,30 @@
+{
+  "id": "Bx_SSum",
+  "type": "functional_operator",
+  "proto_origin": "PO_Summer",
+
+  "description": "Combines semantic or modal channels while preserving identity. Functional version of proto-superposition.",
+
+  "io_signature": {
+    "input": ["SemanticField[]"],
+    "output": ["CompositeField"]
+  },
+
+  "functional_role": {
+    "performs": "identity-preserving summation",
+    "supports": ["ψ-envelope formation", "Σ-aggregation"],
+    "forbids": ["destructive interference", "semantic collapse"]
+  },
+
+  "operator_invariants": {
+    "Identity-Preservation": "Inputs must remain individually recoverable.",
+    "Superposition-Purity": "No loss of semantic structure.",
+    "No-Collapse": "Cannot reduce to a single evaluative state."
+  },
+
+  "computational_examples": [
+    {
+      "example": "Sum([a,b,c]) → composite superposed field enabling ψ-wave formation."
+    }
+  ]
+}

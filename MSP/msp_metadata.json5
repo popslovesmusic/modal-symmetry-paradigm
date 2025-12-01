@@ -1,0 +1,58 @@
+{
+  // MSP SYSTEM — MODAL SYMMETRY PARADIGM (FOUNDATION)
+  id: "MSP_SYSTEM",
+  name: "Modal Symmetry Paradigm",
+  family: "MSP",
+  role: "FOUNDATION",
+  version: "1.0.0",
+
+  // Conceptual tier index (MSP sits beneath Tier-00)
+  tier_index: -1,
+
+  summary: "MSP defines the allowable structure of possible structure: primitive modes, symmetry actions, and modal configurations that all other tiers must respect.",
+
+  description: "MSP (Modal Symmetry Paradigm) is the ontological substrate of the IGSOA/MBC stack. It specifies: \
+    Modal Space M (set of primitive modes), \
+    Symmetry Group S acting on M, \
+    Modal Configurations C as tuples of modes, \
+    Modal Equivalence via S. \
+    All higher tiers must preserve MSP-level modes, symmetries, and modal equivalence classes. \
+    MSP carries no intrinsic geometry, time, evaluation, or polarity; these arise only when delta, Phi, Pi, chi, etc. are introduced.",
+
+  invariants: {
+    modal_primacy: "No operator in any tier may create or annihilate primitive MSP modes.",
+    symmetry_preservation: "All operators must commute with the MSP symmetry group S.",
+    modal_incompressibility: "No operator may reduce the cardinality of a modal configuration.",
+    universal_transformability: "Every mode is reachable from every other by allowed symmetry or MSP rewrite chains.",
+    neutral_dimensionality: "MSP has no inherent dimensionality; geometry and time arise only in higher tiers."
+  },
+
+  references: {
+    upstream: [],
+    downstream: [
+      "TIER_00_PRIMITIVES",
+      "TIER_01_DELTA_GEOMETRY",
+      "TIER_02_PHI_PROJECTION",
+      "TIER_03_PI_EVALUATION",
+      "TIER_04_MU_LOCAL_WEIGHT",
+      "TIER_05_LAMBDA_CURVATURE",
+      "TIER_06_PSI_WAVEFORM",
+      "TIER_07_SIGMA_SUMMATION",
+      "TIER_08_THETA_POLARITY",
+      "TIER_09_CHI_SEMANTIC_TIME",
+      "TIER_10_OMEGA_CONSTRAINTS",
+      "TIER_11_RHO_LAYERING",
+      "TIER_12_XI_UNIVERSAL_SCHEMA"
+    ]
+  },
+
+  agent_hints: {
+    treat_as_root_foundation: true,
+    must_preserve_modes: true,
+    must_preserve_symmetry_group: true,
+    allow_geometry_assignment: false,
+    allow_truth_assignment: false,
+    allow_polarity_assignment: false,
+    allow_temporal_order: false
+  }
+}

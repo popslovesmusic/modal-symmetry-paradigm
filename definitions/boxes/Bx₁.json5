@@ -1,0 +1,22 @@
+{
+  "box_id": "Bx1",
+  "box_type": "meta",
+  "name": "V_MetaGenesisBox",
+  "description": "Translation layer enabling the possibility of differentiation. δ0 is admissible but not yet active.",
+  "ports": [],
+  "operators": [
+    {
+      "id": "delta0",
+      "type": "permission",
+      "description": "Logical permission for differentiation; enables transition from meta-unity to modal duality."
+    }
+  ],
+  "states": [],
+  "relations": [],
+  "invariants": [
+    "no_actual_modal_structure",
+    "delta0_admissible_only",
+    "pre_dual_expression",
+    "translation_role_only"
+  ]
+}

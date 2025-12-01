@@ -1,0 +1,25 @@
+{
+  "tier_id": "T09",
+  "name": "SigmaSummation_RewriteSystem",
+  "rules": [
+    {
+      "id": "R90_merge_similar_boxes",
+      "pattern": "sigma_combine(BoxA, BoxA)",
+      "rewrite_to": "BoxA",
+      "description": "Combines identical Boxes idempotently."
+    },
+    {
+      "id": "R91_fold_normalization",
+      "pattern": "sigma_fold([X,Y,Z])",
+      "rewrite_to": "sigma_combine(X, sigma_combine(Y, Z))",
+      "description": "Normalizes folding to nested binary aggregation."
+    },
+    {
+      "id": "R92_reduce_idempotence",
+      "pattern": "sigma_reduce(sigma_reduce(X))",
+      "rewrite_to": "sigma_reduce(X)",
+      "description": "Collapses redundant reduction stages."
+    }
+  ],
+  "normal_form_description": "A Σ-aggregate is in normal form when duplicates are collapsed, folding is nested canonically, and reduction is applied once."
+}

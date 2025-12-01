@@ -1,0 +1,25 @@
+{
+  "tier_id": "T08",
+  "name": "PsiWave_RewriteSystem",
+  "rules": [
+    {
+      "id": "R80_mode_normalization",
+      "pattern": "frequency or phase undefined",
+      "rewrite_to": "mode = {frequency:0, phase:0}",
+      "description": "Normalizes incomplete or undefined oscillation modes."
+    },
+    {
+      "id": "R81_interference_collapse",
+      "pattern": "psi_interfere(psi_interfere(A,B),C)",
+      "rewrite_to": "psi_interfere(A, psi_interfere(B,C))",
+      "description": "Associative normalization of interference chains."
+    },
+    {
+      "id": "R82_single_flow_propagation",
+      "pattern": "psi_propagate(psi_propagate(X))",
+      "rewrite_to": "psi_propagate(X)",
+      "description": "Collapses redundant wave propagation."
+    }
+  ],
+  "normal_form_description": "A ψ-structure is in normal form when oscillation modes are complete, interference is associative, and propagation is applied only once."
+}

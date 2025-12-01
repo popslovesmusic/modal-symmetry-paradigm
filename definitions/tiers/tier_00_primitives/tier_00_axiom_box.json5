@@ -1,0 +1,26 @@
+{
+  "tier_id": "T00",
+  "name": "MetaStructure_AxiomBox",
+  "axioms": [
+    {
+      "id": "A00_box_schema",
+      "statement": "Every Box must declare: box_id, box_type, name, description, ports, operators, states, relations, invariants.",
+      "role": "schema"
+    },
+    {
+      "id": "A01_monistic_context",
+      "statement": "All Boxes are expressions of a single underlying monistic context; Boxes do not represent independent substances.",
+      "role": "ontology"
+    },
+    {
+      "id": "A02_single_D_operator",
+      "statement": "There is a single root deviation operator D; all δ_n are expressions of D performing the same action at different levels.",
+      "role": "operator"
+    },
+    {
+      "id": "A03_invariant_respect",
+      "statement": "No operator may modify a Box in a way that violates its own declared invariants.",
+      "role": "safety"
+    }
+  ]
+}

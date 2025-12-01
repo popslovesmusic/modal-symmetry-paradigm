@@ -1,0 +1,35 @@
+{
+  "box_id": "Bx3",
+  "box_type": "relation",
+  "name": "ZeroSymmetryBox",
+  "description": "Defines the balancing relation between IGS and OA modal expressions. No polarity; pure symmetry.",
+  "ports": [],
+  "operators": [
+    {
+      "id": "zero_relation",
+      "type": "symmetry",
+      "description": "Relation mapping IGS ↔ OA without altering modal content."
+    }
+  ],
+  "states": [],
+  "relations": [
+    {
+      "id": "R0",
+      "from": "IGS",
+      "to": "OA",
+      "type": "balanced"
+    },
+    {
+      "id": "R0_inverse",
+      "from": "OA",
+      "to": "IGS",
+      "type": "balanced"
+    }
+  ],
+  "invariants": [
+    "symmetry_does_not_modify_modal_states",
+    "no_polarity_allowed",
+    "relation_is_bidirectional",
+    "relation_preserves_modal_identity"
+  ]
+}

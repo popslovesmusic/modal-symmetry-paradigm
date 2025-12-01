@@ -1,0 +1,34 @@
+{
+  "id": "Preset_Accumulator",
+  "type": "preset_box",
+  "description": "A simple instructional Box demonstrating accumulation via Bx_Integrate. Useful for teaching integration, continuity, and structural smoothing.",
+
+  "inputs": ["SemanticField"],
+  "outputs": ["IntegratedField"],
+
+  "operators_used": ["Bx_Integrate"],
+
+  "structure": {
+    "steps": [
+      {
+        "action": "integrate",
+        "operator": "Bx_Integrate",
+        "input": "$in",
+        "output": "$accum"
+      }
+    ]
+  },
+
+  "invariants": {
+    "Continuity-Preservation": "No discontinuities allowed.",
+    "No-Synthetic-Classes": "Operator may not generate new semantic classes."
+  },
+
+  "example_usage": [
+    {
+      "input": "Field({a,b,c})",
+      "output": "ContinuousField(a→c)",
+      "note": "Shows how proto-dimension formation emerges inside functional operators."
+    }
+  ]
+}

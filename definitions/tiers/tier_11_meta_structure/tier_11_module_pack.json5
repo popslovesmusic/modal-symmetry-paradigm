@@ -1,0 +1,17 @@
+{
+  "tier_id": "T11",
+  "name": "ChiEvolution_ModulePack",
+  "modules": [
+    {
+      "id": "M110_chi_evolution_core",
+      "description": "Core χ machinery for semantic time and evolution.",
+      "includes": [
+        "tier_11_metadata.json5",
+        "tier_11_operator_pack.json5",
+        "tier_11_interaction_table.json5",
+        "tier_11_axiom_box.json5",
+        "tier_11_rewrite_system.json5"
+      ]
+    }
+  ]
+}

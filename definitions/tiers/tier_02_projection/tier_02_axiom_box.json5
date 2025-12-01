@@ -1,0 +1,26 @@
+{
+  "tier_id": "T02",
+  "name": "ModalityCore_AxiomBox",
+  "axioms": [
+    {
+      "id": "A20_dual_modal_unity",
+      "statement": "IGS and OA are modal expressions of a single substrate, not separate substances.",
+      "role": "monism_preservation"
+    },
+    {
+      "id": "A21_symmetry_non_destructive",
+      "statement": "Zero-symmetry may relate IGS and OA but must not modify their intrinsic modal identity.",
+      "role": "symmetry"
+    },
+    {
+      "id": "A22_polarity_expression_only",
+      "statement": "Polarity ±1 modifies expressive conditions only and must not create or destroy modes.",
+      "role": "expression_safety"
+    },
+    {
+      "id": "A23_modal_requires_delta0",
+      "statement": "Modal distinction IGS/OA may only exist in contexts where δ0 has been admitted.",
+      "role": "dependency"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "id": "Bx_Route",
+  "type": "functional_operator",
+  "proto_origin": ["PO_Separator", "PO_Divider"],
+
+  "description": "Routes semantic streams into separate channels based on structure, modality, or invariant class. Performs controlled splitting.",
+
+  "io_signature": {
+    "input": ["SemanticField"],
+    "output": ["SemanticField[]"]
+  },
+
+  "functional_role": {
+    "performs": "semantic path routing",
+    "supports": ["Θ-polarity paths", "Π-evaluation pipelines"],
+    "forbids": ["semantic destruction", "forced binarity"]
+  },
+
+  "operator_invariants": {
+    "Non-Destructive": "Routing must preserve channel identity.",
+    "Partition-Coherence": "Routed segments must be internally uniform.",
+    "No-Evaluation": "May not assign truth or meaning."
+  },
+
+  "computational_examples": [
+    {
+      "example": "Route(field) → [left_branch, right_branch] for Π evaluation."
+    }
+  ]
+}

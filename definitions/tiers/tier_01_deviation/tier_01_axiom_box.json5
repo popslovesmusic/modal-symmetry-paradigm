@@ -1,0 +1,26 @@
+{
+  "tier_id": "T01",
+  "name": "DeviationCore_AxiomBox",
+  "axioms": [
+    {
+      "id": "A10_single_operator",
+      "statement": "All δ_n are expressions of a single operator D.",
+      "role": "operator_unity"
+    },
+    {
+      "id": "A11_delta0_no_structure",
+      "statement": "δ0 introduces no structure; it only enables the possibility of differentiation.",
+      "role": "modal_permission"
+    },
+    {
+      "id": "A12_delta_ordering",
+      "statement": "δ_n must not bypass lower deviations: δ2 depends on δ1, δ3 depends on δ2, etc.",
+      "role": "hierarchy"
+    },
+    {
+      "id": "A13_no_substance_creation",
+      "statement": "Deviation expressions δ_n may create distinctions but must not create substances.",
+      "role": "monism_preservation"
+    }
+  ]
+}

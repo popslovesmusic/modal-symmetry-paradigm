@@ -1,0 +1,25 @@
+{
+  "tier_id": "T02",
+  "name": "ModalityCore_RewriteSystem",
+  "rules": [
+    {
+      "id": "R20_dual_modal_normalize",
+      "pattern": "Box with IGS and OA but no explicit ports",
+      "rewrite_to": "DualModalSubstrateBox with ports port_igs and port_oa.",
+      "description": "Enforces a standard representation for dual-modal substrates."
+    },
+    {
+      "id": "R21_symmetry_completion",
+      "pattern": "One-way IGS->OA symmetry relation",
+      "rewrite_to": "Bidirectional relations IGS->OA and OA->IGS.",
+      "description": "Ensures symmetry relations are fully bidirectional."
+    },
+    {
+      "id": "R22_polarity_clarify",
+      "pattern": "Implicit polarity labels",
+      "rewrite_to": "Explicit ±1 polarity states attached to IGS/OA.",
+      "description": "Makes all polarity expressions explicit for the agent."
+    }
+  ],
+  "normal_form_description": "A modal structure is in normal form when it is a dual-modal substrate Box with explicit IGS/OA ports, bidirectional symmetry, and explicit ±1 polarity states."
+}

@@ -1,0 +1,17 @@
+{
+  "tier_id": "T05",
+  "name": "PiEvaluation_ModulePack",
+  "modules": [
+    {
+      "id": "M50_pi_evaluation_core",
+      "description": "Core Π evaluation framework.",
+      "includes": [
+        "tier_05_metadata.json5",
+        "tier_05_operator_pack.json5",
+        "tier_05_interaction_table.json5",
+        "tier_05_axiom_box.json5",
+        "tier_05_rewrite_system.json5"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "tier_id": "T11",
+  "name": "ChiEvolution_TestSuite",
+  "tests": [
+    {
+      "id": "T110_forward_flow_test",
+      "description": "Verify χ evolution never reverses semantic time.",
+      "inputs": [
+        "chi_flow",
+        "Bx5"
+      ],
+      "expected": "pass_if_all_steps_forward"
+    },
+    {
+      "id": "T111_continuity_test",
+      "description": "Check that evolution chains are continuous unless explicitly marked discrete.",
+      "inputs": [
+        "chi_step",
+        "chi_flow"
+      ],
+      "expected": "pass_if_no_unmarked_jumps"
+    },
+    {
+      "id": "T112_delta_phi_pi_compatibility",
+      "description": "Ensure χ does not destroy deviation, projection, or evaluation structure.",
+      "inputs": [
+        "chi_step",
+        "delta2",
+        "phi_projection_map",
+        "pi_consistency"
+      ],
+      "expected": "pass_if_structures_preserved"
+    }
+  ]
+}

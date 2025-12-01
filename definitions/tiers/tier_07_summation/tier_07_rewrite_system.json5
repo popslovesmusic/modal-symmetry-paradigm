@@ -1,0 +1,25 @@
+{
+  "tier_id": "T07",
+  "name": "LambdaCurvature_RewriteSystem",
+  "rules": [
+    {
+      "id": "R70_merge_curvatures",
+      "pattern": "multiple_curvatures_on_relation",
+      "rewrite_to": "single_curvature = weighted_average(curvatures)",
+      "description": "Combines curvature annotations consistently."
+    },
+    {
+      "id": "R71_zero_curvature_elimination",
+      "pattern": "curvature = 0",
+      "rewrite_to": "remove_curvature_annotation",
+      "description": "Normalizes trivial curvature cases."
+    },
+    {
+      "id": "R72_lambda_flow_canonical",
+      "pattern": "lambda_flow(lambda_flow(X))",
+      "rewrite_to": "lambda_flow(X)",
+      "description": "Collapses redundant flow transformations."
+    }
+  ],
+  "normal_form_description": "A λ-curved structure is in normal form when curvature annotations are merged, zero curvature removed, and λ-flow is applied only once."
+}

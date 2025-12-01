@@ -1,0 +1,106 @@
+{
+  id: "MSP_TEST_SUITE",
+  name: "MSP Foundation Regression Suite",
+  family: "MSP",
+  version: "1.0.0",
+
+  purpose: "Verify that all MSP axioms and invariants hold under core operations and cross-tier interactions.",
+
+  tests: [
+    {
+      id: "MSP_T01_MODAL_PRIMACY_NO_CREATION",
+      description: "Ensure no operator in any tier can introduce new primitive modes outside the modal space M.",
+      given: {
+        M: ["m0", "m1"],
+        C: ["m0", "m1"],
+        operator: "delta_example"
+      },
+      expect: {
+        operation_allowed: true,
+        new_modes_added: false
+      }
+    },
+
+    {
+      id: "MSP_T02_MODAL_PRIMACY_NO_ANNIHILATION",
+      description: "Ensure no operator can delete or remove existing modes from M.",
+      given: {
+        M: ["m0", "m1"],
+        C: ["m0", "m1"],
+        operator: "phi_example"
+      },
+      expect: {
+        operation_allowed: true,
+        modes_removed_from_M: false
+      }
+    },
+
+    {
+      id: "MSP_T03_SYMMETRY_COMMUTATION",
+      description: "Verify that delta operators commute with symmetry actions. The result of applying delta then symmetry must equal symmetry then delta.",
+      given: {
+        symmetry: "s_example",
+        operator: "delta_example",
+        configuration: ["m0", "m1"]
+      },
+      expect: {
+        commutation_holds: true
+      }
+    },
+
+    {
+      id: "MSP_T04_MODAL_INCOMPRESSIBILITY",
+      description: "Confirm that no operator reduces the number of modes in a configuration.",
+      given: {
+        configuration: ["m0", "m1", "m2"],
+        operator: "sigma_contract_example"
+      },
+      expect: {
+        resulting_cardinality: "greater_or_equal"
+      }
+    },
+
+    {
+      id: "MSP_T05_NEUTRAL_DIMENSIONALITY",
+      description: "Verify that MSP-level operations do not assign geometric or temporal dimensions.",
+      given: {
+        configuration: ["m0", "m1"],
+        operator: "apply_symmetry"
+      },
+      expect: {
+        geometry_assigned: false,
+        time_order_assigned: false
+      }
+    },
+
+    {
+      id: "MSP_T06_EQUIVALENCE_REWRITE",
+      description: "Test that MSP equivalence rewrites preserve modal equivalence classes and configuration size.",
+      given: {
+        configuration: ["m0", "m1"],
+        operator: "rewrite_equiv"
+      },
+      expect: {
+        preserves_equivalence: true,
+        cardinality_unchanged: true
+      }
+    },
+
+    {
+      id: "MSP_T07_NEUTRAL_EXTENSION",
+      description: "Ensure neutral extension correctly appends a mode without adding geometry or semantics.",
+      given: {
+        configuration: ["m0"],
+        new_mode: "m1"
+      },
+      expect: {
+        new_configuration: ["m0", "m1"],
+        no_geometric_assignment: true,
+        no_temporal_assignment: true,
+        no_polarity_assignment: true
+      }
+    }
+  ],
+
+  notes: "Additional tests may be added for auditing cross-tier interactions, operator violations, and performance at scale. This suite covers the minimum requirements for validating MSP foundational integrity."
+}

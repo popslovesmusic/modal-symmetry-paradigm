@@ -1,0 +1,26 @@
+{
+  "tier_id": "T06",
+  "name": "MuLocalWeight_AxiomBox",
+  "axioms": [
+    {
+      "id": "A60_weight_non_negative",
+      "statement": "μ-weights must be non-negative unless explicitly defined otherwise in higher tiers.",
+      "role": "safety"
+    },
+    {
+      "id": "A61_adjacency_non_creative",
+      "statement": "μ-adjacency may relate elements but must not create new substances or nodes.",
+      "role": "monism_preservation"
+    },
+    {
+      "id": "A62_mu_preserves_modal_identity",
+      "statement": "μ operations must not modify IGS/OA modal identity.",
+      "role": "modal_consistency"
+    },
+    {
+      "id": "A63_mu_commutes_with_phi_pi",
+      "statement": "μ operations must commute with Φ and Π: local weighting must not affect semantic projection or evaluation results.",
+      "role": "semantic_consistency"
+    }
+  ]
+}

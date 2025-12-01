@@ -1,0 +1,37 @@
+{
+  "box_id": "Bx2",
+  "box_type": "modal",
+  "name": "DualModalSubstrateBox",
+  "description": "Substrate with two modal expressions: IGS (withholding) and OA (actualizing). The first differentiation produced by δ0.",
+  "ports": [
+    {
+      "id": "port_igs",
+      "mode": "IGS",
+      "description": "Withholding / non-actualizing modal expression."
+    },
+    {
+      "id": "port_oa",
+      "mode": "OA",
+      "description": "Actualizing / expressive modal expression."
+    }
+  ],
+  "operators": [
+    {
+      "id": "delta0",
+      "type": "expression_of_D",
+      "status": "active",
+      "description": "Expression-level differentiation generating dual modality."
+    }
+  ],
+  "states": [
+    "IGS",
+    "OA"
+  ],
+  "relations": [],
+  "invariants": [
+    "substrate_is_single_entity",
+    "modes_are_expressions_not_substances",
+    "exactly_two_modal_ports",
+    "delta0_active_generates_modal_distinction"
+  ]
+}

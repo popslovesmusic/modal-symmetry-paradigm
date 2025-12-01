@@ -1,0 +1,31 @@
+{
+  "box_id": "Bx7",
+  "box_type": "deviation",
+  "name": "ClassicalDeviationBox_delta4",
+  "description": "δ4 enforces determinate, stable distinctions by resolving coherent modal overlays into fixed structures.",
+  "ports": [],
+  "operators": [
+    {
+      "id": "delta4",
+      "type": "expression_of_D",
+      "description": "Classical-level deviation operator enforcing determinate structure and resolving superpositions."
+    }
+  ],
+  "states": [
+    "determinate_structure",
+    "stable_distinction"
+  ],
+  "relations": [
+    {
+      "id": "collapse_relation",
+      "type": "resolution",
+      "description": "Resolves coherent_overlay / superposition into determinate_structure."
+    }
+  ],
+  "invariants": [
+    "delta4_must_respect_prior_modal_constraints",
+    "resolution_does_not_create_new_substances",
+    "determinate_structure_is_persistent_under_delta4",
+    "collapse_applies_only_to_delta3_coherent_overlays"
+  ]
+}

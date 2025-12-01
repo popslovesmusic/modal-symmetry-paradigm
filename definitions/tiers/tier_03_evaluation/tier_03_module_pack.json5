@@ -1,0 +1,17 @@
+{
+  "tier_id": "T03",
+  "name": "HigherDeviation_ModulePack",
+  "modules": [
+    {
+      "id": "M30_higher_deviation",
+      "description": "All higher deviation definitions.",
+      "includes": [
+        "tier_03_metadata.json5",
+        "tier_03_operator_pack.json5",
+        "tier_03_interaction_table.json5",
+        "tier_03_axiom_box.json5",
+        "tier_03_rewrite_system.json5"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "tier_id": "T08",
+  "name": "PsiWave_AxiomBox",
+  "axioms": [
+    {
+      "id": "A80_wave_non_creative",
+      "statement": "ψ-wave operators may alter oscillatory state but must not create or destroy substances.",
+      "role": "monism_preservation"
+    },
+    {
+      "id": "A81_phase_preservation",
+      "statement": "ψ interactions must preserve global phase relations modulo allowed interference rules.",
+      "role": "phase_consistency"
+    },
+    {
+      "id": "A82_wave_commutes_with_phi_pi",
+      "statement": "ψ propagation and interference must not violate semantic projection or evaluation invariants.",
+      "role": "semantic_consistency"
+    },
+    {
+      "id": "A83_lambda_mu_compatibility",
+      "statement": "ψ propagation must respect λ curvature and μ adjacency constraints.",
+      "role": "geometric_compatibility"
+    }
+  ]
+}

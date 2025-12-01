@@ -1,0 +1,31 @@
+{
+  "tier_id": "T00",
+  "name": "MetaStructure_ModulePack",
+  "modules": [
+    {
+      "id": "M00_core_schema",
+      "description": "Core Box schema and meta-operators.",
+      "includes": [
+        "tier_00_metadata.json5",
+        "tier_00_operator_pack.json5",
+        "tier_00_interaction_table.json5",
+        "tier_00_axiom_box.json5",
+        "tier_00_rewrite_system.json5"
+      ]
+    },
+    {
+      "id": "M01_base_boxes",
+      "description": "References to primitive Boxes Bx0–Bx7.",
+      "box_refs": [
+        "Bx0",
+        "Bx1",
+        "Bx2",
+        "Bx3",
+        "Bx4",
+        "Bx5",
+        "Bx6",
+        "Bx7"
+      ]
+    }
+  ]
+}

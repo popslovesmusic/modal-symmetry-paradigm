@@ -1,0 +1,30 @@
+{
+  "id": "Bx_Filter",
+  "type": "functional_operator",
+  "proto_origin": "PO_Filter",
+
+  "description": "Functionally attenuates selected semantic components according to criteria. Prepares structures for Φ-projection.",
+
+  "io_signature": {
+    "input": ["SemanticField", "FilterMask"],
+    "output": ["AttenuatedField"]
+  },
+
+  "functional_role": {
+    "performs": "selective attenuation of semantic content",
+    "supports": ["Φ-projection", "semantic isolation"],
+    "forbids": ["class reassignment", "modal deletion"]
+  },
+
+  "operator_invariants": {
+    "Identity-Safe": "Filtering cannot delete semantic identity.",
+    "Attenuation-Monotonicity": "Must not amplify.",
+    "Projection-Neutrality": "Cannot perform Φ-projective action."
+  },
+
+  "computational_examples": [
+    {
+      "example": "Filter(field, mask_A) → isolated structure suitable for Φ classification."
+    }
+  ]
+}

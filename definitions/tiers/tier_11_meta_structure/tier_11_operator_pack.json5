@@ -1,0 +1,26 @@
+{
+  "tier_id": "T11",
+  "name": "ChiEvolution_OperatorPack",
+  "operators": [
+    {
+      "id": "Chi",
+      "kind": "evolution_root",
+      "description": "Root χ operator encoding semantic time and directed evolution."
+    },
+    {
+      "id": "chi_step",
+      "kind": "atomic_step",
+      "description": "Applies a single semantic evolution step to a Box (χ-step)."
+    },
+    {
+      "id": "chi_flow",
+      "kind": "evolution_chain",
+      "description": "Constructs or updates a directed evolution chain over multiple χ-steps."
+    },
+    {
+      "id": "chi_history",
+      "kind": "trace_operator",
+      "description": "Extracts or records the evolution history of a Box."
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "tier_id": "T05",
+  "name": "PiEvaluation_RewriteSystem",
+  "rules": [
+    {
+      "id": "R50_pi_chain_collapse",
+      "pattern": "Pi(Pi(X))",
+      "rewrite_to": "Pi(X)",
+      "description": "Collapses nested Π evaluations into a single Π application."
+    },
+    {
+      "id": "R51_pi0_elimination",
+      "pattern": "pi0(pi0(X))",
+      "rewrite_to": "pi0(X)",
+      "description": "Eliminates multiple identity evaluations."
+    },
+    {
+      "id": "R52_pi_phi_normalization",
+      "pattern": "Pi(Phi(X))",
+      "rewrite_to": "Pi(Phi(X)) with commuting constraint enforced",
+      "description": "Ensures Π respects the Φ-projection equivalence class."
+    }
+  ],
+  "normal_form_description": "A Box is in Π-normal form when evaluation is applied once, π0 is eliminated where redundant, and Π respects Φ and δ commutation rules."
+}

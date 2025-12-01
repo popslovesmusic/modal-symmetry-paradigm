@@ -1,0 +1,46 @@
+{
+  id: "MSP_AXIOM_BOX",
+  name: "MSP Foundational Axiom Box",
+  family: "MSP",
+  version: "1.0.0",
+  sealed: true,
+
+  axioms: [
+    {
+      id: "MSP_AX1_MODAL_PRIMACY",
+      name: "Modal Primacy",
+      informal: "Modes exist prior to geometry, semantics, logic, or time. No higher-tier operator may create or annihilate primitive modal elements.",
+      formal: "For every operator O in tiers 00 through 12 and every mode m in M, O must not introduce new modes outside M and must not remove existing elements of M."
+    },
+
+    {
+      id: "MSP_AX2_SYMMETRY_PRESERVATION",
+      name: "Symmetry Preservation",
+      informal: "The symmetry group S is invariant across all transformations. All operators must commute with S.",
+      formal: "For every operator O in tiers 00 through 12 and every symmetry s in S, the composition O(s(x)) must equal s(O(x))."
+    },
+
+    {
+      id: "MSP_AX3_MODAL_INCOMPRESSIBILITY",
+      name: "Modal Incompressibility",
+      informal: "No operator may reduce the number of modes in a configuration.",
+      formal: "For any configuration C and any operator O, if C' is the result of applying O to C, then the number of modes in C' must be greater than or equal to the number of modes in C."
+    },
+
+    {
+      id: "MSP_AX4_UNIVERSAL_TRANSFORMABILITY",
+      name: "Universal Transformability",
+      informal: "Every mode must be reachable from every other mode through symmetry actions or valid MSP rewrites.",
+      formal: "For any two modes mi and mj in M, there exists a finite sequence of symmetry operations or MSP rewrites that maps mi to mj."
+    },
+
+    {
+      id: "MSP_AX5_NEUTRAL_DIMENSIONALITY",
+      name: "Neutral Dimensionality",
+      informal: "Modal space has no inherent dimensions. Geometry and time arise only at higher tiers.",
+      formal: "The modal space M has no defined dimensional attribute at the MSP level. Dimensional structure becomes defined only after applying delta geometry and chi evolution operators."
+    }
+  ],
+
+  notes: "This axiom box defines the absolute foundational constraints for the IGSOA and MBC systems. Any proposed modification must route through top-meta governance layers and cannot be revised by lower-tier rewrite systems."
+}

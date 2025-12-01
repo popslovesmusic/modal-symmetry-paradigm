@@ -1,0 +1,27 @@
+{
+  "tier_id": "T10",
+  "name": "ThetaPolarityLogic_InteractionTable",
+  "interactions": [
+    {
+      "id": "I100_assign_polarity",
+      "operator": "theta_assign",
+      "target": "StateOrRelation",
+      "effect": "apply_polarity_tag",
+      "description": "Attaches Θ+ or Θ− polarity tags to states or relations."
+    },
+    {
+      "id": "I101_flip_polarity",
+      "operator": "theta_flip",
+      "target": "PolarizedState",
+      "effect": "invert_polarity",
+      "description": "Inverts polarity when allowed by invariants and routing rules."
+    },
+    {
+      "id": "I102_logic_routing",
+      "operator": "theta_route",
+      "target": "RelationNetwork",
+      "effect": "logical_direction_flow",
+      "description": "Routes logical or evaluative signals based on Θ polarity orientation."
+    }
+  ]
+}

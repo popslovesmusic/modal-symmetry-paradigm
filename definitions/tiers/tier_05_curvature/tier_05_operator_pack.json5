@@ -1,0 +1,29 @@
+{
+  "tier_id": "T05",
+  "name": "PiEvaluation_OperatorPack",
+  "operators": [
+    {
+      "id": "Pi",
+      "kind": "evaluation_root",
+      "description": "Root evaluation operator responsible for assessing semantic admissibility."
+    },
+    {
+      "id": "pi0",
+      "kind": "evaluation",
+      "level": 0,
+      "description": "Baseline evaluation: Pi0(X) = X if X is internally consistent; otherwise signals failure."
+    },
+    {
+      "id": "pi_consistency",
+      "kind": "evaluation",
+      "level": 1,
+      "description": "Evaluates whether a Box and its projections preserve invariants."
+    },
+    {
+      "id": "pi_select",
+      "kind": "evaluation",
+      "level": 2,
+      "description": "Selects the best admissible projection among multiple Φ candidates."
+    }
+  ]
+}

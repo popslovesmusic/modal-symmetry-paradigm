@@ -1,0 +1,27 @@
+{
+  "tier_id": "T11",
+  "name": "ChiEvolution_InteractionTable",
+  "interactions": [
+    {
+      "id": "I110_apply_chi_step",
+      "operator": "chi_step",
+      "target": "Box",
+      "effect": "advance_one_step",
+      "description": "Transforms a Box into its next semantic state along χ-time."
+    },
+    {
+      "id": "I111_build_chi_flow",
+      "operator": "chi_flow",
+      "target": "BoxSequence",
+      "effect": "construct_evolution_chain",
+      "description": "Organizes multiple χ-steps into a directed evolution sequence."
+    },
+    {
+      "id": "I112_extract_history",
+      "operator": "chi_history",
+      "target": "Box",
+      "effect": "retrieve_evolution_trace",
+      "description": "Retrieves or records the χ-evolution history associated with a Box."
+    }
+  ]
+}

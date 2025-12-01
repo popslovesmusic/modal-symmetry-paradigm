@@ -1,0 +1,24 @@
+{
+  "tier_id": "T05",
+  "name": "PiEvaluation_InteractionTable",
+  "interactions": [
+    {
+      "id": "I50_pi0_consistency_check",
+      "operator": "pi0",
+      "effect": "validate_internal_consistency",
+      "description": "pi0 validates internal consistency based on invariants; returns Box if valid."
+    },
+    {
+      "id": "I51_pi_consistency_projected",
+      "operator": "pi_consistency",
+      "effect": "check_phi_projection",
+      "description": "π-consistency checks whether Φ mappings preserve structure and invariants."
+    },
+    {
+      "id": "I52_pi_select_best",
+      "operator": "pi_select",
+      "effect": "select_preferred_projection",
+      "description": "Choosing among Φ-projected variants based on consistency and coherence."
+    }
+  ]
+}

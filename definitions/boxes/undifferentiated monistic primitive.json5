@@ -1,0 +1,16 @@
+{
+  "box_id": "Bx0",
+  "box_type": "meta",
+  "name": "V0_MetaBox",
+  "description": "The undifferentiated monistic primitive. No internal structure.",
+  "ports": [],
+  "operators": [],
+  "states": [],
+  "relations": [],
+  "invariants": [
+    "no_internal_distinctions",
+    "no_modal_structure",
+    "no_potential_or_actual",
+    "no_symmetry_relations"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "id": "PO_Filter",
+  "type": "proto_operator",
+  "tier": "MSP-Proto",
+
+  "description": "Attenuates selected modal components at pre-functional stage. Creates proto-selective structure enabling semantic projection (Φ).",
+
+  "msp_origin": {
+    "fusion_modes": ["MSP_A", "MSP_D"],
+    "mechanism": "Selective attenuation",
+    "boundary_conditions": "Attenuation cannot collapse modal class identity"
+  },
+
+  "semantic_role": {
+    "creates": "proto-selective geometry",
+    "enables": ["Φ-projection", "semantic filtering"],
+    "forbids": ["projection itself", "class reassignment"]
+  },
+
+  "proto_invariants": {
+    "Identity-Safe": "Filter cannot erase modal identity.",
+    "Attenuation-Monotonicity": "Cannot amplify.",
+    "Non-Projective": "Cannot choose semantic classes."
+  },
+
+  "emergence_examples": [
+    { "example": "Filter pre-selects modal regions that Φ later recognizes as semantic classes." }
+  ],
+
+  "lineage": {
+    "precedes": ["Tier_02_Φ-operators"],
+    "supports": ["semantic projection"],
+    "cannot_replace": ["Φ-projector", "Ω-normalization"]
+  }
+}

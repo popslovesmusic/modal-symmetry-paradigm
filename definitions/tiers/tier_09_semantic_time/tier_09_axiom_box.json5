@@ -1,0 +1,26 @@
+{
+  "tier_id": "T09",
+  "name": "SigmaSummation_AxiomBox",
+  "axioms": [
+    {
+      "id": "A90_summation_non_creative",
+      "statement": "Σ aggregation must not create new substances; it only restructures existing ones.",
+      "role": "monism_preservation"
+    },
+    {
+      "id": "A91_invariant_preservation",
+      "statement": "Σ aggregation must preserve all invariants declared by constituent Boxes.",
+      "role": "consistency"
+    },
+    {
+      "id": "A92_order_independence",
+      "statement": "Σ folding operations must be independent of ordering when Boxes are semantically equivalent.",
+      "role": "commutativity_generalized"
+    },
+    {
+      "id": "A93_reduce_to_stable_form",
+      "statement": "σ_reduce must produce a unique invariant-preserving normal form.",
+      "role": "normal_form_requirement"
+    }
+  ]
+}

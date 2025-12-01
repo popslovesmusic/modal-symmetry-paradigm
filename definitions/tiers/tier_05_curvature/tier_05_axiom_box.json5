@@ -1,0 +1,26 @@
+{
+  "tier_id": "T05",
+  "name": "PiEvaluation_AxiomBox",
+  "axioms": [
+    {
+      "id": "A50_pi_non_creative",
+      "statement": "Π evaluation must not create new structure; it filters or rejects.",
+      "role": "safety"
+    },
+    {
+      "id": "A51_pi_commutes_with_phi",
+      "statement": "Π must treat semantically equivalent Φ mappings equivalently.",
+      "role": "projection_consistency"
+    },
+    {
+      "id": "A52_pi_commutes_with_delta",
+      "statement": "Π evaluation does not disrupt the deviation hierarchy.",
+      "role": "deviation_consistency"
+    },
+    {
+      "id": "A53_pi_prefers_minimal_change",
+      "statement": "Π must prefer projections that preserve maximal structural and invariance content.",
+      "role": "selection_principle"
+    }
+  ]
+}
