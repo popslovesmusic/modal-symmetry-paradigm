@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "js-beautify": "^1.15.4",
+    "json5": "^2.2.3"
+  }
+}
