@@ -1,0 +1,185 @@
+{
+  schema_version: "1.0.0",
+  family_id: "delta",
+  family_symbol: "δ",
+  family_name: "Deviation Connectors",
+  pack_version: "0.1.0",
+
+  invariants_ref: [
+    "INVAR-DELTA-NONZERO-IF-INIT",
+    "INVAR-DELTA-CONSERVATION-LOCAL",
+  ],
+
+  connectors: [
+    {
+      id: "delta.deviation-injection",
+      name: "Deviation Injection Connector",
+      description: "Introduces a non-zero deviation into a previously symmetric region or box.",
+
+      connector_role: "semantic",
+      connector_kind: "box-to-box",
+
+      arity: "unary",
+      directionality: "uni",
+      payload_type: "deviation",
+
+      input_signature: [
+        {
+          tier: 0,
+          box_type: "axiom_box",
+          role: "source",
+          semantic_domain: "MSP-substrate",
+        },
+      ],
+      output_signature: [
+        {
+          tier: 1,
+          box_type: "module_pack",
+          role: "sink",
+          semantic_domain: "δ-space",
+        },
+      ],
+
+      routing_policy: "Route any symmetric-but-instantiated MSP region requiring first difference into δ-space.",
+      constraints: [
+        "AX-DELTA-FIRST-DIFFERENCE",
+      ],
+      rewrite_tags: ["init", "source", "symmetry-break"],
+    },
+
+    {
+      id: "delta.deviation-propagation",
+      name: "Deviation Propagation Connector",
+      description: "Transports existing deviation along adjacency graph edges, respecting local weights.",
+
+      connector_role: "structural",
+      connector_kind: "box-to-box",
+
+      arity: "binary",
+      directionality: "bi",
+      payload_type: "deviation",
+
+      input_signature: [
+        {
+          tier: 1,
+          box_type: "module_pack",
+          role: "source",
+          semantic_domain: "δ-space",
+        },
+        {
+          tier: 4,
+          box_type: "module_pack",
+          role: "control",
+          semantic_domain: "μ-space",
+        },
+      ],
+      output_signature: [
+        {
+          tier: 1,
+          box_type: "module_pack",
+          role: "sink",
+          semantic_domain: "δ-space",
+        },
+      ],
+
+      routing_policy: "Use μ-adjacency weights to determine neighbor propagation; propagate along edges with weight above threshold.",
+      constraints: [
+        "AX-DELTA-LOCAL-CONSERVATION",
+        "AX-MU-ADJACENCY-COMPATIBILITY",
+      ],
+      rewrite_tags: ["propagate", "local", "adjacency-driven"],
+    },
+
+    {
+      id: "delta.deviation-concentration",
+      name: "Deviation Concentration Connector",
+      description: "Aggregates distributed small deviations into a concentrated region for evaluation or semantic projection.",
+
+      connector_role: "semantic",
+      connector_kind: "box-to-box",
+
+      arity: "n-ary",
+      directionality: "uni",
+      payload_type: "deviation",
+
+      input_signature: [
+        {
+          tier: 1,
+          box_type: "module_pack",
+          role: "source",
+          semantic_domain: "δ-space",
+        },
+      ],
+      output_signature: [
+        {
+          tier: 3,
+          box_type: "axiom_box",
+          role: "sink",
+          semantic_domain: "Π-input",
+        },
+      ],
+
+      routing_policy: "Collect δ-signals within a bounded neighborhood and route aggregated deviation into Π-evaluation.",
+      constraints: [
+        "AX-DELTA-CONSERVATION-AGGREGATE",
+        "AX-PI-INPUT-BOUNDED",
+      ],
+      rewrite_tags: ["aggregate", "many-to-one"],
+    },
+
+    {
+      id: "delta.deviation-dissipation",
+      name: "Deviation Dissipation Connector",
+      description: "Routes excess deviation into normalization or wave-encoding mechanisms to avoid runaway divergence.",
+
+      connector_role: "constraint",
+      connector_kind: "tier-to-tier",
+
+      arity: "binary",
+      directionality: "uni",
+      payload_type: "deviation",
+
+      input_signature: [
+        {
+          tier: 1,
+          box_type: "module_pack",
+          role: "source",
+          semantic_domain: "δ-space",
+        },
+        {
+          tier: 10,
+          box_type: "axiom_box",
+          role: "control",
+          semantic_domain: "Ω-constraints",
+        },
+      ],
+      output_signature: [
+        {
+          tier: 6,
+          box_type: "module_pack",
+          role: "sink",
+          semantic_domain: "ψ-space",
+        },
+      ],
+
+      routing_policy: "When local δ exceeds threshold permitted by Ω constraints, map excess into ψ-mode oscillations.",
+      constraints: [
+        "AX-OMEGA-NO-RUNAWAY",
+        "AX-DELTA-TO-PSI-LIFT",
+      ],
+      rewrite_tags: ["damp", "normalize", "delta-to-psi"],
+    },
+  ],
+
+  modules: [
+    {
+      module_id: "delta.core",
+      connectors: [
+        "delta.deviation-injection",
+        "delta.deviation-propagation",
+        "delta.deviation-concentration",
+        "delta.deviation-dissipation",
+      ],
+    },
+  ],
+}

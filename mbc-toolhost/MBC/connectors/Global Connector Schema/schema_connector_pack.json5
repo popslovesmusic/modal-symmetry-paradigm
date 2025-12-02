@@ -1,0 +1,151 @@
+{
+  // MBC Connector Pack Schema: defines the connector objects for a family
+  $schema: "https://json-schema.org/draft-07/schema#",
+  title: "MBC Connector Pack",
+  type: "object",
+
+  properties: {
+    schema_version: { type: "string" },
+    family_id: {
+      type: "string",
+      enum: [
+        "delta", "phi", "pi", "mu", "lambda", "psi",
+        "sigma", "theta", "chi", "omega", "rho", "xi",
+      ],
+    },
+    family_symbol: { type: "string" },
+    family_name: { type: "string" },
+
+    // Versioning of the connector definitions
+    pack_version: { type: "string" },   // semantic versioning
+
+    // Core list of connectors
+    connectors: {
+      type: "array",
+      items: { $ref: "#/$defs/connector" },
+      minItems: 1,
+    },
+
+    // Optional grouping into modules / bundles
+    modules: {
+      type: "array",
+      items: { $ref: "#/$defs/module_ref" },
+    },
+
+    invariants_ref: {
+      type: "array",
+      items: { type: "string" },  // links to Ω/Θ/χ/ρ invariant IDs
+    },
+  },
+
+  required: [
+    "schema_version",
+    "family_id",
+    "family_name",
+    "pack_version",
+    "connectors",
+  ],
+
+  $defs: {
+    connector: {
+      type: "object",
+      properties: {
+        id: { type: "string" },    // e.g. "delta.dev-propagation"
+        name: { type: "string" },  // human-readable
+        description: { type: "string" },
+
+        connector_role: {
+          type: "string",
+          enum: ["structural", "semantic", "routing", "constraint", "meta"],
+        },
+        connector_kind: {
+          type: "string",
+          enum: ["box-to-box", "tier-to-tier", "agent-to-tier", "external-io"],
+        },
+
+        arity: {
+          type: "string",
+          enum: ["unary", "binary", "n-ary"],
+        },
+        directionality: {
+          type: "string",
+          enum: ["uni", "bi", "multi"],
+        },
+
+        payload_type: {
+          type: "string",
+          enum: [
+            "deviation", "semantic", "truth", "adjacency",
+            "curvature", "wave", "summation", "polarity",
+            "time", "constraint", "layer", "schema",
+          ],
+        },
+
+        // Type-level rather than implementation-level signatures
+        input_signature: {
+          type: "array",
+          items: { $ref: "#/$defs/endpoint_signature" },
+          minItems: 1,
+        },
+        output_signature: {
+          type: "array",
+          items: { $ref: "#/$defs/endpoint_signature" },
+          minItems: 1,
+        },
+
+        routing_policy: {
+          type: "string",
+          description: "Textual or symbolic rule for how routing decisions are made.",
+        },
+
+        constraints: {
+          type: "array",
+          items: { type: "string" }, // references to axiom IDs or invariant IDs
+        },
+
+        // Optional rewrite hints: how this connector composes / simplifies
+        rewrite_tags: {
+          type: "array",
+          items: { type: "string" },
+        },
+      },
+
+      required: [
+        "id",
+        "name",
+        "arity",
+        "directionality",
+        "payload_type",
+        "input_signature",
+        "output_signature",
+      ],
+    },
+
+    endpoint_signature: {
+      type: "object",
+      properties: {
+        tier: {
+          type: "integer",
+          minimum: 0,
+          maximum: 12,
+        },
+        box_type: { type: "string" },     // e.g. "axiom_box", "module_pack", etc.
+        role: { type: "string" },         // "source", "sink", "control", etc.
+        semantic_domain: { type: "string" },  // e.g. "δ-space", "ψ-space"
+      },
+      required: ["tier", "box_type", "role"],
+    },
+
+    module_ref: {
+      type: "object",
+      properties: {
+        module_id: { type: "string" },
+        connectors: {
+          type: "array",
+          items: { type: "string" },  // connector IDs
+        },
+      },
+      required: ["module_id", "connectors"],
+    },
+  },
+}

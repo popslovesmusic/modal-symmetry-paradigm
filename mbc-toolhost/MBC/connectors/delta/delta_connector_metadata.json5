@@ -1,0 +1,17 @@
+{
+  schema_version: "1.0.0",
+  family_id: "delta",
+  family_symbol: "δ",
+  family_name: "Deviation Connectors",
+  description: "Connectors that propagate, concentrate, and distribute deviation across the substrate and between tiers.",
+
+  linked_tiers: [0, 1, 2, 3],  // Tier-00 primitives, δ, Φ, Π
+
+  status: "draft",
+
+  authors: ["James Hoskins", "MBC-System-Agent"],
+  created_at: "2025-12-02T00:00:00Z",
+  updated_at: "2025-12-02T00:00:00Z",
+
+  notes: "δ-Connectors are the 'spark lines' that move deviation from locally detected perturbations to semantic and evaluative structures."
+}

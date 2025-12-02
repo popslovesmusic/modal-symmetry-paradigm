@@ -4,7 +4,7 @@
   "mcpServers": {
     "mbc-fs": {
       "command": "node",
-      "args": ["./mcp-servers/mbc-fs/server.js"]
+      "args": ["./mcp-servers/mbc-fs/servers.js"]
     }
   },
   "contextFileName": "GEMINI.md"

@@ -4,7 +4,7 @@
 
 ## 1. Overview
 
-The meta-layer, within the **IGSOA (Integrative General Systems Ontology Architecture) framework**, is the foundational stratum.
+The meta-layer, within the **IGSOA (Informational Ground State Ontological Asymmetry) framework**, is the foundational stratum.
 It is the conceptual space where modal primitives (MSP), structural invariants (MSC), and proto-operators are defined, and which the **Mono Box Calculus (MBC)** is then used to formalize and execute. This execution leads to the emergent cosmological structure (MFC).
 
 The meta-layer, as described for IGSOA, therefore contains conceptual frameworks and their operationalization:

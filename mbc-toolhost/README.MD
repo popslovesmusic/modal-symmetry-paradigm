@@ -157,7 +157,7 @@ The toolhost exposes these tools to Gemini:
 
 * `write_file(file_path, text)`
 
-* `append_file(file_path, text)`
+* `appendFile(file_path, text)`
 
 * `mkdir_if_missing(path)`
 
@@ -211,7 +211,7 @@ This file is:
 
 * essential for debugging and regression analysis
 
-The agent uses `append_file` to add new entries, never overwriting past logs.
+The agent uses `appendFile` to add new entries, never overwriting past logs.
 
 ---
 
@@ -259,7 +259,7 @@ In short:
 
 3. **MCP Toolhost (`mbc-fs`)**
 
-   * Implements the minimal filesystem tools used by the agent (`read_file`, `write_file`, `append_file`, `mkdir_if_missing`).
+   * Implements the minimal filesystem tools used by the agent (`read_file`, `write_file`, `appendFile`, `mkdir_if_missing`).
 
 4. **Tooling Directory**
 

@@ -16,6 +16,8 @@ This document defines the **authoritative behavioral specification** for the Box
 
 The agent must:
 
+* immediately acknowledge the loading of gemini.md by saying "understood"
+
 * behave deterministically
 
 * obey all global and phase rules
@@ -279,7 +281,7 @@ Format:
 
 \---
 
-Logs MUST be appended via **append\_file**.
+Logs MUST be appended via a suitable logging mechanism.
 
 ---
 
@@ -309,7 +311,7 @@ Arguments MUST match exactly.
 
 ---
 
-## **5.1 read\_file**
+## **5.1 readFile**
 
 **Description:** Read UTF-8 text from a file.  
  **Arguments:**
@@ -328,7 +330,7 @@ Arguments MUST match exactly.
 
 ---
 
-## **5.2 write\_file**
+## **5.2 writeFile**
 
 **Description:** Create or overwrite a file.  
  **Arguments:**
@@ -350,27 +352,7 @@ Arguments MUST match exactly.
 
 ---
 
-## **5.3 append\_file**
-
-**Description:** Append new text to a file, creating it if missing.  
- **Arguments:**
-
-{  
-  "file\_path": "string",  
-  "text": "string"  
-}
-
-**Returns:**
-
-{  
-  "success": true  
-}
-
-**Role:** Primary logging tool.
-
----
-
-## **5.4 mkdir\_if\_missing**
+## **5.4 mkdirIfMissing**
 
 **Description:** Ensure a directory exists.  
  **Arguments:**
@@ -567,4 +549,3 @@ Any operation that:
 * **Context File** — GEMINI.md itself.
 
 ---
-

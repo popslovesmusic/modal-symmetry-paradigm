@@ -1,0 +1,108 @@
+{
+  schema_version: "1.0.0",
+  family_id: "delta",
+  family_name: "Deviation Connectors",
+
+  axioms: [
+    {
+      axiom_id: "AX-DELTA-FIRST-DIFFERENCE",
+      label: "First Difference Realization",
+      statement: "Deviation Injection may only act on regions whose prior deviation is identically zero.",
+      form: "predicate",
+      scope: "local",
+
+      involves_connectors: [
+        "delta.deviation-injection",
+      ],
+
+      invariants_ref: [
+        "INVAR-MSP-SYMMETRY-INIT",
+      ],
+
+      formalization: {
+        informal_predicate: "∀R: (δ(R) = 0) ⇒ allowed(delta.deviation-injection, R)",
+      },
+    },
+
+    {
+      axiom_id: "AX-DELTA-LOCAL-CONSERVATION",
+      label: "Local Deviation Conservation",
+      statement: "Deviation Propagation preserves the total deviation in a closed adjacency neighborhood.",
+      form: "equation",
+      scope: "family",
+
+      involves_connectors: [
+        "delta.deviation-propagation",
+      ],
+
+      invariants_ref: [
+        "INVAR-DELTA-CONSERVATION-LOCAL",
+        "INVAR-MU-FINITE-NEIGHBORHOOD",
+      ],
+
+      formalization: {
+        equation: "Σ_i δ_i(before) = Σ_i δ_i(after)",
+      },
+    },
+
+    {
+      axiom_id: "AX-DELTA-CONSERVATION-AGGREGATE",
+      label: "Aggregation Conservation",
+      statement: "Deviation Concentration must not create or destroy total deviation, only redistribute it to a target Π-input region.",
+      form: "equation",
+      scope: "cross-tier",
+
+      involves_connectors: [
+        "delta.deviation-concentration",
+      ],
+
+      invariants_ref: [
+        "INVAR-OMEGA-NORMALIZATION",
+      ],
+
+      formalization: {
+        equation: "Σ_region δ = δ_target",
+      },
+    },
+
+    {
+      axiom_id: "AX-DELTA-TO-PSI-LIFT",
+      label: "Delta-to-Psi Lift",
+      statement: "Any dissipation of deviation into ψ-space must encode the magnitude and sign of δ as amplitude and phase without loss of informational content.",
+      form: "predicate",
+      scope: "cross-tier",
+
+      involves_connectors: [
+        "delta.deviation-dissipation",
+      ],
+
+      invariants_ref: [
+        "INVAR-PSI-INFORMATION-PRESERVATION",
+      ],
+
+      formalization: {
+        mapping: "δ → (A, φ) with injective encoding",
+      },
+    },
+
+    {
+      axiom_id: "AX-OMEGA-NO-RUNAWAY",
+      label: "No Runaway Deviation",
+      statement: "For any bounded region governed by Ω constraints, there exists an upper bound M such that net deviation never exceeds M without triggering dissipation.",
+      form: "predicate",
+      scope: "global",
+
+      involves_connectors: [
+        "delta.deviation-dissipation",
+      ],
+
+      invariants_ref: [
+        "INVAR-OMEGA-BOUND",
+      ],
+
+      formalization: {
+        predicate: "∀Region: δ_total(Region) <= M ∨ triggered(delta.deviation-dissipation)",
+      },
+    },
+  ],
+}

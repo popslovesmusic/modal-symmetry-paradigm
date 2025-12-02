@@ -2,10 +2,10 @@ const fs = require("fs");
 const path = require("path");
 
 // === Load tool functions ===
-const readFileTool = require("./tools/readFile");
-const writeFileTool = require("./tools/writeFile");
-const appendFileTool = require("./tools/appendFile");
-const mkdirIfMissingTool = require("./tools/mkdirIfMissing");
+const readFileTool = require("./tools/readFile.js");
+const writeFileTool = require("./tools/writeFile.js");
+
+const mkdirIfMissingTool = require("./tools/mkdirIfMissing.js");
 
 // === JSON-RPC server ===
 
@@ -42,10 +42,10 @@ const BASE_DIR = process.cwd();
 
 // === Tool registry ===
 const tools = {
-  read_file: args => readFileTool({ ...args, BASE_DIR }),
-  write_file: args => writeFileTool({ ...args, BASE_DIR }),
-  append_file: args => appendFileTool({ ...args, BASE_DIR }),
-  mkdir_if_missing: args => mkdirIfMissingTool({ ...args, BASE_DIR })
+  readFile: args => readFileTool({ ...args, BASE_DIR }),
+  writeFile: args => writeFileTool({ ...args, BASE_DIR }),
+
+  mkdirIfMissing: args => mkdirIfMissingTool({ ...args, BASE_DIR })
 };
 
 // === Handle JSON-RPC messages ===

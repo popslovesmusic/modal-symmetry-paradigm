@@ -6,7 +6,7 @@
 
 ## **Abstract**
 
-We propose the **Integrative General Systems Ontology Architecture (IGSOA)**, a unified, monistic meta-mathematical framework built upon the principles of **Modal Symmetry (MSP)**, **Meta-Structural Coherence (MSC)**, and formalized using the **Mono Box Calculus (MBC)**.  
+We propose the **Informational ground state ontological asymmetry Architecture (IGSOA)**, a unified, monistic meta-mathematical framework built upon the principles of **Modal Symmetry (MSP)**, **Meta-Structural Coherence (MSC)**, and formalized using the **Mono Box Calculus (MBC)**.  
  Building on the structural logic of **Archai**—primitive, irreducible conditions of emergence—this IGSOA framework develops a multilevel inheritance tower in which ontological primitives give rise to structural schemas, which are then operationalized by MBC's executable mathematical operators, leading to a cosmological emergent structure described as **Meta-Fractal Cosmology (MFC)**.
 
 This tower exhibits strict **transitivity**, ensuring that all higher-level mathematical and operational constructs remain grounded in a single monistic substrate.  
