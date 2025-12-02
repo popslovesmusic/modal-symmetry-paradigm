@@ -1,0 +1,9 @@
+{
+  "invariants": [
+    "ρ-coherence must hold across all operator levels (T00–T12).",
+    "No structure is admissible if it violates MSP modal symmetry.",
+    "ρ-NF is unique and globally stable.",
+    "Any cross-tier rewrite must converge to ρ-consistent form.",
+    "All real-world mathematics integrated into MBC must respect ρ-coherence by transitivity."
+  ]
+}
