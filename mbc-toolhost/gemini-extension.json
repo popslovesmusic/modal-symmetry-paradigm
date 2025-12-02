@@ -1,0 +1,11 @@
+{
+  "name": "mbc-toolhost",
+  "version": "0.1.0",
+  "mcpServers": {
+    "mbc-fs": {
+      "command": "node",
+      "args": ["./mcp-servers/mbc-fs/server.js"]
+    }
+  },
+  "contextFileName": "GEMINI.md"
+}
