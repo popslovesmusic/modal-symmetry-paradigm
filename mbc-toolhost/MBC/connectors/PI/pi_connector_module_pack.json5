@@ -1,0 +1,37 @@
+{
+  schema_version: "1.0.0",
+  family_id: "pi",
+  family_name: "Evaluation / Truth Connectors",
+
+  modules: [
+    {
+      module_id: "pi.core",
+      name: "Core Evaluation and Routing",
+      description: "Provides baseline truth evaluation, causal routing, global consistency checking, and counterfactual branching.",
+
+      connectors: [
+        "pi.truth-evaluation",
+        "pi.causal-routing",
+        "pi.consistency-check",
+        "pi.counterfactual-branch"
+      ],
+
+      default_routing_policy: "Evaluate semantic content, route consequences, ensure global consistency, and manage χ-branches for counterfactuals.",
+
+      exposed_interfaces: [
+        {
+          interface_id: "pi.from-semantic",
+          direction: "in",
+          payload_type: "truth",
+          notes: "Receives semantic structures from Φ/Σ modules for evaluation."
+        },
+        {
+          interface_id: "pi.to-chi",
+          direction: "out",
+          payload_type: "truth",
+          notes: "Emits causal and counterfactual decisions to χ-time evolution modules."
+        }
+      ]
+    }
+  ]
+}

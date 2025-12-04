@@ -1,0 +1,47 @@
+{
+  schema_version: "1.0.0",
+  family_id: "phi",
+  family_name: "Semantic Connectors",
+
+  interactions: [
+    {
+      lhs_connector: "phi.semantic-embedding",
+      rhs_connector: "phi.semantic-lifting",
+      composition_kind: "serial",
+      result_connector: "phi.semantic-lifting",
+      notes: "Embedding followed by lifting yields higher-level semantic abstractions.",
+      constraints: [
+        "AX-PHI-EMBED-INJECTIVE",
+        "AX-PHI-LIFT-COMPATIBLE"
+      ]
+    },
+    {
+      lhs_connector: "phi.semantic-embedding",
+      rhs_connector: "phi.semantic-projection-filter",
+      composition_kind: "serial",
+      result_connector: "phi.semantic-projection-filter",
+      notes: "Embed then project semantic content into a focused subspace.",
+      constraints: [
+        "AX-PHI-PROJECTION-IDEMP"
+      ]
+    },
+    {
+      lhs_connector: "phi.semantic-alignment",
+      rhs_connector: "phi.semantic-projection-filter",
+      composition_kind: "serial",
+      result_connector: "phi.semantic-projection-filter",
+      notes: "Align two semantic spaces and then focus them via projection.",
+      constraints: [
+        "AX-PHI-ALIGN-MIN-LOSS"
+      ]
+    },
+    {
+      lhs_connector: "phi.semantic-alignment",
+      rhs_connector: "phi.semantic-alignment",
+      composition_kind: "merged",
+      result_connector: "phi.semantic-alignment",
+      notes: "Sequential alignment to the same target frame collapses into a single alignment step.",
+      constraints: []
+    }
+  ]
+}

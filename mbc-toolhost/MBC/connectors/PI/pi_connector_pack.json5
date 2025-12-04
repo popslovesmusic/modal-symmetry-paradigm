@@ -1,0 +1,184 @@
+{
+  schema_version: "1.0.0",
+  family_id: "pi",
+  family_symbol: "Π",
+  family_name: "Evaluation / Truth Connectors",
+  pack_version: "0.1.0",
+
+  invariants_ref: [
+    "INVAR-PI-SOUNDNESS",
+    "INVAR-PI-CONSISTENCY",
+    "INVAR-OMEGA-NO-CONTRADICTION"
+  ],
+
+  connectors: [
+    {
+      id: "pi.truth-evaluation",
+      name: "Truth Evaluation Connector",
+      description: "Evaluates a semantic structure and yields a truth or confidence judgment.",
+
+      connector_role: "semantic",
+      connector_kind: "box-to-box",
+
+      arity: "unary",
+      directionality: "uni",
+      payload_type: "truth",
+
+      input_signature: [
+        {
+          tier: 2,
+          box_type: "module_pack",
+          role: "source",
+          semantic_domain: "Φ-space"
+        }
+      ],
+      output_signature: [
+        {
+          tier: 3,
+          box_type: "axiom_box",
+          role: "sink",
+          semantic_domain: "Π-judgment"
+        }
+      ],
+
+      routing_policy: "Map aligned semantic content to a Π-judgment, e.g., true/false/undetermined with confidence.",
+      constraints: [
+        "AX-PI-SOUND-EVAL"
+      ],
+      rewrite_tags: ["evaluate", "judge"]
+    },
+
+    {
+      id: "pi.causal-routing",
+      name: "Causal Routing Connector",
+      description: "Routes evaluation outcomes into causal consequence channels.",
+
+      connector_role: "routing",
+      connector_kind: "box-to-box",
+
+      arity: "binary",
+      directionality: "uni",
+      payload_type: "truth",
+
+      input_signature: [
+        {
+          tier: 3,
+          box_type: "axiom_box",
+          role: "source",
+          semantic_domain: "Π-judgment"
+        },
+        {
+          tier: 9,
+          box_type: "module_pack",
+          role: "control",
+          semantic_domain: "χ-time"
+        }
+      ],
+      output_signature: [
+        {
+          tier: 3,
+          box_type: "module_pack",
+          role: "sink",
+          semantic_domain: "Π-causal-path"
+        }
+      ],
+
+      routing_policy: "Select a causal branch based on evaluation result and temporal context.",
+      constraints: [
+        "AX-PI-CAUSAL-COMPAT",
+        "AX-CHI-FORWARD-FLOW"
+      ],
+      rewrite_tags: ["route", "branch", "causal"]
+    },
+
+    {
+      id: "pi.consistency-check",
+      name: "Consistency Check Connector",
+      description: "Checks a set of semantic/evaluative statements for internal and Ω-governed consistency.",
+
+      connector_role: "constraint",
+      connector_kind: "box-to-box",
+
+      arity: "n-ary",
+      directionality: "uni",
+      payload_type: "truth",
+
+      input_signature: [
+        {
+          tier: 3,
+          box_type: "module_pack",
+          role: "source",
+          semantic_domain: "Π-judgment-set"
+        }
+      ],
+      output_signature: [
+        {
+          tier: 10,
+          box_type: "axiom_box",
+          role: "sink",
+          semantic_domain: "Ω-consistency"
+        }
+      ],
+
+      routing_policy: "Aggregate Π-judgments and report consistency vs contradiction according to Ω constraints.",
+      constraints: [
+        "AX-OMEGA-NO-CONTRADICTION"
+      ],
+      rewrite_tags: ["check", "global", "consistency"]
+    },
+
+    {
+      id: "pi.counterfactual-branch",
+      name: "Counterfactual Branch Connector",
+      description: "Evaluates and spawns alternative χ-timelines based on hypothetical Π-judgments.",
+
+      connector_role: "meta",
+      connector_kind: "tier-to-tier",
+
+      arity: "binary",
+      directionality: "multi",
+      payload_type: "truth",
+
+      input_signature: [
+        {
+          tier: 3,
+          box_type: "axiom_box",
+          role: "source",
+          semantic_domain: "Π-counterfactual"
+        },
+        {
+          tier: 9,
+          box_type: "module_pack",
+          role: "source",
+          semantic_domain: "χ-time"
+        }
+      ],
+      output_signature: [
+        {
+          tier: 9,
+          box_type: "module_pack",
+          role: "sink",
+          semantic_domain: "χ-branch"
+        }
+      ],
+
+      routing_policy: "For each counterfactual Π-judgment, spawn or select a χ-branch consistent with that outcome.",
+      constraints: [
+        "AX-CHI-BRANCHING-CONSISTENCY"
+      ],
+      rewrite_tags: ["branch", "counterfactual", "meta-time"]
+    }
+  ],
+
+  modules: [
+    {
+      module_id: "pi.core",
+      connectors: [
+        "pi.truth-evaluation",
+        "pi.causal-routing",
+        "pi.consistency-check",
+        "pi.counterfactual-branch"
+      ]
+    }
+  ]
+}

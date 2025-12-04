@@ -1,0 +1,80 @@
+{
+  schema_version: "1.0.0",
+  family_id: "phi",
+  family_name: "Semantic Connectors",
+
+  axioms: [
+    {
+      axiom_id: "AX-PHI-EMBED-INJECTIVE",
+      label: "Injective Embedding",
+      statement: "Semantic embedding must be injective up to semantic equivalence classes.",
+      form: "predicate",
+      scope: "family",
+
+      involves_connectors: [
+        "phi.semantic-embedding"
+      ],
+      invariants_ref: [
+        "INVAR-PHI-MEANING-PRESERVATION"
+      ],
+      formalization: {
+        predicate: "∀x,y: embed(x) = embed(y) ⇒ x ≡_sem y"
+      }
+    },
+
+    {
+      axiom_id: "AX-PHI-LIFT-COMPATIBLE",
+      label: "Compatible Lifting",
+      statement: "Lifting is only defined on embeddings that share a compatible semantic basis.",
+      form: "predicate",
+      scope: "family",
+
+      involves_connectors: [
+        "phi.semantic-lifting"
+      ],
+      invariants_ref: [
+        "INVAR-PHI-ALIGNMENT-COHERENCE"
+      ],
+      formalization: {
+        predicate: "lift(Φ₁) defined ⇒ basis(Φ₁) compatible_with target_basis"
+      }
+    },
+
+    {
+      axiom_id: "AX-PHI-ALIGN-MIN-LOSS",
+      label: "Minimal Loss Alignment",
+      statement: "Semantic alignment must minimize a chosen mismatch metric between two semantic spaces.",
+      form: "equation",
+      scope: "family",
+
+      involves_connectors: [
+        "phi.semantic-alignment"
+      ],
+      invariants_ref: [
+        "INVAR-PHI-ALIGNMENT-COHERENCE"
+      ],
+      formalization: {
+        equation: "alignment = argmin_A mismatch(Φ₁, Φ₂, A)"
+      }
+    },
+
+    {
+      axiom_id: "AX-PHI-PROJECTION-IDEMP",
+      label: "Projection Idempotence",
+      statement: "Projecting onto the same semantic subspace twice has the same effect as projecting once.",
+      form: "equation",
+      scope: "family",
+
+      involves_connectors: [
+        "phi.semantic-projection-filter"
+      ],
+      invariants_ref: [
+        "INVAR-SIGMA-CONTRACTION",
+        "INVAR-PHI-MEANING-PRESERVATION"
+      ],
+      formalization: {
+        equation: "P_S(P_S(x)) = P_S(x)"
+      }
+    }
+  ]
+}

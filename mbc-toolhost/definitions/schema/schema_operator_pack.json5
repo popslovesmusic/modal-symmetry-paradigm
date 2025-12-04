@@ -1,0 +1,33 @@
+{
+  $schema: "https://json-schema.org/draft/2020-12/schema",
+  title: "MBC Operator Pack Schema",
+  type: "object",
+
+  required: ["operators"],
+
+  properties: {
+    operators: {
+      type: "array",
+      items: {
+        type: "object",
+        required: ["name", "symbol", "arity", "definition"],
+        properties: {
+          name: { type: "string" },
+          symbol: { type: "string" },
+          arity: { type: "integer", minimum: 0 },
+          definition: { type: "string" },
+
+          constraints: {
+            type: "array",
+            items: { type: "string" }
+          },
+
+          examples: {
+            type: "array",
+            items: { type: "string" }
+          }
+        }
+      }
+    }
+  }
+}

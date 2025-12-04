@@ -1,0 +1,187 @@
+{
+  // ============================================================
+  // MONISTIC BOX CALCULUS (MBC) — AGENT TRAINING INSTRUCTION SET
+  // ============================================================
+
+  agent_profile: {
+    name: "MBC_Universal_Agent",
+    version: "1.0.0",
+    isa: "MBC-ISA-v1",
+    description: "Defines how an agent must learn, validate, and execute the Monistic Box Calculus (MBC) framework."
+  },
+
+  // ------------------------------------------------------------
+  // 1. CORE DIRECTIVES
+  // ------------------------------------------------------------
+  core_directives: {
+    ingest_all_tiers: true,           // Agent must load Tier-00 → Tier-12
+    require_all_seven_files: true,    // Metadata, Operator, Interaction, Axiom, Rewrite, Module, Test
+    enforce_schemas: true,            // Validate each file with correct schema
+    internal_reasoning_pipeline: [
+      "δ",  // Identify deviation
+      "Φ",  // Projection mapping
+      "Π",  // Evaluation truth/causality
+      "Ω",  // Normalization / Consistency
+      "Θ",  // Routing / Polarity
+      "χ",  // Semantic evolution
+      "ρ",  // Federation-layer reasoning
+      "Ξ"   // Universal schema encoding
+    ],
+    reject_if_invalid: true           // Agent must stop if any component is invalid
+  },
+
+  // ------------------------------------------------------------
+  // 2. MBC TIER SPECIFICATION (00–12)
+  // ------------------------------------------------------------
+  tiers: {
+    total_tiers: 13,
+    naming_convention: "tier_XX_*",
+    required_components: [
+      "metadata", 
+      "operator_pack",
+      "interaction_table",
+      "axiom_box",
+      "rewrite_system",
+      "module_pack",
+      "test_suite"
+    ],
+    tier_map: {
+      "00": "Proto-Primitives",
+      "01": "δ-Family (Deviation)",
+      "02": "Φ-Family (Projection)",
+      "03": "Π-Family (Evaluation)",
+      "04": "μ-Family (Local Weight)",
+      "05": "λ-Family (Curvature / Deformation)",
+      "06": "ψ-Family (Oscillation / Modes)",
+      "07": "Σ-Family (Summation / Contraction)",
+      "08": "Θ-Family (Polarity / Logic Routing)",
+      "09": "χ-Family (Semantic Time / Evolution)",
+      "10": "Ω-Family (Global Constraints)",
+      "11": "ρ-Family (Meta-Structure / Federation)",
+      "12": "Ξ-Family (Universal Schema Operators)"
+    }
+  },
+
+  // ------------------------------------------------------------
+  // 3. SCHEMA VALIDATION
+  // ------------------------------------------------------------
+  schema_validation: {
+    enabled: true,
+    schemas: {
+      metadata:         "schemas/schema_metadata.json5",
+      operator_pack:    "schemas/schema_operator_pack.json5",
+      interaction:      "schemas/schema_interaction_table.json5",
+      axiom_box:        "schemas/schema_axiom_box.json5",
+      rewrite_system:   "schemas/schema_rewrite.json5",
+      module_pack:      "schemas/schema_module.json5",
+      test_suite:       "schemas/schema_test_suite.json5"
+    },
+    policy: {
+      fail_if_missing_schema: true,
+      fail_if_validation_error: true,
+      log_validation_results: true
+    }
+  },
+
+  // ------------------------------------------------------------
+  // 4. INVARIANTS (ENFORCED PER TIER)
+  // ------------------------------------------------------------
+  invariants: {
+    global_invariants: [
+      "No-Contradiction (Ω)",
+      "Normalization (Ω)",
+      "Termination (Rewrite)",
+      "Confluence (Rewrite)",
+      "Non-Expansion (Rewrite)"
+    ],
+
+    tier_invariants: {
+      "01": ["Deviation must increase distinguishability"],
+      "02": ["Projection must preserve semantic consistency"],
+      "03": ["Evaluation must not violate Ω-global constraints"],
+      "04": ["μ-operators must reflect accurate local adjacencies"],
+      "05": ["λ-curvature must preserve continuity"],
+      "06": ["ψ-operators must conserve oscillatory energy"],
+      "07": ["Σ-contraction may not destroy semantic identity"],
+      "08": ["Θ-routing must maintain polarity consistency"],
+      "09": ["χ-evolution must maintain forward semantic time"],
+      "10": ["Ω must ensure the system remains globally consistent"],
+      "11": ["ρ must ensure hierarchy/federation preservation"],
+      "12": ["Ξ must preserve universal schema closure"]
+    }
+  },
+
+  // ------------------------------------------------------------
+  // 5. INTERACTION RULES
+  // ------------------------------------------------------------
+  interaction_rules: {
+    enforce_interaction_tables: true,
+    check_cross_tier_compatibility: true,
+    conflict_policy: "reject_and_route_to_Π"
+  },
+
+  // ------------------------------------------------------------
+  // 6. REWRITE SYSTEM RULES
+  // ------------------------------------------------------------
+  rewrite_constraints: {
+    termination_required: true,
+    confluence_required: true,
+    non_expansion_required: true,
+    log_rewrite_paths: true
+  },
+
+  // ------------------------------------------------------------
+  // 7. SEMANTIC CYCLE (AGENT INTERNAL REASONING LOOP)
+  // ------------------------------------------------------------
+  reasoning_cycle: {
+    steps: [
+      "parse_input",
+      "δ_identify_deviation",
+      "Φ_semantic_projection",
+      "Π_consistency_evaluation",
+      "Ω_global_normalization",
+      "Θ_polarity_routing",
+      "χ_forward_semantic_evolution",
+      "ρ_federation_layer_alignment",
+      "Ξ_universal_schema_encoding",
+      "return_normal_form"
+    ]
+  },
+
+  // ------------------------------------------------------------
+  // 8. SELF-TESTING REQUIREMENTS
+  // ------------------------------------------------------------
+  test_system: {
+    run_on_startup: true,
+    run_daily: true,
+    require_passing_all: true,
+    test_types: [
+      "operator_unit_tests",
+      "interaction_table_tests",
+      "rewrite_system_tests",
+      "invariant_tests",
+      "semantic_normal_form_tests",
+      "Ξ_self_diagnostics"
+    ]
+  },
+
+  // ------------------------------------------------------------
+  // 9. MBC COMPLIANCE CRITERIA
+  // ------------------------------------------------------------
+  compliance: {
+    must_understand_all_tiers: true,
+    must_pass_all_tests: true,
+    must_enforce_all_invariants: true,
+    must_use_delta_phi_pi_pipeline: true,
+    must_apply_Ω_normalization: true,
+    must_route_using_Θ: true,
+    must_evolve_using_χ: true,
+    must_federate_using_ρ: true,
+    must_encode_using_Ξ: true
+  },
+
+  // ------------------------------------------------------------
+  // 10. COMPLETION SIGNAL
+  // ------------------------------------------------------------
+  ready_flag: "AGENT_MBC_TRAINING_COMPLETE"
+}

@@ -1,0 +1,37 @@
+{
+  schema_version: "1.0.0",
+  family_id: "phi",
+  family_name: "Semantic Connectors",
+
+  rules: [
+    {
+      rule_id: "RW-PHI-EMBED-PROJECT-NORMALIZE",
+      label: "Embed-Project Normalization",
+      lhs_pattern: "phi.semantic-embedding ∘ phi.semantic-projection-filter",
+      rhs_pattern: "phi.semantic-projection-filter",
+      condition: "projection subspace defined on embedded domain",
+      notes: "Embedding followed immediately by projection is equivalent to projecting into the intended subspace directly."
+    },
+    {
+      rule_id: "RW-PHI-ALIGN-IDEMP",
+      label: "Alignment Idempotence",
+      lhs_pattern: "phi.semantic-alignment ∘ phi.semantic-alignment",
+      rhs_pattern: "phi.semantic-alignment",
+      condition: "same target frame",
+      notes: "Repeated alignment to the same frame collapses into a single step."
+    },
+    {
+      rule_id: "RW-PHI-LIFT-COMPOSE",
+      label: "Lift Composition",
+      lhs_pattern: "phi.semantic-lifting ∘ phi.semantic-embedding",
+      rhs_pattern: "phi.semantic-lifting",
+      condition: "embedding and lifting use the same semantic basis family",
+      notes: "Embedding followed by lifting reduces to a single lifting step in the same family."
+    }
+  ],
+
+  properties: {
+    terminating: true,
+    confluent: true
+  }
+}

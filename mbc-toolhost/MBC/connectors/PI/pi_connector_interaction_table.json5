@@ -1,0 +1,47 @@
+{
+  schema_version: "1.0.0",
+  family_id: "pi",
+  family_name: "Evaluation / Truth Connectors",
+
+  interactions: [
+    {
+      lhs_connector: "pi.truth-evaluation",
+      rhs_connector: "pi.causal-routing",
+      composition_kind: "serial",
+      result_connector: "pi.causal-routing",
+      notes: "Evaluate semantic content and then route causal consequences.",
+      constraints: [
+        "AX-PI-SOUND-EVAL",
+        "AX-PI-CAUSAL-COMPAT"
+      ]
+    },
+    {
+      lhs_connector: "pi.truth-evaluation",
+      rhs_connector: "pi.consistency-check",
+      composition_kind: "serial",
+      result_connector: "pi.consistency-check",
+      notes: "Multiple evaluations feed into a global consistency check.",
+      constraints: [
+        "AX-OMEGA-NO-CONTRADICTION"
+      ]
+    },
+    {
+      lhs_connector: "pi.truth-evaluation",
+      rhs_connector: "pi.counterfactual-branch",
+      composition_kind: "serial",
+      result_connector: "pi.counterfactual-branch",
+      notes: "Evaluator can be used to score counterfactual hypotheses before χ-branching.",
+      constraints: [
+        "AX-CHI-BRANCHING-CONSISTENCY"
+      ]
+    },
+    {
+      lhs_connector: "pi.consistency-check",
+      rhs_connector: "pi.consistency-check",
+      composition_kind: "merged",
+      result_connector: "pi.consistency-check",
+      notes: "Nested consistency checks collapse into a single Ω-level check.",
+      constraints: []
+    }
+  ]
+}

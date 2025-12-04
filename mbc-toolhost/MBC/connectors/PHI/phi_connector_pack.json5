@@ -1,0 +1,177 @@
+{
+  schema_version: "1.0.0",
+  family_id: "phi",
+  family_symbol: "Φ",
+  family_name: "Semantic Connectors",
+  pack_version: "0.1.0",
+
+  invariants_ref: [
+    "INVAR-PHI-MEANING-PRESERVATION",
+    "INVAR-PHI-ALIGNMENT-COHERENCE"
+  ],
+
+  connectors: [
+    {
+      id: "phi.semantic-embedding",
+      name: "Semantic Embedding Connector",
+      description: "Embeds raw or syntactic structures into a semantic representation space.",
+
+      connector_role: "semantic",
+      connector_kind: "box-to-box",
+
+      arity: "unary",
+      directionality: "uni",
+      payload_type: "semantic",
+
+      input_signature: [
+        {
+          tier: 0,
+          box_type: "module_pack",
+          role: "source",
+          semantic_domain: "raw-structure"
+        }
+      ],
+      output_signature: [
+        {
+          tier: 2,
+          box_type: "module_pack",
+          role: "sink",
+          semantic_domain: "Φ-space"
+        }
+      ],
+
+      routing_policy: "Route any structurally well-formed box from primitive representation into its semantic embedding.",
+      constraints: [
+        "AX-PHI-EMBED-INJECTIVE"
+      ],
+      rewrite_tags: ["embed", "lift", "semanticize"]
+    },
+
+    {
+      id: "phi.semantic-lifting",
+      name: "Semantic Lifting Connector",
+      description: "Lifts lower-level semantic structures into higher-level concepts or abstractions.",
+
+      connector_role: "semantic",
+      connector_kind: "box-to-box",
+
+      arity: "unary",
+      directionality: "uni",
+      payload_type: "semantic",
+
+      input_signature: [
+        {
+          tier: 2,
+          box_type: "module_pack",
+          role: "source",
+          semantic_domain: "Φ-space"
+        }
+      ],
+      output_signature: [
+        {
+          tier: 7,
+          box_type: "module_pack",
+          role: "sink",
+          semantic_domain: "Σ-Φ-abstract"
+        }
+      ],
+
+      routing_policy: "Aggregate compatible semantic embeddings into higher abstractions governed by Σ.",
+      constraints: [
+        "AX-PHI-LIFT-COMPATIBLE",
+        "AX-SIGMA-COMPAT-CONTRACTION"
+      ],
+      rewrite_tags: ["lift", "abstract", "compress"]
+    },
+
+    {
+      id: "phi.semantic-alignment",
+      name: "Semantic Alignment Connector",
+      description: "Aligns semantic content between two boxes into a shared coordinate frame.",
+
+      connector_role: "semantic",
+      connector_kind: "box-to-box",
+
+      arity: "binary",
+      directionality: "bi",
+      payload_type: "semantic",
+
+      input_signature: [
+        {
+          tier: 2,
+          box_type: "module_pack",
+          role: "source",
+          semantic_domain: "Φ-space"
+        },
+        {
+          tier: 2,
+          box_type: "module_pack",
+          role: "source",
+          semantic_domain: "Φ-space"
+        }
+      ],
+      output_signature: [
+        {
+          tier: 2,
+          box_type: "module_pack",
+          role: "sink",
+          semantic_domain: "Φ-aligned"
+        }
+      ],
+
+      routing_policy: "Align semantic axes to minimize mismatch under a chosen similarity metric.",
+      constraints: [
+        "AX-PHI-ALIGN-MIN-LOSS"
+      ],
+      rewrite_tags: ["align", "match", "co-register"]
+    },
+
+    {
+      id: "phi.semantic-projection-filter",
+      name: "Semantic Projection Filter Connector",
+      description: "Projects semantic content onto a subspace (focus) while filtering out irrelevant components.",
+
+      connector_role: "routing",
+      connector_kind: "box-to-box",
+
+      arity: "unary",
+      directionality: "uni",
+      payload_type: "semantic",
+
+      input_signature: [
+        {
+          tier: 2,
+          box_type: "module_pack",
+          role: "source",
+          semantic_domain: "Φ-space"
+        }
+      ],
+      output_signature: [
+        {
+          tier: 2,
+          box_type: "module_pack",
+          role: "sink",
+          semantic_domain: "Φ-focused"
+        }
+      ],
+
+      routing_policy: "Select a projection axis or subspace and filter semantic content accordingly.",
+      constraints: [
+        "AX-PHI-PROJECTION-IDEMP"
+      ],
+      rewrite_tags: ["project", "filter", "focus"]
+    }
+  ],
+
+  modules: [
+    {
+      module_id: "phi.core",
+      connectors: [
+        "phi.semantic-embedding",
+        "phi.semantic-lifting",
+        "phi.semantic-alignment",
+        "phi.semantic-projection-filter"
+      ]
+    }
+  ]
+}

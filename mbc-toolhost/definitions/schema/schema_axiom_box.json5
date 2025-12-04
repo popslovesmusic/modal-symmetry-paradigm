@@ -1,0 +1,28 @@
+{
+  $schema: "https://json-schema.org/draft/2020-12/schema",
+  title: "MBC Axiom Box Schema",
+  type: "object",
+
+  required: ["axioms"],
+
+  properties: {
+    axioms: {
+      type: "array",
+      items: {
+        type: "object",
+        required: ["id", "statement"],
+        properties: {
+          id: { type: "string" },
+          statement: { type: "string" },
+
+          justification: { type: "string" },
+
+          depends_on: {
+            type: "array",
+            items: { type: "string" }
+          }
+        }
+      }
+    }
+  }
+}

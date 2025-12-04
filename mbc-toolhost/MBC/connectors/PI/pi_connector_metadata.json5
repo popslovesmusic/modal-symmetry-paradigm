@@ -1,0 +1,18 @@
+{
+  schema_version: "1.0.0",
+  family_id: "pi",
+  family_symbol: "Π",
+  family_name: "Evaluation / Truth Connectors",
+
+  description: "Connectors that evaluate, route, and branch on truth, consistency, and causal structure.",
+
+  linked_tiers: [2, 3, 5, 9, 10],
+
+  status: "draft",
+
+  authors: ["James Hoskins", "MBC-System-Agent"],
+  created_at: "2025-12-02T00:00:00Z",
+  updated_at: "2025-12-02T00:00:00Z",
+
+  notes: "Π-Connectors provide the evaluative backbone of Box Calculus, mapping semantic structures into truth, confidence, and causal pathways."
+}

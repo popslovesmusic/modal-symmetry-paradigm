@@ -1,0 +1,37 @@
+{
+  schema_version: "1.0.0",
+  family_id: "pi",
+  family_name: "Evaluation / Truth Connectors",
+
+  rules: [
+    {
+      rule_id: "RW-PI-EVAL-CAUSAL-NORMALIZE",
+      label: "Eval-Then-Causal Normalization",
+      lhs_pattern: "pi.truth-evaluation ∘ pi.causal-routing",
+      rhs_pattern: "pi.causal-routing",
+      condition: "routing uses the evaluation result directly",
+      notes: "Once Π has been computed, the combined operation is seen as routing based on Π."
+    },
+    {
+      rule_id: "RW-PI-MULTI-CHECK-MERGE",
+      label: "Multi-Check Merge",
+      lhs_pattern: "pi.consistency-check ∘ pi.consistency-check",
+      rhs_pattern: "pi.consistency-check",
+      condition: "same Ω constraint set",
+      notes: "Multiple consistency checks over the same Ω constraint set merge into a single check."
+    },
+    {
+      rule_id: "RW-PI-COUNTERFACT-ABSORB",
+      label: "Counterfactual Absorption",
+      lhs_pattern: "pi.counterfactual-branch ∘ pi.counterfactual-branch",
+      rhs_pattern: "pi.counterfactual-branch",
+      condition: "branches share identical Π assumptions",
+      notes: "Redundant branching on identical counterfactuals is collapsed into a single branching step."
+    }
+  ],
+
+  properties: {
+    terminating: true,
+    confluent: true
+  }
+}

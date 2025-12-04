@@ -1,0 +1,81 @@
+{
+  schema_version: "1.0.0",
+  family_id: "pi",
+  family_name: "Evaluation / Truth Connectors",
+
+  axioms: [
+    {
+      axiom_id: "AX-PI-SOUND-EVAL",
+      label: "Sound Evaluation",
+      statement: "Truth Evaluation must not assign 'true' to structures that violate applicable axioms and invariants.",
+      form: "predicate",
+      scope: "family",
+
+      involves_connectors: [
+        "pi.truth-evaluation"
+      ],
+      invariants_ref: [
+        "INVAR-PI-SOUNDNESS"
+      ],
+      formalization: {
+        predicate: "Π(x) = true ⇒ x satisfies all relevant axioms/invariants"
+      }
+    },
+
+    {
+      axiom_id: "AX-PI-CAUSAL-COMPAT",
+      label: "Causal Compatibility",
+      statement: "Causal Routing must only emit causal paths that are consistent with evaluated Π-judgments.",
+      form: "predicate",
+      scope: "family",
+
+      involves_connectors: [
+        "pi.causal-routing"
+      ],
+      invariants_ref: [
+        "INVAR-PI-CONSISTENCY",
+        "INVAR-CHI-FORWARD-FLOW"
+      ],
+      formalization: {
+        predicate: "route(Π, χ) defined ⇒ Π outcomes compatible_with chosen path"
+      }
+    },
+
+    {
+      axiom_id: "AX-OMEGA-NO-CONTRADICTION",
+      label: "No Contradiction",
+      statement: "A Π-judgment set governed by Ω must not contain explicit contradictions.",
+      form: "predicate",
+      scope: "global",
+
+      involves_connectors: [
+        "pi.consistency-check"
+      ],
+      invariants_ref: [
+        "INVAR-OMEGA-NO-CONTRADICTION"
+      ],
+      formalization: {
+        predicate: "¬∃φ: {Π(φ) = true ∧ Π(¬φ) = true}"
+      }
+    },
+
+    {
+      axiom_id: "AX-CHI-BRANCHING-CONSISTENCY",
+      label: "Branching Consistency",
+      statement: "Counterfactual branches in χ-time must each be internally consistent with their assumed Π-judgments.",
+      form: "predicate",
+      scope: "cross-tier",
+
+      involves_connectors: [
+        "pi.counterfactual-branch"
+      ],
+      invariants_ref: [
+        "INVAR-CHI-BRANCHING",
+        "INVAR-PI-CONSISTENCY"
+      ],
+      formalization: {
+        predicate: "∀branch b: χ_b consistent_with Π_b"
+      }
+    }
+  ]
+}

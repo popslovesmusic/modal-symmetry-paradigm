@@ -1,0 +1,37 @@
+{
+  schema_version: "1.0.0",
+  family_id: "phi",
+  family_name: "Semantic Connectors",
+
+  modules: [
+    {
+      module_id: "phi.core",
+      name: "Core Semantic Projection",
+      description: "Core module for embedding, lifting, aligning, and focusing semantic content across tiers.",
+
+      connectors: [
+        "phi.semantic-embedding",
+        "phi.semantic-lifting",
+        "phi.semantic-alignment",
+        "phi.semantic-projection-filter"
+      ],
+
+      default_routing_policy: "Embed raw structure, optionally lift to abstractions, align cross-box semantics, and project into task-relevant subspaces.",
+
+      exposed_interfaces: [
+        {
+          interface_id: "phi.from-raw",
+          direction: "in",
+          payload_type: "semantic",
+          notes: "Attach to Tier-00/δ/μ structures requiring semantic interpretation."
+        },
+        {
+          interface_id: "phi.to-evaluator",
+          direction: "out",
+          payload_type: "semantic",
+          notes: "Provides aligned and focused semantic content ready for Π-evaluation."
+        }
+      ]
+    }
+  ]
+}

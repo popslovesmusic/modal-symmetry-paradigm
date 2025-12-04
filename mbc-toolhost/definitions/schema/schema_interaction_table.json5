@@ -1,0 +1,28 @@
+{
+  $schema: "https://json-schema.org/draft/2020-12/schema",
+  title: "MBC Operator Interaction Table Schema",
+  type: "object",
+
+  required: ["interactions"],
+
+  properties: {
+    interactions: {
+      type: "array",
+      description: "How operators from this tier interact with others",
+      items: {
+        type: "object",
+        required: ["operator", "with", "effect"],
+        properties: {
+          operator: { type: "string" },
+          with: { type: "string" },
+          effect: { type: "string" },
+
+          conditions: {
+            type: "array",
+            items: { type: "string" }
+          }
+        }
+      }
+    }
+  }
+}
