@@ -1,0 +1,67 @@
+{
+  version: "1.0.0",
+
+  authority: "MBC Compliance Authority",
+
+  compliance_dependencies: [
+    "/mbc/compliance/math_interdiction_profile.json5",
+    "/mbc/core/problem_object.schema.json5"
+  ],
+
+  classification: [
+    "Numeric Tool",
+    "SATP Executor",
+    "Evidence Generator"
+  ],
+
+  allowed_roles: [
+    "numeric_execution",
+    "satp_transport_execution",
+    "igsoa_state_evolution"
+  ],
+
+  forbidden_actions: [
+    "define_ontology",
+    "define_causality",
+    "define_physical_law",
+    "override_msp",
+    "override_msc",
+    "override_mbc",
+    "bypass_gate_not",
+    "bypass_gate_is",
+    "bypass_gate_stability",
+    "bypass_gate_executability",
+    "promote_simulation_to_law",
+    "assert_causal_primacy"
+  ],
+
+  required_pre_gates: [
+    "gate_not",
+    "gate_is",
+    "gate_stability",
+    "gate_executability"
+  ],
+
+  mission_requirements: {
+    origin_schema: "/mbc/core/problem_object.schema.json5",
+    provenance_logging: true,
+    version_tagging_required: true,
+    full_configuration_capture: true
+  },
+
+  output_classification: "EvidenceOnly",
+
+  interpretation_restrictions: [
+    "output_may_not_define_ontology",
+    "output_may_not_define_causality",
+    "output_may_not_define_physical_law",
+    "output_must_be_interpreted_through_igsoa_dfvm_only"
+  ],
+
+  violation_response: {
+    action: "hard_reject",
+    log_violation: true,
+    require_human_review: true,
+    revoke_engine_dispatch_privileges: true
+  }
+}
