@@ -1,0 +1,41 @@
+{
+  version: "1.0",
+  engine_id: "DASE_SATP_IGSOA",
+  role: ["NumericExecutor", "SATP_Transport"],
+  compliance_dependencies: [
+    "/mbc/compliance/engine_interdiction_profile.json5",
+    "/mbc/compliance/math_interdiction_profile.json5",
+    "/mbc/core/problem_object.schema.json5"
+  ],
+  allowed_domains: [
+    "physics.transport",
+    "gw.echo",
+    "field_theory.satp"
+  ],
+  forbidden_domains: [
+    "MSP",
+    "MSC",
+    "MBC_Core",
+    "Ontology_Definition",
+    "Causal_Law_Definition"
+  ],
+  required_pre_gates: [
+    "gate_not",
+    "gate_is",
+    "gate_stability",
+    "gate_executability"
+  ],
+  input_schema: "/mbc/core/problem_object.schema.json5",
+  output_classification: "EvidenceOnly",
+  supported_interfaces: ["JSON_CLI", "Python", "Cpp"],
+  forbidden_actions: [
+    "ontology_definition",
+    "law_definition",
+    "causal_primacy_claims",
+    "override_of_msp_msc_mbc",
+    "direct_problem_input_without_problem_object"
+  ],
+  dispatch_contract: {
+    binding_scope: "Operator pack contract for DASE_SATP_IGSOA without embedded implementation."
+  }
+}
