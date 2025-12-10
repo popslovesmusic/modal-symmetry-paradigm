@@ -1,0 +1,403 @@
+{
+  // ------------------------------------------------------------
+  // Nomenclature Master Document (NMD)
+  // Monistic Box Calculus (MBC) / MSP / IGSOA
+  // ------------------------------------------------------------
+
+  metadata: {
+    title: "Nomenclature Master Document",
+    short_title: "NMD",
+    description: "Authoritative registry of terms, symbols, and naming conventions for MSP / MBC / IGSOA.",
+    project: "Monistic Box Calculus (MBC) / Modal Symmetry Paradigm (MSP) / IGSOA",
+    version: "0.1.0",
+    status: "draft",  // draft | candidate | stable | deprecated
+    created: "2025-12-04",
+    last_updated: "2025-12-04",
+    maintainers: [
+      {
+        name: "System Architect",
+        role: "Human author",
+        contact: "TODO"
+      },
+      {
+        name: "Liby",
+        role: "Librarian / Validation Agent",
+        contact: "agent://liby"
+      }
+    ]
+  },
+
+  scope: {
+    // What this nomenclature governs.
+    applies_to: [
+      "MSP (Modal Symmetry Paradigm)",
+      "MBC (Monistic Box Calculus)",
+      "MSC (Modal Structural Cohesion)",
+      "IGSOA library (tiers, schemas, operators, modules, tests)",
+      "Textbook/encyclopedia volumes and narrative materials"
+    ],
+    // Explicit exclusions or future extensions.
+    exclusions: [
+      "Low-level hardware implementation-specific signal names",
+      "Third-party library internal identifiers"
+    ]
+  },
+
+  conventions: {
+    language: "en-US",
+    // Global case and style conventions.
+    case_conventions: {
+      tiers: "lower_snake",        // e.g., tier_01_metadata.json5
+      files: "lower_snake",
+      operators: "UPPER_SNAKE",    // e.g., OP_DELTA_GRADIENT
+      invariants: "UPPER_SNAKE",   // e.g., INVAR_TRIUNITY_CONSISTENCY
+      concepts: "Title Case",      // e.g., Causal Sphere of Influence
+      abbreviations: "UPPER_SNAKE" // e.g., CSI, MSP, MBC
+    },
+    allowed_characters: {
+      identifiers: "A–Z, a–z, 0–9, underscore (_)",
+      symbols: "Unicode math / Greek where explicitly registered (δ, Φ, Π, μ, λ, ψ, Σ, Θ, χ, Ω, ρ, Ξ, etc.)"
+    },
+    symbol_namespace: {
+      // Each symbol must be registered once, with a unique semantic role.
+      uniqueness: "Each symbol may have only one primary meaning within the core framework.",
+      overload_policy: "No overloading of core symbols across tiers; qualified forms (e.g., δ_01, δ_07) must be documented here if used."
+    }
+  },
+
+  // ------------------------------------------------------------
+  // Canonical Symbol Registry
+  // ------------------------------------------------------------
+
+  symbols: [
+    {
+      id: "delta",
+      symbol: "δ",
+      family: "Deviation Geometry",
+      primary_tier: 1,
+      category: "core_operator_family",
+      definition: "Represents deviation from static symmetry; the first difference that breaks uniformity in the substrate.",
+      scope: "Global, but operationalized primarily in Tier-01.",
+      aliases: [],
+      related_terms: ["Deviation", "First Difference"],
+      status: "active"
+    },
+    {
+      id: "phi",
+      symbol: "Φ",
+      family: "Semantic Projection",
+      primary_tier: 2,
+      category: "core_operator_family",
+      definition: "Projects deviation-structured states into semantic space, creating meaning-bearing configurations.",
+      scope: "Global, but operationalized primarily in Tier-02.",
+      aliases: [],
+      related_terms: ["Projection", "Semantic Field"],
+      status: "active"
+    },
+    {
+      id: "pi",
+      symbol: "Π",
+      family: "Evaluation / Causality",
+      primary_tier: 3,
+      category: "core_operator_family",
+      definition: "Evaluates, selects, or weights semantic configurations, imposing truth, value, or causal status.",
+      scope: "Global, but operationalized primarily in Tier-03.",
+      aliases: [],
+      related_terms: ["Evaluation", "Truth", "Causality"],
+      status: "active"
+    },
+    {
+      id: "mu",
+      symbol: "μ",
+      family: "Local Weight / Micro-Adjacency",
+      primary_tier: 4,
+      category: "core_operator_family",
+      definition: "Represents local weighting, adjacency, and micro-scale coupling between semantic units.",
+      scope: "Operationalized primarily in Tier-04.",
+      aliases: [],
+      related_terms: ["Weight", "Adjacency"],
+      status: "active"
+    },
+    {
+      id: "lambda",
+      symbol: "λ",
+      family: "Curvature / Deformation",
+      primary_tier: 5,
+      category: "core_operator_family",
+      definition: "Encodes curvature and deformation of semantic manifolds, bending paths of semantic transport.",
+      scope: "Operationalized primarily in Tier-05.",
+      aliases: [],
+      related_terms: ["Curvature", "Deformation"],
+      status: "active"
+    },
+    {
+      id: "psi",
+      symbol: "ψ",
+      family: "Wave / Oscillation / Mode Interaction",
+      primary_tier: 6,
+      category: "core_operator_family",
+      definition: "Represents oscillatory and wave-like interactions between modes of meaning.",
+      scope: "Operationalized primarily in Tier-06.",
+      aliases: [],
+      related_terms: ["Wave", "Oscillation", "Mode Interaction"],
+      status: "active"
+    },
+    {
+      id: "sigma",
+      symbol: "Σ",
+      family: "Summation / Contraction",
+      primary_tier: 7,
+      category: "core_operator_family",
+      definition: "Aggregates or contracts semantic structures along specified axes or indices.",
+      scope: "Operationalized primarily in Tier-07.",
+      aliases: [],
+      related_terms: ["Aggregation", "Contraction"],
+      status: "active"
+    },
+    {
+      id: "theta",
+      symbol: "Θ",
+      family: "Polarity / Logic Routing",
+      primary_tier: 8,
+      category: "core_operator_family",
+      definition: "Routes semantic flow according to logical polarity, thresholds, or switching conditions.",
+      scope: "Operationalized primarily in Tier-08.",
+      aliases: [],
+      related_terms: ["Polarity", "Logic Gate", "Routing"],
+      status: "active"
+    },
+    {
+      id: "chi",
+      symbol: "χ",
+      family: "Semantic Evolution / Time",
+      primary_tier: 9,
+      category: "core_operator_family",
+      definition: "Implements semantic evolution through time or ordered stages of transformation.",
+      scope: "Operationalized primarily in Tier-09.",
+      aliases: [],
+      related_terms: ["Semantic Time", "Evolution"],
+      status: "active"
+    },
+    {
+      id: "omega",
+      symbol: "Ω",
+      family: "Global Constraints / Normalization",
+      primary_tier: 10,
+      category: "core_operator_family",
+      definition: "Applies global constraints, normalization, and boundary conditions across the semantic system.",
+      scope: "Operationalized primarily in Tier-10.",
+      aliases: [],
+      related_terms: ["Constraints", "Normalization"],
+      status: "active"
+    },
+    {
+      id: "rho",
+      symbol: "ρ",
+      family: "Layer / Meta-Structure / Federation",
+      primary_tier: 11,
+      category: "core_operator_family",
+      definition: "Governs layer structure, federation, and meta-layer relationships among semantic subsystems.",
+      scope: "Operationalized primarily in Tier-11.",
+      aliases: [],
+      related_terms: ["Layering", "Federation", "Meta-Structure"],
+      status: "active"
+    },
+    {
+      id: "xi",
+      symbol: "Ξ",
+      family: "Top-Meta / Universal Schema",
+      primary_tier: 12,
+      category: "core_operator_family",
+      definition: "Encodes universal schema operations, cross-tier normalization, and high-level meta-coordination.",
+      scope: "Operationalized primarily in Tier-12.",
+      aliases: [],
+      related_terms: ["Universal Schema", "Meta-Coordinator"],
+      status: "active"
+    }
+  ],
+
+  // ------------------------------------------------------------
+  // Canonical Term Registry (Glossary)
+  // ------------------------------------------------------------
+
+  terms: [
+    {
+      term: "Single Substrate",
+      abbreviation: null,
+      category: "core_concept",
+      tier_scope: "Tier-00",
+      definition: "The undifferentiated, symmetric background from which deviations and structures emerge.",
+      notes: "Also referred to as the Origin Layer in narrative texts.",
+      related_terms: ["First Difference", "Deviation"],
+      status: "active"
+    },
+    {
+      term: "First Difference",
+      abbreviation: null,
+      category: "core_concept",
+      tier_scope: "Tier-00 → Tier-01",
+      definition: "The initial non-zero deviation that breaks perfect uniformity in the Single Substrate.",
+      notes: "Operationally linked to δ and the initialization of deviation geometry.",
+      related_terms: ["Single Substrate", "δ"],
+      status: "active"
+    },
+    {
+      term: "Causal Sphere of Influence",
+      abbreviation: "CSI",
+      category: "core_concept",
+      tier_scope: "cross-tier",
+      definition: "The total domain of potential causal accessibility for a semantic or physical entity, not limited to light-cone constraints.",
+      notes: "Generalizes the notion of light cones to a monistic causal domain in which semantic, informational, and physical effects coexist.",
+      related_terms: ["Causality", "Π", "Semantic Transport"],
+      status: "active"
+    },
+    {
+      term: "Semantic Transport",
+      abbreviation: null,
+      category: "process",
+      tier_scope: "cross-tier",
+      definition: "The movement and transformation of meaning, signals, and relational structures through a network of concepts or states.",
+      notes: "Includes information flow, contextual modulation, and relational propagation.",
+      related_terms: ["Information Flow", "χ", "Ψ"],
+      status: "active"
+    },
+    {
+      term: "Modal Symmetry Paradigm",
+      abbreviation: "MSP",
+      category: "framework",
+      tier_scope: "meta",
+      definition: "The foundational paradigm describing modes, symmetries, and their controlled breaking as the origin of structure and meaning.",
+      notes: "Provides the philosophical and mathematical background for MBC and IGSOA.",
+      related_terms: ["MBC", "IGSOA"],
+      status: "active"
+    },
+    {
+      term: "Monistic Box Calculus",
+      abbreviation: "MBC",
+      category: "framework",
+      tier_scope: "Tier-00–Tier-12",
+      definition: "A layered calculus of semantic boxes and operators built on a monistic substrate with structured deviation, projection, and evaluation.",
+      notes: "Implements MSP at the level of concrete operators, rewrites, and modules.",
+      related_terms: ["MSP", "Single Substrate", "δ", "Φ", "Π"],
+      status: "active"
+    }
+  ],
+
+  // ------------------------------------------------------------
+  // Naming Rules and Patterns
+  // ------------------------------------------------------------
+
+  naming_rules: {
+    operators: {
+      description: "Canonical naming for operators across tiers.",
+      pattern: "OP_<TIER>_<FAMILY>_<NAME>",
+      // pattern examples use UPPER_SNAKE and two-digit tier index.
+      examples: [
+        "OP_T01_DELTA_GRADIENT",
+        "OP_T02_PHI_PROJECT_TO_SEMANTIC_FIELD",
+        "OP_T09_CHI_STEP_TIME_EULER"
+      ],
+      constraints: [
+        "TIER component uses T00–T12 with leading zero.",
+        "FAMILY uses the Latinized name of the symbol (DELTA, PHI, PI, MU, LAMBDA, PSI, SIGMA, THETA, CHI, OMEGA, RHO, XI).",
+        "NAME must be descriptive of function, using UPPER_SNAKE."
+      ]
+    },
+    axioms: {
+      description: "Axiom identifiers within each tier.",
+      pattern: "AX_T<TIER>_<SHORT_NAME>",
+      examples: [
+        "AX_T00_NO_PERFECT_ZERO",
+        "AX_T01_DEVIATION_IS_NONNEGATIVE",
+        "AX_T03_TRIUNITY_EVALUATION_CONSISTENCY"
+      ]
+    },
+    invariants: {
+      description: "Invariant identifiers (global or tier-scoped).",
+      pattern: "INVAR_<SCOPE>_<SHORT_NAME>",
+      examples: [
+        "INVAR_GLOBAL_TRIUNITY_CONSISTENCY",
+        "INVAR_T11_LAYER_IDENTITY",
+        "INVAR_T09_FORWARD_FLOW"
+      ],
+      scope_values: ["GLOBAL", "T00", "T01", "…", "T12"]
+    },
+    tests: {
+      description: "Test and regression identifiers.",
+      pattern: "TEST_<TIER>_<CATEGORY>_<NAME>",
+      examples: [
+        "TEST_T00_PRIMITIVE_STRUCTURES_SMOKE",
+        "TEST_T11_RHO_LAYER_INVARIANTS",
+        "TEST_T12_XI_SCHEMA_COMPATIBILITY"
+      ]
+    },
+    files: {
+      description: "Tier file naming for JSON5 artifacts.",
+      tier_files: [
+        "tier_XX_metadata.json5",
+        "tier_XX_operator_pack.json5",
+        "tier_XX_interaction_table.json5",
+        "tier_XX_axiom_box.json5",
+        "tier_XX_rewrite_system.json5",
+        "tier_XX_module_pack.json5",
+        "tier_XX_test_suite.json5"
+      ],
+      notes: "XX is a two-digit tier index from 00 to 12."
+    }
+  },
+
+  // ------------------------------------------------------------
+  // Governance: Change, Deprecation, and Review
+  // ------------------------------------------------------------
+
+  governance: {
+    versioning: {
+      scheme: "semantic",
+      format: "MAJOR.MINOR.PATCH",
+      rules: {
+        MAJOR: "Breaking changes to nomenclature or symbol semantics.",
+        MINOR: "New terms, new symbols, or non-breaking refinements.",
+        PATCH: "Typo fixes, clarifications, or documentation updates."
+      }
+    },
+    change_process: {
+      levels: [
+        {
+          id: "trivial",
+          description: "Typos, formatting, or strictly clarifying edits.",
+          requires_review: false
+        },
+        {
+          id: "minor",
+          description: "New terms, examples, or aliases that do not change existing semantics.",
+          requires_review: true
+        },
+        {
+          id: "breaking",
+          description: "Renaming symbols, changing definitions, or altering operator families.",
+          requires_review: true,
+          requires_migration_plan: true
+        }
+      ],
+      workflow: [
+        "Propose: Change drafted as a patch to this JSON5 and MD documents.",
+        "Review: Human + Librarian agent verify consistency across tiers and schemas.",
+        "Approve: Update version and changelog.",
+        "Migrate: Apply renames/updates to source files and agents.",
+        "Publish: Tag release and notify consuming agents."
+      ]
+    },
+    deprecation: {
+      policy: "No immediate deletion of terms or symbols; deprecate first.",
+      fields: [
+        "status: active | deprecated",
+        "deprecated_in_version",
+        "replacement_term"
+      ]
+    },
+    review_cycle: {
+      frequency: "P3M", // every 3 months
+      description: "Full nomenclature review and reconciliation against the live library."
+    }
+  }
+}

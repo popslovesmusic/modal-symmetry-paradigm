@@ -1,0 +1,569 @@
+{
+  // ═══════════════════════════════════════════════════════════════════════
+  // MATHEMATICS INTERDICTION PROFILE
+  // MSP–MSC–MBC Universal Law-Validation Engine
+  // ═══════════════════════════════════════════════════════════════════════
+  //
+  // PURPOSE:
+  // Defines how external mathematics may enter the MSP–SATP system without
+  // contaminating foundational layers (MSP, MSC, MBC).
+  //
+  // CORE PRINCIPLE:
+  // External mathematics is an INSTRUMENT, not a LAW.
+  // It may COMPUTE within the system, but may never DEFINE what the system is.
+  //
+  // COMPLIANCE:
+  // - GICC-01 (Generalized Infrastructure Compliance Charter)
+  // - Master MBC Compliance Charter
+  //
+  // VERSION: 1.0.0
+  // STATUS: LOCKED
+  // ═══════════════════════════════════════════════════════════════════════
+
+  metadata: {
+    profile_name: "Math Interdiction Profile",
+    version: "1.0.0",
+    status: "locked",
+    created: "2025-12-09",
+    compliance_charters: [
+      "GICC-01",
+      "MBC Master Charter"
+    ],
+    layer_scope: [
+      "MSP",
+      "MSC",
+      "MBC",
+      "IGSOA",
+      "DFVM",
+      "SATP"
+    ]
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // SECTION 1: ENTRY POINT RULES
+  // ═══════════════════════════════════════════════════════════════════════
+  //
+  // All external mathematics MUST enter through EXACTLY ONE of these three
+  // interfaces. No other entry points are permitted.
+  //
+  entry_points: {
+
+    // ─────────────────────────────────────────────────────────────────────
+    // ENTRY POINT 1: MBC Operator Interface (Symbolic)
+    // ─────────────────────────────────────────────────────────────────────
+    mbc_operator_interface: {
+      layer: "MBC",
+      type: "Symbolic",
+      description: "Entry point for symbolic, logical, and algebraic mathematics",
+
+      allowed_domains: [
+        "Propositional logic",
+        "Predicate logic",
+        "Lambda calculus",
+        "Type theory",
+        "Category theory morphisms",
+        "Group theory (algebraic)",
+        "Ring theory",
+        "Boolean algebra",
+        "Rewrite systems",
+        "Proof theory",
+        "Term rewriting",
+        "Combinatory logic"
+      ],
+
+      forbidden: [
+        "Asserting physical causation",
+        "Defining ontology",
+        "Claiming modal necessity",
+        "Overriding MSP constraints",
+        "Generating physical constants"
+      ],
+
+      required_classification: "Symbolic Tool",
+
+      enforcement_rules: {
+        must_be_executable: true,
+        must_preserve_invariants: true,
+        must_terminate: true,
+        may_not_introduce_NOT_violations: true,
+        may_not_introduce_IS_violations: true
+      }
+    },
+
+    // ─────────────────────────────────────────────────────────────────────
+    // ENTRY POINT 2: DFVM Field Interface (Geometric)
+    // ─────────────────────────────────────────────────────────────────────
+    dfvm_field_interface: {
+      layer: "DFVM",
+      type: "Geometric",
+      description: "Entry point for differential geometry, tensor fields, and manifolds",
+
+      allowed_domains: [
+        "Riemannian geometry",
+        "Pseudo-Riemannian geometry",
+        "Differential geometry",
+        "Tensor calculus",
+        "Fiber bundles",
+        "Connections and curvature",
+        "Lie derivatives",
+        "Exterior calculus",
+        "Symplectic geometry",
+        "Contact geometry",
+        "Metric spaces",
+        "Topological manifolds"
+      ],
+
+      forbidden: [
+        "Redefining IGSOA ontology",
+        "Overriding δ–Φ–Π structure",
+        "Asserting causal primacy",
+        "Claiming to define existence",
+        "Generating physical interpretation without validation"
+      ],
+
+      required_classification: "Geometric Tool",
+
+      enforcement_rules: {
+        must_respect_IGSOA_semantics: true,
+        must_be_coordinate_invariant: true,
+        must_admit_field_representation: true,
+        may_not_delete_information: true,
+        may_not_violate_substrate_continuity: true
+      }
+    },
+
+    // ─────────────────────────────────────────────────────────────────────
+    // ENTRY POINT 3: SATP Dynamics Interface (Transport / PDE)
+    // ─────────────────────────────────────────────────────────────────────
+    satp_dynamics_interface: {
+      layer: "SATP",
+      type: "Dynamical",
+      description: "Entry point for PDEs, transport equations, and numerical dynamics",
+
+      allowed_domains: [
+        "Partial differential equations (PDEs)",
+        "Fractional PDEs",
+        "Wave equations",
+        "Diffusion equations",
+        "Navier–Stokes equations",
+        "Transport theory",
+        "Stability analysis",
+        "Numerical methods (finite difference, finite element)",
+        "Spectral methods",
+        "Conservation laws",
+        "Hamiltonian dynamics",
+        "Lagrangian mechanics"
+      ],
+
+      forbidden: [
+        "Overriding MSP modal legality",
+        "Implying causal primacy of equations",
+        "Asserting that equations 'create' reality",
+        "Defining what is possible",
+        "Bypassing gate validation"
+      ],
+
+      required_classification: "Dynamical Tool",
+
+      enforcement_rules: {
+        must_satisfy_stability_bounds: true,
+        must_preserve_conservation_laws: true,
+        must_admit_boundary_conditions: true,
+        must_evolve_lawfully: true,
+        may_not_violate_CFL_conditions: true,
+        may_not_bypass_DFVM_field_structure: true
+      }
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // SECTION 2: FORBIDDEN ACTIONS (HARD BLOCKS)
+  // ═══════════════════════════════════════════════════════════════════════
+  //
+  // Any external mathematics that performs ANY of these actions is
+  // AUTOMATICALLY REJECTED without further evaluation.
+  //
+  forbidden_actions: {
+
+    ontological_claims: {
+      description: "Math cannot define what exists",
+      examples: [
+        "This equation explains existence itself",
+        "This theorem proves what is real",
+        "Mathematics creates reality",
+        "This formula is the substance of being"
+      ],
+      rejection_reason: "Ontology is defined by IGSOA, not by external mathematics",
+      severity: "CRITICAL"
+    },
+
+    modal_override: {
+      description: "Math cannot define what is possible or necessary",
+      examples: [
+        "This theorem proves X is possible",
+        "This equation requires Y to be necessary",
+        "Mathematics determines modal logic"
+      ],
+      rejection_reason: "Modal legality is defined by MSP, not by mathematics",
+      severity: "CRITICAL"
+    },
+
+    not_constraint_violation: {
+      description: "Math cannot override absolute prohibitions",
+      examples: [
+        "This formula bypasses the NOT constraint",
+        "Mathematics permits what was forbidden",
+        "Equations can violate logical impossibility"
+      ],
+      rejection_reason: "NOT constraints are inviolable at MSP layer",
+      severity: "CRITICAL"
+    },
+
+    causal_generation: {
+      description: "Math cannot generate physical causality",
+      examples: [
+        "This PDE causes physical events",
+        "The equation is the causal mechanism",
+        "Mathematics drives the universe"
+      ],
+      rejection_reason: "Causality emerges from substrate, not from equations",
+      severity: "CRITICAL"
+    },
+
+    structure_replacement: {
+      description: "Math cannot replace δ–Φ–Π structure",
+      examples: [
+        "This formalism replaces deviation operators",
+        "New math overrides projection semantics",
+        "Alternative framework for memory"
+      ],
+      rejection_reason: "δ–Φ–Π is foundational in IGSOA, not negotiable",
+      severity: "CRITICAL"
+    },
+
+    foundational_claims: {
+      description: "Math cannot claim to be foundational",
+      examples: [
+        "Mathematics is the foundation of reality",
+        "Logic precedes existence",
+        "Equations are primary, not derived"
+      ],
+      rejection_reason: "Foundation is substrate, mathematics is instrumental",
+      severity: "CRITICAL"
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // SECTION 3: CLASSIFICATION TAGS (MANDATORY)
+  // ═══════════════════════════════════════════════════════════════════════
+  //
+  // Every external math object MUST be tagged with EXACTLY ONE of these.
+  // No math object may claim to be foundational, ontological, or causal.
+  //
+  classification_tags: {
+
+    permitted_tags: [
+      {
+        tag: "Symbolic Tool",
+        layer: "MBC",
+        description: "Symbolic manipulation, logic, algebra, rewriting",
+        examples: ["Boolean algebra", "Lambda calculus", "Group actions"]
+      },
+      {
+        tag: "Geometric Tool",
+        layer: "DFVM",
+        description: "Differential geometry, manifolds, tensor fields",
+        examples: ["Riemannian metrics", "Fiber bundles", "Connections"]
+      },
+      {
+        tag: "Dynamical Tool",
+        layer: "SATP",
+        description: "PDEs, transport equations, numerical solvers",
+        examples: ["Wave equation", "Navier–Stokes", "Diffusion"]
+      },
+      {
+        tag: "Statistical Tool",
+        layer: "SATP",
+        description: "Probability, inference, aggregation (non-causal)",
+        examples: ["Bayesian inference", "Maximum entropy", "Monte Carlo"]
+      },
+      {
+        tag: "Numerical Tool",
+        layer: "SATP",
+        description: "Computational methods, solvers, approximations",
+        examples: ["Finite elements", "Runge-Kutta", "Spectral methods"]
+      }
+    ],
+
+    forbidden_tags: [
+      "Foundational",
+      "Ontological",
+      "Causal",
+      "Primary",
+      "Generative",
+      "Essential",
+      "Metaphysical",
+      "Necessary"
+    ],
+
+    enforcement: {
+      untagged_math_treatment: "REJECT",
+      multi_tagged_math_treatment: "REJECT (must choose one)",
+      forbidden_tag_treatment: "REJECT IMMEDIATELY"
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // SECTION 4: OVERRIDE HIERARCHY (INVIOLABLE)
+  // ═══════════════════════════════════════════════════════════════════════
+  //
+  // Higher layers ALWAYS constrain lower layers.
+  // Lower layers may NEVER redefine higher layers.
+  //
+  override_hierarchy: {
+    description: "Strict downward constraint propagation",
+
+    layers: [
+      {
+        level: 1,
+        name: "MSP",
+        description: "Modal Symmetry Paradigm - Meta-Mathematics",
+        authority: "Defines what is possible/impossible/necessary",
+        may_constrain: ["MSC", "MBC", "IGSOA", "DFVM", "SATP"],
+        may_not_be_constrained_by: []
+      },
+      {
+        level: 2,
+        name: "MSC",
+        description: "Modal Structural Cohesion - Stability & Identity",
+        authority: "Defines what can persist as stable structure",
+        may_constrain: ["MBC", "IGSOA", "DFVM", "SATP"],
+        may_not_be_constrained_by: ["MBC", "IGSOA", "DFVM", "SATP"]
+      },
+      {
+        level: 3,
+        name: "MBC",
+        description: "Monistic Box Calculus - Executable Logic",
+        authority: "Defines what can be formally executed",
+        may_constrain: ["IGSOA", "DFVM", "SATP"],
+        may_not_be_constrained_by: ["IGSOA", "DFVM", "SATP"]
+      },
+      {
+        level: 4,
+        name: "IGSOA",
+        description: "Informational Ground State Ontology & Asymmetry",
+        authority: "Defines what exists informationally",
+        may_constrain: ["DFVM", "SATP"],
+        may_not_be_constrained_by: ["DFVM", "SATP"]
+      },
+      {
+        level: 5,
+        name: "DFVM",
+        description: "Deviation Field Vector Model - Geometric Representation",
+        authority: "Defines what can be geometrically represented",
+        may_constrain: ["SATP"],
+        may_not_be_constrained_by: ["SATP"]
+      },
+      {
+        level: 6,
+        name: "SATP",
+        description: "Self-Assembling Transport Protocol - Dynamics & Simulation",
+        authority: "Defines what can evolve dynamically",
+        may_constrain: [],
+        may_not_be_constrained_by: []
+      }
+    ],
+
+    violation_handling: {
+      upward_constraint_attempt: "REJECT IMMEDIATELY",
+      layer_bypass_attempt: "REJECT IMMEDIATELY",
+      circular_dependency: "REJECT IMMEDIATELY"
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // SECTION 5: VALIDATION PIPELINE
+  // ═══════════════════════════════════════════════════════════════════════
+  //
+  // Every external math object must pass this pipeline before admission.
+  //
+  validation_pipeline: {
+
+    step_1_classification: {
+      description: "Math object must be assigned exactly one permitted tag",
+      pass_condition: "Tagged with Symbolic/Geometric/Dynamical/Statistical/Numerical Tool",
+      fail_action: "REJECT"
+    },
+
+    step_2_entry_point: {
+      description: "Math must enter through correct interface for its tag",
+      pass_condition: "Entry point matches classification tag",
+      fail_action: "REJECT"
+    },
+
+    step_3_forbidden_check: {
+      description: "Math must not perform any forbidden actions",
+      pass_condition: "No ontological, modal, causal, or foundational claims",
+      fail_action: "REJECT"
+    },
+
+    step_4_layer_authority: {
+      description: "Math must respect override hierarchy",
+      pass_condition: "No upward constraint attempts or layer bypasses",
+      fail_action: "REJECT"
+    },
+
+    step_5_enforcement_rules: {
+      description: "Math must satisfy entry-point-specific enforcement rules",
+      pass_condition: "All enforcement rules for chosen entry point satisfied",
+      fail_action: "REJECT"
+    },
+
+    step_6_consistency: {
+      description: "Math must be consistent across all admitted layers",
+      pass_condition: "Valid in logic AND geometry AND dynamics (if applicable)",
+      fail_action: "REJECT"
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // SECTION 6: AGENT EXECUTION RULES
+  // ═══════════════════════════════════════════════════════════════════════
+  //
+  // Rules for agents processing external mathematics.
+  //
+  agent_rules: {
+
+    rule_1_no_silent_acceptance: {
+      description: "Agents must never silently accept external math",
+      requirement: "All math must be explicitly validated against this profile",
+      violation_consequence: "Agent action is non-compliant"
+    },
+
+    rule_2_trace_rejection: {
+      description: "All rejections must be logged with reason",
+      requirement: "Log: which rule violated, at which layer, with what math object",
+      violation_consequence: "Silent failures are prohibited"
+    },
+
+    rule_3_no_guessing: {
+      description: "Agents may not guess missing classifications",
+      requirement: "Untagged math must be rejected, not auto-classified",
+      violation_consequence: "Agent introduces contamination risk"
+    },
+
+    rule_4_layer_discipline: {
+      description: "Agents must enforce override hierarchy",
+      requirement: "Reject any math that attempts upward constraint",
+      violation_consequence: "System integrity compromised"
+    },
+
+    rule_5_cross_domain_check: {
+      description: "Agents must verify consistency across domains",
+      requirement: "Math valid in symbolic must be checkable in geometric/dynamical",
+      violation_consequence: "Hidden contradictions may propagate"
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // SECTION 7: EXAMPLES (CANONICAL)
+  // ═══════════════════════════════════════════════════════════════════════
+
+  examples: {
+
+    accepted: [
+      {
+        math: "Linear algebra for operator composition",
+        tag: "Symbolic Tool",
+        entry_point: "MBC Operator Interface",
+        reason: "Pure symbolic manipulation, no ontological claims"
+      },
+      {
+        math: "Riemannian metric for semantic manifold",
+        tag: "Geometric Tool",
+        entry_point: "DFVM Field Interface",
+        reason: "Geometric representation after IGSOA validation"
+      },
+      {
+        math: "Wave equation for field propagation",
+        tag: "Dynamical Tool",
+        entry_point: "SATP Dynamics Interface",
+        reason: "Transport dynamics after DFVM field structure"
+      },
+      {
+        math: "Bayesian inference for probability aggregation",
+        tag: "Statistical Tool",
+        entry_point: "SATP Dynamics Interface",
+        reason: "Non-causal statistical tool for uncertainty"
+      }
+    ],
+
+    rejected: [
+      {
+        math: "Category theory as foundation of existence",
+        tag: "ATTEMPTED: Foundational",
+        entry_point: "ATTEMPTED: MSP override",
+        reason: "FORBIDDEN: Claims to define ontology",
+        violated_rule: "forbidden_actions.ontological_claims"
+      },
+      {
+        math: "Einstein field equations cause spacetime",
+        tag: "ATTEMPTED: Causal",
+        entry_point: "ATTEMPTED: DFVM Field Interface",
+        reason: "FORBIDDEN: Claims equations generate causality",
+        violated_rule: "forbidden_actions.causal_generation"
+      },
+      {
+        math: "Gödel's theorems prove modal necessity",
+        tag: "ATTEMPTED: Foundational",
+        entry_point: "ATTEMPTED: MSP override",
+        reason: "FORBIDDEN: Attempts to define what is possible",
+        violated_rule: "forbidden_actions.modal_override"
+      },
+      {
+        math: "Quantum field theory replaces δ–Φ–Π",
+        tag: "ATTEMPTED: Ontological",
+        entry_point: "ATTEMPTED: IGSOA override",
+        reason: "FORBIDDEN: Attempts to replace foundational structure",
+        violated_rule: "forbidden_actions.structure_replacement"
+      }
+    ]
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // SECTION 8: COMPLIANCE ATTESTATION
+  // ═══════════════════════════════════════════════════════════════════════
+
+  compliance: {
+    gicc_01_compliance: {
+      domain_neutrality: "SATISFIED - Math is tool-layer, not domain-defining",
+      no_answer_generation: "SATISFIED - Math validates, does not generate truth",
+      no_domain_leakage: "SATISFIED - Lower layers cannot redefine upper layers",
+      universal_not_is_primacy: "SATISFIED - Math cannot override NOT/IS constraints",
+      executability_requirement: "SATISFIED - Math must be executable to be admitted"
+    },
+
+    master_charter_compliance: {
+      structural_truth: "SATISFIED - Math instantiates law, does not define it",
+      cross_layer_validation: "SATISFIED - Consistency enforced across all layers",
+      invariant_preservation: "SATISFIED - Math must preserve system invariants"
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // FINAL LOCK
+  // ═══════════════════════════════════════════════════════════════════════
+
+  lock: {
+    status: "LOCKED",
+    immutable_sections: [
+      "entry_points",
+      "forbidden_actions",
+      "classification_tags",
+      "override_hierarchy"
+    ],
+    modification_authority: "MSP Core Council only",
+    version_increment_requires: "Full system audit",
+    reason: "Interdiction drift would compromise entire system integrity"
+  }
+}

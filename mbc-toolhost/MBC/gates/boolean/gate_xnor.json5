@@ -1,0 +1,136 @@
+{
+  // ═══════════════════════════════════════════════════════════════════════
+  // MBC BOOLEAN GATE: XNOR (Exclusive NOR / Equivalence)
+  // Monistic Box Calculus - Symbolic Execution Layer
+  // ═══════════════════════════════════════════════════════════════════════
+
+  metadata: {
+    gate_type: "boolean",
+    gate_name: "XNOR",
+    gate_symbol: "⊙",
+    alternate_symbols: ["≡", "↔"],
+    version: "1.0.0",
+    layer: "MBC",
+    classification: "Symbolic Tool",
+    role: "Execute formal reasoning inside boxes",
+    note: "Tests equality/equivalence - fundamental for consistency checking"
+  },
+
+  logical_definition: {
+    operation: "equivalence / logical biconditional",
+    arity: "binary (typically 2 inputs, n-ary extension via even parity)",
+    composition: "¬(A ⊕ B) or equivalently (A ∧ B) ∨ (¬A ∧ ¬B)",
+
+    truth_table_binary: [
+      { A: false, B: false, output: true  },
+      { A: false, B: true,  output: false },
+      { A: true,  B: false, output: false },
+      { A: true,  B: true,  output: true  }
+    ],
+
+    semantic_interpretation: "Returns true if inputs are equivalent (even number of true inputs)",
+
+    algebraic_properties: [
+      "Commutative: A ⊙ B = B ⊙ A",
+      "Associative: (A ⊙ B) ⊙ C = A ⊙ (B ⊙ C)",
+      "Identity element: A ⊙ true = A",
+      "Self-inverse: A ⊙ A = true",
+      "Complement: A ⊙ B = ¬(A ⊕ B)",
+      "Equivalence relation: reflexive, symmetric, transitive"
+    ]
+  },
+
+  implementation: {
+    input_schema: {
+      type: "array",
+      minItems: 2,
+      items: { type: "boolean" }
+    },
+
+    output_schema: {
+      type: "boolean"
+    },
+
+    algorithm: {
+      description: "For n-ary XNOR, return true if even number of inputs are true (even parity)",
+      pseudocode: `
+        function XNOR(inputs):
+          return NOT(XOR(inputs))
+          // Alternatively:
+          count_true = 0
+          for each input in inputs:
+            if input == true:
+              count_true++
+          return (count_true % 2 == 0)
+      `,
+      complexity: {
+        time: "O(n)",
+        space: "O(1)"
+      }
+    },
+
+    binary_optimization: {
+      description: "For binary XNOR, simply check equality",
+      pseudocode: "XNOR(A, B) = (A == B)"
+    }
+  },
+
+  mbc_usage: {
+    typical_applications: [
+      "Equality/equivalence testing",
+      "Consistency verification",
+      "Bi-directional implication",
+      "Invariant matching",
+      "Synchronization checks"
+    ],
+
+    example_use_cases: [
+      {
+        scenario: "Check state consistency",
+        expression: "expected_state ⊙ actual_state",
+        interpretation: "True if states match"
+      },
+      {
+        scenario: "Bi-directional constraint",
+        expression: "condition_A ⊙ condition_B",
+        interpretation: "Both true or both false (no mismatch)"
+      },
+      {
+        scenario: "Invariant preservation check",
+        expression: "invariant_before ⊙ invariant_after",
+        interpretation: "Invariant maintained if values match"
+      },
+      {
+        scenario: "Even parity validation",
+        expression: "bit_1 ⊙ bit_2 ⊙ bit_3 ⊙ bit_4",
+        interpretation: "True if even number of bits set"
+      }
+    ]
+  },
+
+  relationship_to_equivalence: {
+    description: "XNOR implements logical equivalence (biconditional)",
+    material_equivalence: "A ⊙ B ≡ (A → B) ∧ (B → A)",
+    logical_meaning: "A if and only if B (iff)",
+    usage_in_proofs: "Fundamental for showing logical equivalence"
+  },
+
+  invariant_guarantees: {
+    preserves_boolean_type: true,
+    preserves_determinism: true,
+    preserves_referential_transparency: true,
+    side_effect_free: true,
+    implements_even_parity: true,
+    implements_equivalence_relation: true
+  },
+
+  test_vectors: [
+    { inputs: [false, false], expected_output: true },
+    { inputs: [false, true], expected_output: false },
+    { inputs: [true, false], expected_output: false },
+    { inputs: [true, true], expected_output: true },
+    { inputs: [true, true, true], expected_output: false },
+    { inputs: [true, true, true, true], expected_output: true },
+    { inputs: [false, false, false, false], expected_output: true }
+  ]
+}

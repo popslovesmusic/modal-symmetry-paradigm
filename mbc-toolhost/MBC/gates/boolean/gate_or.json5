@@ -1,0 +1,107 @@
+{
+  // ═══════════════════════════════════════════════════════════════════════
+  // MBC BOOLEAN GATE: OR
+  // Monistic Box Calculus - Symbolic Execution Layer
+  // ═══════════════════════════════════════════════════════════════════════
+
+  metadata: {
+    gate_type: "boolean",
+    gate_name: "OR",
+    gate_symbol: "∨",
+    version: "1.0.0",
+    layer: "MBC",
+    classification: "Symbolic Tool",
+    role: "Execute formal reasoning inside boxes"
+  },
+
+  logical_definition: {
+    operation: "disjunction",
+    arity: "n-ary (minimum 2 inputs)",
+
+    truth_table_binary: [
+      { A: false, B: false, output: false },
+      { A: false, B: true,  output: true  },
+      { A: true,  B: false, output: true  },
+      { A: true,  B: true,  output: true  }
+    ],
+
+    semantic_interpretation: "Returns true if AT LEAST ONE input proposition is true",
+
+    algebraic_properties: [
+      "Commutative: A ∨ B = B ∨ A",
+      "Associative: (A ∨ B) ∨ C = A ∨ (B ∨ C)",
+      "Idempotent: A ∨ A = A",
+      "Identity element: A ∨ false = A",
+      "Annihilator: A ∨ true = true",
+      "Absorption: A ∨ (A ∧ B) = A",
+      "De Morgan: ¬(A ∨ B) = ¬A ∧ ¬B"
+    ]
+  },
+
+  implementation: {
+    input_schema: {
+      type: "array",
+      minItems: 2,
+      items: { type: "boolean" }
+    },
+
+    output_schema: {
+      type: "boolean"
+    },
+
+    algorithm: {
+      pseudocode: `
+        function OR(inputs):
+          for each input in inputs:
+            if input == true:
+              return true
+          return false
+      `,
+      complexity: {
+        time: "O(n)",
+        space: "O(1)"
+      }
+    },
+
+    short_circuit_evaluation: {
+      enabled: true,
+      behavior: "Return true upon encountering first true input"
+    }
+  },
+
+  mbc_usage: {
+    typical_applications: [
+      "Testing if any condition is satisfied",
+      "Fallback routing logic",
+      "Multi-path permission structures",
+      "Alternative constraint satisfaction"
+    ],
+
+    example_use_cases: [
+      {
+        scenario: "Check if box can proceed via any valid path",
+        expression: "path_A_valid ∨ path_B_valid ∨ path_C_valid"
+      },
+      {
+        scenario: "Domain applicability check",
+        expression: "mathematical_domain ∨ computational_domain"
+      }
+    ]
+  },
+
+  invariant_guarantees: {
+    preserves_boolean_type: true,
+    preserves_determinism: true,
+    preserves_referential_transparency: true,
+    side_effect_free: true
+  },
+
+  test_vectors: [
+    { inputs: [false, false], expected_output: false },
+    { inputs: [false, true], expected_output: true },
+    { inputs: [true, false], expected_output: true },
+    { inputs: [true, true], expected_output: true },
+    { inputs: [false, false, false], expected_output: false },
+    { inputs: [false, false, true], expected_output: true }
+  ]
+}

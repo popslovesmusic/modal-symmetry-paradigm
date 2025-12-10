@@ -1,0 +1,286 @@
+{
+  // ═══════════════════════════════════════════════════════════════════════
+  // MBC CONTROL GATE: IS-Necessity (Modal Commitment Filter)
+  // Monistic Box Calculus - Validation/Control Layer
+  // ═══════════════════════════════════════════════════════════════════════
+  //
+  // PURPOSE:
+  // Enforces necessary commitments (IS constraints) from MSP layer.
+  // Blocks any state or transition that fails to satisfy required conditions.
+  //
+  // ROLE: Validation filter (NOT a computational operator)
+  // LAYER: MSP → MBC Control
+  // CLASS: Compliance Gate
+  //
+  // VERSION: 1.0.0
+  // ═══════════════════════════════════════════════════════════════════════
+
+  metadata: {
+    gate_type: "control",
+    gate_class: "compliance",
+    gate_name: "IS-Necessity",
+    gate_symbol: "⊨",
+    version: "1.0.0",
+    enforces_layer: "MSP",
+    validates: "Modal necessity - required commitments",
+    classification: "Validation Tool",
+    role: "Control admissibility between layers"
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // FUNCTIONAL DEFINITION
+  // ═══════════════════════════════════════════════════════════════════════
+
+  functional_definition: {
+    purpose: "Enforce IS commitments - necessary conditions that MUST be satisfied",
+
+    input: {
+      type: "object",
+      description: "Box state + proposed transition + IS commitment set",
+      schema: {
+        current_box: "Box object to validate",
+        proposed_action: "Transition, rewrite, or operation being attempted",
+        is_commitments: "Array of IS commitments from problem object",
+        context: "Additional validation context"
+      }
+    },
+
+    output: {
+      type: "object",
+      schema: {
+        decision: {
+          type: "string",
+          enum: ["PASS", "BLOCK"],
+          description: "PASS if all IS commitments satisfied, BLOCK otherwise"
+        },
+        unsatisfied_commitments: {
+          type: "array",
+          description: "List of IS commitment IDs that were not satisfied (if any)"
+        },
+        satisfaction_details: {
+          type: "array",
+          description: "Detailed explanation of each unsatisfied commitment"
+        },
+        timestamp: "When validation occurred"
+      }
+    },
+
+    semantic_meaning: "A configuration is admissible only if it satisfies ALL IS commitments"
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // VALIDATION ALGORITHM
+  // ═══════════════════════════════════════════════════════════════════════
+
+  validation_algorithm: {
+    description: "Check proposed state/action against all IS commitments",
+
+    pseudocode: `
+      function VALIDATE_IS_NECESSITY(box, action, is_commitments):
+        unsatisfied = []
+
+        for each commitment in is_commitments:
+          if commitment.layer == "MSP" or commitment.layer == "Universal":
+            if EVALUATE(commitment.statement, box, action) == FALSE:
+              // Commitment is not satisfied (required thing is missing)
+              unsatisfied.append({
+                commitment_id: commitment.commitment_id,
+                statement: commitment.statement,
+                reason: "Required condition not met"
+              })
+
+        if unsatisfied.is_empty():
+          return {
+            decision: "PASS",
+            unsatisfied_commitments: [],
+            message: "All IS commitments satisfied"
+          }
+        else:
+          return {
+            decision: "BLOCK",
+            unsatisfied_commitments: unsatisfied,
+            message: "Inadmissible - fails to satisfy MSP necessities"
+          }
+    `,
+
+    complexity: {
+      time: "O(n * c) where n = number of IS commitments, c = cost of evaluating each",
+      space: "O(u) where u = number of unsatisfied commitments"
+    },
+
+    strictness: "ABSOLUTE - even one unsatisfied commitment causes BLOCK decision"
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // MSP LAYER BINDING
+  // ═══════════════════════════════════════════════════════════════════════
+
+  msp_binding: {
+    enforces: "Modal Symmetry Paradigm - Meta-Mathematics",
+
+    msp_principles: [
+      "IS commitments define necessary conditions for admissibility",
+      "Modal necessity is non-negotiable",
+      "Unsatisfied necessities cannot be waived by lower layers",
+      "MSP defines what MUST be true for possibility"
+    ],
+
+    canonical_is_commitments: [
+      {
+        example: "All boxes must have well-defined identity",
+        implication: "Boxes without identity function are BLOCKED"
+      },
+      {
+        example: "All transitions must preserve information",
+        implication: "Information-destroying transitions are BLOCKED"
+      },
+      {
+        example: "All states must be evaluable for stability",
+        implication: "Non-evaluable states are BLOCKED"
+      },
+      {
+        example: "All operations must terminate",
+        implication: "Non-terminating operations are BLOCKED"
+      }
+    ]
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // RELATIONSHIP TO NOT-MODAL GATE
+  // ═══════════════════════════════════════════════════════════════════════
+
+  relationship_to_not_modal: {
+    complementary_roles: {
+      not_modal: "Enforces prohibitions (what must NOT be)",
+      is_necessity: "Enforces requirements (what MUST be)"
+    },
+
+    logical_duality: {
+      description: "NOT and IS are logically dual under negation",
+      example: "NOT(delete information) ≈ IS(preserve information)"
+    },
+
+    pipeline_interaction: {
+      order: "Both evaluated early in validation pipeline",
+      independence: "Can be evaluated in parallel or sequentially",
+      combined_result: "PASS only if both gates PASS"
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // USAGE IN MBC PIPELINE
+  // ═══════════════════════════════════════════════════════════════════════
+
+  mbc_pipeline_usage: {
+    when_invoked: "Every time a box attempts to transition, rewrite, or route",
+
+    pipeline_position: {
+      order: 2,
+      description: "IS-Necessity gate evaluated after or in parallel with NOT-Modal",
+      rationale: "Both MSP-level constraints should be checked before proceeding"
+    },
+
+    interaction_with_other_gates: {
+      before: [],
+      parallel_with: ["NOT-Modal gate"],
+      after: ["Stability gate", "Executability gate"]
+    },
+
+    failure_handling: {
+      on_block: "Box transition is rejected",
+      propagation: "Unsatisfied commitments logged, routing halted",
+      recovery: "Box must be augmented to satisfy IS commitments before retry"
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // EXAMPLES
+  // ═══════════════════════════════════════════════════════════════════════
+
+  examples: {
+    pass_example: {
+      box: {
+        id: "BOX-001",
+        state: { identity: "well-defined", stable: true, evaluable: true }
+      },
+      action: { type: "transform", preserves_identity: true },
+      is_commitments: [
+        {
+          commitment_id: "IS-0001",
+          statement: "All boxes must have well-defined identity",
+          layer: "MSP"
+        }
+      ],
+      result: {
+        decision: "PASS",
+        unsatisfied_commitments: [],
+        reason: "Box has well-defined identity - IS commitment satisfied"
+      }
+    },
+
+    block_example: {
+      box: {
+        id: "BOX-002",
+        state: { identity: "undefined", stable: false }
+      },
+      action: { type: "route", target_domain: "Physical" },
+      is_commitments: [
+        {
+          commitment_id: "IS-0001",
+          statement: "All boxes must have well-defined identity",
+          layer: "MSP"
+        }
+      ],
+      result: {
+        decision: "BLOCK",
+        unsatisfied_commitments: ["IS-0001"],
+        reason: "Box lacks well-defined identity - cannot route without identity"
+      }
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // INVARIANT GUARANTEES
+  // ═══════════════════════════════════════════════════════════════════════
+
+  invariant_guarantees: {
+    never_passes_incomplete_states: true,
+    deterministic: true,
+    traceable: true,
+    no_false_positives_acceptable: false,
+    no_false_negatives_acceptable: true,
+
+    soundness: "If gate says PASS, state is guaranteed to satisfy all IS commitments",
+    completeness: "If state fails any IS commitment, gate MUST say BLOCK"
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // COMPLIANCE
+  // ═══════════════════════════════════════════════════════════════════════
+
+  compliance: {
+    gicc_01: {
+      universal_not_is_primacy: "SATISFIED - IS commitments are enforced unconditionally"
+    },
+
+    gicc_04: {
+      no_domain_leakage_upward: "SATISFIED - No lower layer can waive MSP IS commitments"
+    },
+
+    override_hierarchy: {
+      authority_level: "MSP (highest)",
+      can_be_overridden_by: [],
+      overrides: ["MSC", "MBC", "IGSOA", "DFVM", "SATP"]
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // LOCK
+  // ═══════════════════════════════════════════════════════════════════════
+
+  lock: {
+    status: "LOCKED",
+    reason: "IS-Necessity enforcement is foundational to MSP integrity",
+    modification_authority: "MSP Core Council only"
+  }
+}

@@ -1,0 +1,588 @@
+{
+  // ═══════════════════════════════════════════════════════════════════════
+  // UNIVERSAL PROBLEM OBJECT SCHEMA
+  // MSP–MSC–MBC Universal Law-Validation Engine
+  // ═══════════════════════════════════════════════════════════════════════
+  //
+  // PURPOSE:
+  // Defines the SINGLE, MANDATORY input format for all problems entering
+  // the MSP–SATP validation pipeline. No problem may be processed unless
+  // it conforms to this schema.
+  //
+  // CORE PRINCIPLE:
+  // All reasoning must enter as explicit constraints (NOT/IS), never as
+  // implicit assumptions, narratives, or unstructured claims.
+  //
+  // COMPLIANCE:
+  // - GICC-01 (Generalized Infrastructure Compliance Charter)
+  // - GICC-05 (Universal NOT/IS Primacy)
+  // - Math Interdiction Profile
+  //
+  // VERSION: 1.0.0
+  // STATUS: LOCKED
+  // ═══════════════════════════════════════════════════════════════════════
+
+  $schema: "http://json-schema.org/draft-07/schema#",
+  $id: "https://mbc.system/schemas/problem_object.schema.json",
+
+  title: "Universal Problem Object",
+  description: "Standardized input format for all problems entering MSP–SATP validation",
+  type: "object",
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // REQUIRED FIELDS
+  // ═══════════════════════════════════════════════════════════════════════
+
+  required: [
+    "problem_id",
+    "not_constraints",
+    "is_commitments",
+    "domain_candidates",
+    "metadata"
+  ],
+
+  properties: {
+
+    // ─────────────────────────────────────────────────────────────────────
+    // PROBLEM IDENTIFICATION
+    // ─────────────────────────────────────────────────────────────────────
+
+    problem_id: {
+      type: "string",
+      description: "Unique identifier for this problem instance",
+      pattern: "^[A-Z]{3}-[0-9]{8}-[A-Z0-9]{6}$",
+      examples: ["PRB-20251209-A7F2E1", "LOG-20251209-9X4K2P"]
+    },
+
+    problem_name: {
+      type: "string",
+      description: "Human-readable short name for the problem",
+      minLength: 3,
+      maxLength: 128,
+      examples: [
+        "Thermodynamic Arrow Validation",
+        "Semantic Coherence Under Perturbation",
+        "Cross-Domain Identity Preservation"
+      ]
+    },
+
+    problem_description: {
+      type: "string",
+      description: "Brief natural language description (context only, not constraints)",
+      maxLength: 1024,
+      note: "This is for human readability. Actual constraints are in NOT/IS fields."
+    },
+
+    // ─────────────────────────────────────────────────────────────────────
+    // CORE CONSTRAINT FIELDS (MANDATORY)
+    // ─────────────────────────────────────────────────────────────────────
+
+    not_constraints: {
+      type: "array",
+      description: "Absolute prohibitions - things that MUST NOT be true",
+      minItems: 0,
+      items: {
+        type: "object",
+        required: ["constraint_id", "statement", "layer", "justification"],
+        properties: {
+          constraint_id: {
+            type: "string",
+            description: "Unique ID for this NOT constraint",
+            pattern: "^NOT-[0-9]{4}$",
+            examples: ["NOT-0001", "NOT-0042"]
+          },
+          statement: {
+            type: "string",
+            description: "Precise statement of what is forbidden",
+            examples: [
+              "Information may not be deleted",
+              "Causality may not propagate faster than χₛ",
+              "Identity may not dissolve under infinitesimal perturbation",
+              "Modal possibility may not be violated by dynamics"
+            ]
+          },
+          layer: {
+            type: "string",
+            enum: ["MSP", "MSC", "MBC", "IGSOA", "DFVM", "SATP", "Universal"],
+            description: "Which layer enforces this constraint"
+          },
+          justification: {
+            type: "string",
+            description: "Why this is a NOT constraint (reference to axiom, law, or principle)",
+            examples: [
+              "MSP axiom: Information conservation",
+              "IGSOA principle: Substrate continuity",
+              "MSC stability theorem"
+            ]
+          },
+          strength: {
+            type: "string",
+            enum: ["absolute", "defeasible", "contextual"],
+            default: "absolute",
+            description: "Whether this NOT can ever be overridden"
+          },
+          scope: {
+            type: "string",
+            enum: ["global", "local", "domain-specific"],
+            default: "global",
+            description: "Scope of applicability"
+          }
+        }
+      },
+      note: "Empty array is permitted if problem has no absolute prohibitions"
+    },
+
+    is_commitments: {
+      type: "array",
+      description: "Necessary commitments - things that MUST be true",
+      minItems: 0,
+      items: {
+        type: "object",
+        required: ["commitment_id", "statement", "layer", "justification"],
+        properties: {
+          commitment_id: {
+            type: "string",
+            description: "Unique ID for this IS commitment",
+            pattern: "^IS-[0-9]{4}$",
+            examples: ["IS-0001", "IS-0042"]
+          },
+          statement: {
+            type: "string",
+            description: "Precise statement of what must be true",
+            examples: [
+              "All boxes must have well-defined identity",
+              "Propagation must respect causal structure",
+              "Stability must be evaluable",
+              "Conservation laws must be enforced"
+            ]
+          },
+          layer: {
+            type: "string",
+            enum: ["MSP", "MSC", "MBC", "IGSOA", "DFVM", "SATP", "Universal"],
+            description: "Which layer enforces this commitment"
+          },
+          justification: {
+            type: "string",
+            description: "Why this is an IS commitment",
+            examples: [
+              "MSC requirement: Identity persistence",
+              "MBC execution requirement",
+              "SATP boundary condition"
+            ]
+          },
+          strength: {
+            type: "string",
+            enum: ["absolute", "defeasible", "contextual"],
+            default: "absolute",
+            description: "Whether this IS can ever be relaxed"
+          },
+          scope: {
+            type: "string",
+            enum: ["global", "local", "domain-specific"],
+            default: "global",
+            description: "Scope of applicability"
+          }
+        }
+      },
+      note: "Empty array is permitted if problem has no necessary commitments"
+    },
+
+    // ─────────────────────────────────────────────────────────────────────
+    // DOMAIN SPECIFICATION
+    // ─────────────────────────────────────────────────────────────────────
+
+    domain_candidates: {
+      type: "array",
+      description: "Possible domains this problem might route to (not prescriptive)",
+      minItems: 1,
+      items: {
+        type: "object",
+        required: ["domain_name", "relevance"],
+        properties: {
+          domain_name: {
+            type: "string",
+            enum: [
+              "Mathematical",
+              "Logical",
+              "Physical",
+              "Cognitive",
+              "Computational",
+              "Social",
+              "Biological",
+              "Engineering",
+              "Philosophical",
+              "Abstract",
+              "Cross-Domain"
+            ],
+            description: "Domain category"
+          },
+          relevance: {
+            type: "string",
+            enum: ["primary", "secondary", "exploratory"],
+            description: "How relevant this domain is to the problem"
+          },
+          rationale: {
+            type: "string",
+            description: "Why this domain is a candidate",
+            examples: [
+              "Problem involves geometric structure",
+              "Problem requires symbolic execution",
+              "Problem spans physical and cognitive domains"
+            ]
+          }
+        }
+      },
+      note: "Router will determine actual domain dispatch, not this field"
+    },
+
+    // ─────────────────────────────────────────────────────────────────────
+    // ASSUMPTIONS & CONTEXT
+    // ─────────────────────────────────────────────────────────────────────
+
+    assumptions: {
+      type: "array",
+      description: "Explicit assumptions (must be promoted from implicit to explicit)",
+      items: {
+        type: "object",
+        required: ["assumption_id", "statement", "status"],
+        properties: {
+          assumption_id: {
+            type: "string",
+            pattern: "^ASM-[0-9]{4}$"
+          },
+          statement: {
+            type: "string",
+            description: "The assumption being made"
+          },
+          status: {
+            type: "string",
+            enum: ["validated", "unvalidated", "contested", "rejected"],
+            description: "Epistemic status of this assumption"
+          },
+          justification: {
+            type: "string",
+            description: "Why this assumption is being made"
+          },
+          dependencies: {
+            type: "array",
+            items: { type: "string" },
+            description: "Other assumption IDs this depends on"
+          }
+        }
+      },
+      note: "GICC-05: Implicit assumptions are non-compliant unless promoted to explicit"
+    },
+
+    background_context: {
+      type: "object",
+      description: "Additional context that does not constitute constraints",
+      properties: {
+        historical_context: {
+          type: "string",
+          description: "How this problem arose historically"
+        },
+        related_problems: {
+          type: "array",
+          items: { type: "string" },
+          description: "IDs of related problem objects"
+        },
+        references: {
+          type: "array",
+          items: {
+            type: "object",
+            properties: {
+              reference_type: { type: "string", enum: ["paper", "book", "theorem", "observation", "simulation"] },
+              citation: { type: "string" },
+              relevance: { type: "string" }
+            }
+          }
+        }
+      }
+    },
+
+    // ─────────────────────────────────────────────────────────────────────
+    // METADATA
+    // ─────────────────────────────────────────────────────────────────────
+
+    metadata: {
+      type: "object",
+      required: ["origin", "confidence", "timestamp", "version"],
+      properties: {
+
+        origin: {
+          type: "string",
+          enum: ["human", "observation", "simulation", "theorem", "experiment", "derived"],
+          description: "Source of this problem"
+        },
+
+        confidence: {
+          type: "string",
+          enum: ["high", "medium", "low", "speculative"],
+          description: "Epistemic confidence in problem formulation"
+        },
+
+        timestamp: {
+          type: "string",
+          format: "date-time",
+          description: "When this problem object was created (ISO 8601)"
+        },
+
+        version: {
+          type: "string",
+          pattern: "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+          description: "Semantic version of this problem object"
+        },
+
+        author: {
+          type: "string",
+          description: "Who formulated this problem object"
+        },
+
+        status: {
+          type: "string",
+          enum: ["draft", "under_review", "validated", "rejected", "archived"],
+          default: "draft",
+          description: "Current status in validation pipeline"
+        },
+
+        priority: {
+          type: "string",
+          enum: ["critical", "high", "medium", "low"],
+          default: "medium",
+          description: "Processing priority"
+        },
+
+        tags: {
+          type: "array",
+          items: { type: "string" },
+          description: "Arbitrary tags for classification/search"
+        }
+      }
+    },
+
+    // ─────────────────────────────────────────────────────────────────────
+    // VALIDATION STATE (POPULATED BY SYSTEM)
+    // ─────────────────────────────────────────────────────────────────────
+
+    validation_state: {
+      type: "object",
+      description: "Populated by validation pipeline (read-only for problem authors)",
+      properties: {
+
+        pipeline_stage: {
+          type: "string",
+          enum: [
+            "intake",
+            "msp_validation",
+            "msc_validation",
+            "mbc_validation",
+            "igsoa_validation",
+            "dfvm_validation",
+            "satp_validation",
+            "completed",
+            "rejected"
+          ],
+          description: "Current stage in validation pipeline"
+        },
+
+        gates_passed: {
+          type: "array",
+          items: { type: "string" },
+          description: "List of gate IDs successfully passed"
+        },
+
+        gates_failed: {
+          type: "array",
+          items: {
+            type: "object",
+            properties: {
+              gate_id: { type: "string" },
+              reason: { type: "string" },
+              timestamp: { type: "string", format: "date-time" }
+            }
+          },
+          description: "List of gates failed with reasons"
+        },
+
+        router_decisions: {
+          type: "array",
+          items: {
+            type: "object",
+            properties: {
+              router_id: { type: "string" },
+              decision: { type: "string" },
+              target_domain: { type: "string" },
+              timestamp: { type: "string", format: "date-time" }
+            }
+          },
+          description: "Routing decisions made during processing"
+        },
+
+        invariants_checked: {
+          type: "array",
+          items: {
+            type: "object",
+            properties: {
+              invariant_id: { type: "string" },
+              result: { type: "string", enum: ["preserved", "violated"] },
+              timestamp: { type: "string", format: "date-time" }
+            }
+          },
+          description: "Invariants checked during validation"
+        },
+
+        final_verdict: {
+          type: "string",
+          enum: ["admissible", "inadmissible", "pending", "needs_refinement"],
+          description: "Final validation result"
+        },
+
+        rejection_summary: {
+          type: "string",
+          description: "If rejected, detailed explanation of why"
+        },
+
+        computational_cost: {
+          type: "object",
+          properties: {
+            time_ms: { type: "number" },
+            memory_kb: { type: "number" },
+            gate_evaluations: { type: "number" }
+          },
+          description: "Resource usage during validation"
+        }
+      }
+    },
+
+    // ─────────────────────────────────────────────────────────────────────
+    // EXTENSIONS (DOMAIN-SPECIFIC)
+    // ─────────────────────────────────────────────────────────────────────
+
+    extensions: {
+      type: "object",
+      description: "Domain-specific extensions (must not violate core schema)",
+      additionalProperties: true,
+      note: "Extensions may be used but must not override NOT/IS constraints or core fields"
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // EXAMPLES
+  // ═══════════════════════════════════════════════════════════════════════
+
+  examples: [
+    {
+      problem_id: "LOG-20251209-A7F2E1",
+      problem_name: "Identity Persistence Under Perturbation",
+      problem_description: "Does a semantic box maintain identity when subjected to small curvature perturbations?",
+
+      not_constraints: [
+        {
+          constraint_id: "NOT-0001",
+          statement: "Identity may not dissolve under infinitesimal perturbation",
+          layer: "MSC",
+          justification: "MSC stability requirement: Continuous identity under small changes",
+          strength: "absolute",
+          scope: "global"
+        },
+        {
+          constraint_id: "NOT-0002",
+          statement: "Information may not be deleted during perturbation",
+          layer: "IGSOA",
+          justification: "IGSOA conservation law",
+          strength: "absolute",
+          scope: "global"
+        }
+      ],
+
+      is_commitments: [
+        {
+          commitment_id: "IS-0001",
+          statement: "Identity must be evaluable before and after perturbation",
+          layer: "MSC",
+          justification: "MSC requires computable identity function",
+          strength: "absolute",
+          scope: "global"
+        },
+        {
+          commitment_id: "IS-0002",
+          statement: "Perturbation must be quantifiable in semantic space",
+          layer: "DFVM",
+          justification: "DFVM requires measurable deviation field",
+          strength: "absolute",
+          scope: "global"
+        }
+      ],
+
+      domain_candidates: [
+        {
+          domain_name: "Mathematical",
+          relevance: "primary",
+          rationale: "Requires stability analysis and continuity proofs"
+        },
+        {
+          domain_name: "Computational",
+          relevance: "secondary",
+          rationale: "May require numerical simulation of perturbation"
+        }
+      ],
+
+      assumptions: [
+        {
+          assumption_id: "ASM-0001",
+          statement: "Perturbations are smooth (C¹ continuous)",
+          status: "validated",
+          justification: "Required for stability analysis"
+        }
+      ],
+
+      metadata: {
+        origin: "theorem",
+        confidence: "high",
+        timestamp: "2025-12-09T10:00:00Z",
+        version: "1.0.0",
+        author: "MSC Research Team",
+        status: "validated",
+        priority: "high",
+        tags: ["stability", "identity", "perturbation_theory"]
+      }
+    }
+  ],
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // COMPLIANCE ATTESTATION
+  // ═══════════════════════════════════════════════════════════════════════
+
+  compliance: {
+    gicc_01: {
+      domain_neutrality: "SATISFIED - Schema accepts problems from any domain",
+      universal_not_is_primacy: "SATISFIED - NOT/IS constraints are mandatory fields",
+      no_implicit_assumptions: "SATISFIED - Assumptions must be explicitly listed"
+    },
+    gicc_05: {
+      explicit_constraints: "SATISFIED - All constraints must be in NOT/IS arrays",
+      no_narrative_bypass: "SATISFIED - Description is context-only, not constraint-defining"
+    },
+    math_interdiction: {
+      no_math_as_foundation: "SATISFIED - Math may appear in statements but not as ontology",
+      traceability: "SATISFIED - All constraints have justification field"
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // LOCK
+  // ═══════════════════════════════════════════════════════════════════════
+
+  lock: {
+    status: "LOCKED",
+    immutable_fields: [
+      "not_constraints",
+      "is_commitments",
+      "domain_candidates",
+      "metadata.origin",
+      "metadata.timestamp"
+    ],
+    modification_authority: "MSP Core Council only",
+    reason: "Universal problem format must remain stable across all deployments"
+  }
+}

@@ -1,0 +1,92 @@
+{
+  // ═══════════════════════════════════════════════════════════════════════
+  // MBC BOOLEAN GATE: NAND (NOT-AND)
+  // Monistic Box Calculus - Symbolic Execution Layer
+  // ═══════════════════════════════════════════════════════════════════════
+
+  metadata: {
+    gate_type: "boolean",
+    gate_name: "NAND",
+    gate_symbol: "↑",
+    version: "1.0.0",
+    layer: "MBC",
+    classification: "Symbolic Tool",
+    role: "Execute formal reasoning inside boxes",
+    note: "Functionally complete - can build all other gates from NAND alone"
+  },
+
+  logical_definition: {
+    operation: "negated conjunction",
+    arity: "n-ary (minimum 2 inputs)",
+    composition: "¬(A ∧ B)",
+
+    truth_table_binary: [
+      { A: false, B: false, output: true  },
+      { A: false, B: true,  output: true  },
+      { A: true,  B: false, output: true  },
+      { A: true,  B: true,  output: false }
+    ],
+
+    semantic_interpretation: "Returns false if ALL inputs are true, otherwise true",
+
+    algebraic_properties: [
+      "Functional completeness: Can construct all boolean functions from NAND",
+      "NOT via NAND: ¬A = A ↑ A",
+      "AND via NAND: A ∧ B = (A ↑ B) ↑ (A ↑ B)",
+      "OR via NAND: A ∨ B = (A ↑ A) ↑ (B ↑ B)",
+      "Sheffer stroke: Named after Henry M. Sheffer"
+    ]
+  },
+
+  implementation: {
+    input_schema: {
+      type: "array",
+      minItems: 2,
+      items: { type: "boolean" }
+    },
+
+    output_schema: {
+      type: "boolean"
+    },
+
+    algorithm: {
+      pseudocode: `
+        function NAND(inputs):
+          return NOT(AND(inputs))
+      `,
+      complexity: {
+        time: "O(n)",
+        space: "O(1)"
+      }
+    }
+  },
+
+  mbc_usage: {
+    typical_applications: [
+      "Implementing rejection logic",
+      "Building complex gates from primitive",
+      "Universal gate construction",
+      "Inhibition patterns"
+    ],
+
+    functional_completeness: {
+      description: "NAND is functionally complete for boolean logic",
+      implication: "Entire MBC boolean layer could theoretically be built from NAND alone",
+      practical_note: "Other gates provided for clarity and efficiency"
+    }
+  },
+
+  invariant_guarantees: {
+    preserves_boolean_type: true,
+    preserves_determinism: true,
+    preserves_referential_transparency: true,
+    side_effect_free: true
+  },
+
+  test_vectors: [
+    { inputs: [false, false], expected_output: true },
+    { inputs: [false, true], expected_output: true },
+    { inputs: [true, false], expected_output: true },
+    { inputs: [true, true], expected_output: false }
+  ]
+}

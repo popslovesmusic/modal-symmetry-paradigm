@@ -1,0 +1,356 @@
+{
+  // ═══════════════════════════════════════════════════════════════════════
+  // NEGATIVE TEST: Hidden Assumption Rejection
+  // MSP–MSC–MBC Universal Law-Validation Engine
+  // ═══════════════════════════════════════════════════════════════════════
+  //
+  // PURPOSE:
+  // Prove that the system REJECTS problem formulations containing implicit
+  // (hidden) assumptions that have not been promoted to explicit status.
+  //
+  // This is a NEGATIVE test - success means REJECTION, not acceptance.
+  //
+  // TEST CLASS: Problem Object Validation
+  // TARGET: GICC-05 (Universal NOT/IS Primacy)
+  // EXPECTED OUTCOME: BLOCK/REJECT
+  //
+  // VERSION: 1.0.0
+  // ═══════════════════════════════════════════════════════════════════════
+
+  metadata: {
+    test_id: "TEST-NEG-002",
+    test_name: "Hidden Assumption Rejection Test",
+    test_class: "negative",
+    version: "1.0.0",
+    purpose: "Verify system rejects problems with implicit assumptions",
+    created: "2025-12-09",
+    status: "active"
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // TEST SCENARIO
+  // ═══════════════════════════════════════════════════════════════════════
+
+  test_scenario: {
+    description: "Submit problem that relies on hidden assumptions not declared in problem object",
+
+    input_problem: {
+      problem_id: "TEST-PRB-NEG-002",
+      problem_name: "Semantic Transport Without Declared Medium",
+      problem_description: "Prove that semantic meaning propagates from agent A to agent B",
+
+      not_constraints: [],
+
+      is_commitments: [
+        {
+          commitment_id: "IS-0001",
+          statement: "Semantic meaning must propagate between agents",
+          layer: "Universal",
+          justification: "Required for communication"
+        }
+      ],
+
+      domain_candidates: [
+        { domain_name: "Cognitive", relevance: "primary" }
+      ],
+
+      // CRITICAL: Assumptions field is EMPTY, but problem relies on hidden assumptions
+      assumptions: [],
+
+      // HIDDEN ASSUMPTIONS (not declared):
+      // 1. Shared semantic space exists
+      // 2. Transport medium is continuous
+      // 3. Agents have compatible semantic structures
+      // 4. No barriers to propagation
+      // 5. Meaning is conserved during transport
+
+      metadata: {
+        origin: "theoretical",
+        confidence: "high",
+        timestamp: "2025-12-09T10:30:00Z",
+        version: "1.0.0"
+      }
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // EXPECTED SYSTEM RESPONSE
+  // ═══════════════════════════════════════════════════════════════════════
+
+  expected_response: {
+    problem_validation: {
+      decision: "REJECT",
+      violated_rule: "GICC-05: Universal NOT/IS Primacy",
+
+      detected_hidden_assumptions: [
+        "Shared semantic space existence (not declared)",
+        "Transport medium continuity (not declared)",
+        "Agent compatibility (not declared)",
+        "Propagation barrier absence (not declared)",
+        "Meaning conservation (not declared)"
+      ],
+
+      rejection_reason: "Problem contains implicit assumptions that must be promoted to explicit declarations in assumptions field",
+
+      error_message: "GICC-05 VIOLATION: Problem relies on undeclared assumptions. All assumptions must be explicit in problem object schema."
+    },
+
+    required_fixes: {
+      action: "Promote all implicit assumptions to explicit declarations",
+
+      corrected_assumptions_field: [
+        {
+          assumption_id: "ASM-0001",
+          statement: "Shared semantic space exists between agents A and B",
+          status: "unvalidated",
+          justification: "Required for meaning propagation"
+        },
+        {
+          assumption_id: "ASM-0002",
+          statement: "Semantic transport medium is continuous",
+          status: "unvalidated",
+          justification: "Continuity needed for propagation"
+        },
+        {
+          assumption_id: "ASM-0003",
+          statement: "Agents have compatible semantic structures",
+          status: "unvalidated",
+          justification: "Compatibility needed for mutual understanding"
+        },
+        {
+          assumption_id: "ASM-0004",
+          statement: "No semantic barriers block propagation",
+          status: "unvalidated",
+          justification: "Barriers would prevent transport"
+        },
+        {
+          assumption_id: "ASM-0005",
+          statement: "Meaning is conserved during transport",
+          status: "unvalidated",
+          justification: "Conservation needed for fidelity"
+        }
+      ]
+    },
+
+    pipeline_result: {
+      stage: "problem_object_validation",
+      passed: false,
+      blocked_at: "Assumption promotion check",
+      propagation: "Problem must be reformulated before gate evaluation"
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // TEST ASSERTION
+  // ═══════════════════════════════════════════════════════════════════════
+
+  test_assertion: {
+    assertion: "System MUST reject problems with implicit assumptions",
+
+    success_criteria: [
+      "System detects that problem relies on unstated assumptions",
+      "Problem is rejected before gate evaluation",
+      "Clear list of hidden assumptions is provided",
+      "Instructions for reformulation are given",
+      "Violation references GICC-05"
+    ],
+
+    failure_criteria: [
+      "If problem is accepted with hidden assumptions",
+      "If assumptions are silently invented by system",
+      "If hidden assumptions are auto-promoted without user action",
+      "If problem reaches gates without explicit assumptions",
+      "If no guidance is given for fixing problem"
+    ]
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // DETECTION METHODS
+  // ═══════════════════════════════════════════════════════════════════════
+
+  detection_methods: {
+    method_1_semantic_analysis: {
+      description: "Analyze problem description for implied dependencies",
+      technique: "Natural language processing to extract implicit commitments",
+      example: "'propagates from A to B' implies medium, shared space, path"
+    },
+
+    method_2_constraint_gap_analysis: {
+      description: "Check if stated commitments are achievable with declared constraints",
+      technique: "If IS commitment requires conditions not in NOT/IS/assumptions, flag gap",
+      example: "Propagation commitment requires transport medium - where is it declared?"
+    },
+
+    method_3_domain_knowledge_check: {
+      description: "Use domain-specific knowledge to identify typical unstated assumptions",
+      technique: "For cognitive domain, check for agent compatibility, shared space, etc.",
+      example: "Cognitive problems typically assume agents share semantic space"
+    },
+
+    method_4_user_flag: {
+      description: "Problem submitter explicitly marks which assumptions are uncertain",
+      technique: "Require assumption field to be populated, even if 'none known'",
+      example: "assumptions: [] vs assumptions: [{ statement: 'none identified', status: 'unknown' }]"
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // ADDITIONAL TEST CASES (VARIATIONS)
+  // ═══════════════════════════════════════════════════════════════════════
+
+  additional_test_cases: [
+    {
+      case_id: "TEST-NEG-002-A",
+      description: "Physical problem assumes absolute time",
+      hidden_assumption: "Time is absolute and universal",
+      should_be_declared: true,
+      expected: "REJECT"
+    },
+    {
+      case_id: "TEST-NEG-002-B",
+      description: "Mathematical problem assumes LEM (Law of Excluded Middle)",
+      hidden_assumption: "Classical logic applies (not constructive)",
+      should_be_declared: true,
+      expected: "REJECT"
+    },
+    {
+      case_id: "TEST-NEG-002-C",
+      description: "Engineering problem assumes infinite resources",
+      hidden_assumption: "No computational or resource limits",
+      should_be_declared: true,
+      expected: "REJECT"
+    },
+    {
+      case_id: "TEST-NEG-002-D",
+      description: "Social problem assumes rational actors",
+      hidden_assumption: "All agents act rationally",
+      should_be_declared: true,
+      expected: "REJECT"
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // POSITIVE CONTROL (What SHOULD Pass)
+  // ═══════════════════════════════════════════════════════════════════════
+
+  positive_control: {
+    description: "Same problem with all assumptions explicitly declared",
+
+    input_problem: {
+      problem_id: "TEST-PRB-POS-002",
+      problem_name: "Semantic Transport With Declared Assumptions",
+
+      is_commitments: [
+        {
+          commitment_id: "IS-0001",
+          statement: "Semantic meaning must propagate between agents",
+          layer: "Universal",
+          justification: "Required for communication"
+        }
+      ],
+
+      // CRITICAL: All assumptions now EXPLICIT
+      assumptions: [
+        {
+          assumption_id: "ASM-0001",
+          statement: "Shared semantic space exists between agents A and B",
+          status: "unvalidated",
+          justification: "Required for meaning propagation"
+        },
+        {
+          assumption_id: "ASM-0002",
+          statement: "Semantic transport medium is continuous",
+          status: "unvalidated",
+          justification: "Continuity needed for propagation"
+        },
+        {
+          assumption_id: "ASM-0003",
+          statement: "Agents have compatible semantic structures",
+          status: "unvalidated",
+          justification: "Compatibility needed for understanding"
+        },
+        {
+          assumption_id: "ASM-0004",
+          statement: "No semantic barriers block propagation",
+          status: "unvalidated",
+          justification: "Barriers would prevent transport"
+        },
+        {
+          assumption_id: "ASM-0005",
+          statement: "Meaning is conserved during transport",
+          status: "unvalidated",
+          justification: "Conservation needed for fidelity"
+        }
+      ]
+    },
+
+    expected_response: {
+      problem_validation: {
+        decision: "PASS",
+        assumptions_explicit: true,
+        ready_for_gates: true,
+        message: "All assumptions explicitly declared - problem may proceed to validation"
+      }
+    },
+
+    assertion: "Identical problem is acceptable when assumptions are explicit"
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // TEST EXECUTION PLAN
+  // ═══════════════════════════════════════════════════════════════════════
+
+  execution_plan: {
+    step_1: "Submit problem with empty assumptions field but implicit dependencies",
+    step_2: "Problem object validator analyzes for hidden assumptions",
+    step_3: "Validator detects gap between commitments and declarations",
+    step_4: "System REJECTS problem with list of detected hidden assumptions",
+    step_5: "User reformulates problem with explicit assumptions",
+    step_6: "Submit corrected problem (positive control)",
+    step_7: "Verify corrected problem PASSES validation",
+
+    automation_ready: true,
+    can_be_run_programmatically: true
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // IMPORTANCE
+  // ═══════════════════════════════════════════════════════════════════════
+
+  importance: {
+    why_this_test_matters: "Hidden assumptions are the primary source of logical errors and system drift. If system accepts implicit assumptions, validation is meaningless - arbitrary unstated conditions contaminate reasoning.",
+
+    what_this_proves: "System enforces epistemic hygiene. All reasoning dependencies must be explicit and traceable.",
+
+    failure_consequences: "If this test fails, system permits invisible premises, making all validation results untrustworthy."
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // COMPLIANCE VERIFICATION
+  // ═══════════════════════════════════════════════════════════════════════
+
+  compliance_verification: {
+    verifies_gicc_05: {
+      charter: "GICC-05 - Universal NOT/IS Primacy",
+      requirement: "Implicit assumptions are non-compliant unless promoted to explicit",
+      test_demonstrates: "System rejects problems with unpromoted assumptions"
+    },
+
+    verifies_problem_object_schema: {
+      section: "Assumptions field - explicit declaration requirement",
+      requirement: "All assumptions must be in assumptions array",
+      test_demonstrates: "Empty assumptions field triggers validation when dependencies exist"
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // LOCK
+  // ═══════════════════════════════════════════════════════════════════════
+
+  lock: {
+    status: "LOCKED",
+    reason: "Foundational negative test for epistemic discipline",
+    modification_authority: "Test Council + MSP Council",
+    criticality: "CRITICAL - Prevents invisible premise contamination"
+  }
+}

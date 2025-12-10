@@ -1,0 +1,278 @@
+{
+  // ═══════════════════════════════════════════════════════════════════════
+  // MBC CONTROL GATE: NOT-Modal (Modal Illegality Filter)
+  // Monistic Box Calculus - Validation/Control Layer
+  // ═══════════════════════════════════════════════════════════════════════
+  //
+  // PURPOSE:
+  // Enforces absolute prohibitions (NOT constraints) from MSP layer.
+  // Blocks any state, transition, or claim that violates modal legality.
+  //
+  // CRITICAL DISTINCTION:
+  // This is NOT the boolean NOT gate (symbolic negation).
+  // This is a CONSTRAINT ENFORCEMENT gate that validates admissibility.
+  //
+  // ROLE: Validation filter (NOT a computational operator)
+  // LAYER: MSP → MBC Control
+  // CLASS: Compliance Gate
+  //
+  // VERSION: 1.0.0
+  // ═══════════════════════════════════════════════════════════════════════
+
+  metadata: {
+    gate_type: "control",
+    gate_class: "compliance",
+    gate_name: "NOT-Modal",
+    gate_symbol: "⊬",
+    version: "1.0.0",
+    enforces_layer: "MSP",
+    validates: "Modal legality - absolute prohibitions",
+    classification: "Validation Tool",
+    role: "Control admissibility between layers"
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // FUNCTIONAL DEFINITION
+  // ═══════════════════════════════════════════════════════════════════════
+
+  functional_definition: {
+    purpose: "Enforce NOT constraints - absolute prohibitions that must never be violated",
+
+    input: {
+      type: "object",
+      description: "Box state + proposed transition + NOT constraint set",
+      schema: {
+        current_box: "Box object to validate",
+        proposed_action: "Transition, rewrite, or operation being attempted",
+        not_constraints: "Array of NOT constraints from problem object",
+        context: "Additional validation context"
+      }
+    },
+
+    output: {
+      type: "object",
+      schema: {
+        decision: {
+          type: "string",
+          enum: ["PASS", "BLOCK"],
+          description: "PASS if no NOT constraints violated, BLOCK otherwise"
+        },
+        violated_constraints: {
+          type: "array",
+          description: "List of NOT constraint IDs that were violated (if any)"
+        },
+        violation_details: {
+          type: "array",
+          description: "Detailed explanation of each violation"
+        },
+        timestamp: "When validation occurred"
+      }
+    },
+
+    semantic_meaning: "A configuration is admissible only if it violates ZERO NOT constraints"
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // VALIDATION ALGORITHM
+  // ═══════════════════════════════════════════════════════════════════════
+
+  validation_algorithm: {
+    description: "Check proposed state/action against all NOT constraints",
+
+    pseudocode: `
+      function VALIDATE_NOT_MODAL(box, action, not_constraints):
+        violations = []
+
+        for each constraint in not_constraints:
+          if constraint.layer == "MSP" or constraint.layer == "Universal":
+            if EVALUATE(constraint.statement, box, action) == TRUE:
+              // Constraint is violated (the forbidden thing is happening)
+              violations.append({
+                constraint_id: constraint.constraint_id,
+                statement: constraint.statement,
+                reason: "Prohibited condition detected"
+              })
+
+        if violations.is_empty():
+          return {
+            decision: "PASS",
+            violated_constraints: [],
+            message: "No NOT constraints violated"
+          }
+        else:
+          return {
+            decision: "BLOCK",
+            violated_constraints: violations,
+            message: "Inadmissible - violates MSP modal legality"
+          }
+    `,
+
+    complexity: {
+      time: "O(n * c) where n = number of NOT constraints, c = cost of evaluating each",
+      space: "O(v) where v = number of violations found"
+    },
+
+    strictness: "ABSOLUTE - even one violation causes BLOCK decision"
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // MSP LAYER BINDING
+  // ═══════════════════════════════════════════════════════════════════════
+
+  msp_binding: {
+    enforces: "Modal Symmetry Paradigm - Meta-Mathematics",
+
+    msp_principles: [
+      "NOT constraints define absolute impossibilities",
+      "Modal illegality is non-negotiable",
+      "Violations cannot be overridden by lower layers",
+      "MSP is the highest authority on possibility/impossibility"
+    ],
+
+    canonical_not_constraints: [
+      {
+        example: "Information may not be deleted",
+        implication: "Any action that destroys information is BLOCKED"
+      },
+      {
+        example: "Contradictions may not be asserted as true",
+        implication: "A ∧ ¬A is always BLOCKED"
+      },
+      {
+        example: "Identity may not be undefined",
+        implication: "Boxes without coherent identity are BLOCKED"
+      },
+      {
+        example: "Causality may not propagate faster than χₛ",
+        implication: "Superluminal (semantic) propagation is BLOCKED"
+      }
+    ]
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // DISTINCTION FROM BOOLEAN NOT
+  // ═══════════════════════════════════════════════════════════════════════
+
+  distinction_from_boolean_not: {
+    boolean_not: {
+      location: "/mbc/gates/boolean/gate_not_boolean.json5",
+      function: "Symbolic negation operator",
+      operates_on: "Boolean values within box state",
+      returns: "Logical complement (true ↔ false)",
+      role: "Computation"
+    },
+
+    not_modal: {
+      location: "/mbc/gates/control/gate_not_modal.json5",
+      function: "Constraint enforcement filter",
+      operates_on: "Box states and transitions across system",
+      returns: "PASS/BLOCK decision",
+      role: "Validation"
+    },
+
+    critical_difference: "Boolean NOT computes within boxes; NOT-Modal constrains between layers"
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // USAGE IN MBC PIPELINE
+  // ═══════════════════════════════════════════════════════════════════════
+
+  mbc_pipeline_usage: {
+    when_invoked: "Every time a box attempts to transition, rewrite, or route",
+
+    pipeline_position: {
+      order: 1,
+      description: "NOT-Modal gate is evaluated FIRST in validation pipeline",
+      rationale: "No point checking other constraints if fundamental prohibitions are violated"
+    },
+
+    interaction_with_other_gates: {
+      before: [],
+      after: ["IS-Necessity gate", "Stability gate", "Executability gate"],
+      parallel: "May run in parallel with IS-Necessity if optimization desired"
+    },
+
+    failure_handling: {
+      on_block: "Box transition is rejected immediately",
+      propagation: "Violation logged, routing halted, error raised",
+      recovery: "Box must be modified to satisfy NOT constraints before retry"
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // EXAMPLES
+  // ═══════════════════════════════════════════════════════════════════════
+
+  examples: {
+    pass_example: {
+      box: { id: "BOX-001", state: { coherent: true, info: "preserved" } },
+      action: { type: "transform", preserves_info: true },
+      not_constraints: [
+        { constraint_id: "NOT-0001", statement: "Information may not be deleted", layer: "MSP" }
+      ],
+      result: {
+        decision: "PASS",
+        violated_constraints: [],
+        reason: "Action preserves information - NOT constraint satisfied"
+      }
+    },
+
+    block_example: {
+      box: { id: "BOX-002", state: { coherent: true } },
+      action: { type: "delete_information", target: "memory" },
+      not_constraints: [
+        { constraint_id: "NOT-0001", statement: "Information may not be deleted", layer: "MSP" }
+      ],
+      result: {
+        decision: "BLOCK",
+        violated_constraints: ["NOT-0001"],
+        reason: "Action attempts to delete information - violates absolute prohibition"
+      }
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // INVARIANT GUARANTEES
+  // ═══════════════════════════════════════════════════════════════════════
+
+  invariant_guarantees: {
+    never_passes_illegal_states: true,
+    deterministic: true,
+    traceable: true,
+    no_false_positives_acceptable: false,
+    no_false_negatives_acceptable: true,
+
+    soundness: "If gate says PASS, state is guaranteed NOT to violate any NOT constraint",
+    completeness: "If state violates any NOT constraint, gate MUST say BLOCK"
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // COMPLIANCE
+  // ═══════════════════════════════════════════════════════════════════════
+
+  compliance: {
+    gicc_01: {
+      universal_not_is_primacy: "SATISFIED - NOT constraints are enforced unconditionally"
+    },
+
+    gicc_04: {
+      no_domain_leakage_upward: "SATISFIED - No lower layer can override MSP NOT constraints"
+    },
+
+    override_hierarchy: {
+      authority_level: "MSP (highest)",
+      can_be_overridden_by: [],
+      overrides: ["MSC", "MBC", "IGSOA", "DFVM", "SATP"]
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // LOCK
+  // ═══════════════════════════════════════════════════════════════════════
+
+  lock: {
+    status: "LOCKED",
+    reason: "NOT-Modal enforcement is foundational to MSP integrity",
+    modification_authority: "MSP Core Council only"
+  }
+}

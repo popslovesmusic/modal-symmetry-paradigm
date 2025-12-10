@@ -1,0 +1,185 @@
+{
+  // ═══════════════════════════════════════════════════════════════════════
+  // MBC BOOLEAN GATE: AND
+  // Monistic Box Calculus - Symbolic Execution Layer
+  // ═══════════════════════════════════════════════════════════════════════
+  //
+  // PURPOSE:
+  // Conjunction operator for symbolic reasoning within boxes.
+  // Returns true if and only if ALL inputs are true.
+  //
+  // ROLE: Computational primitive (NOT a validation filter)
+  // LAYER: MBC Operator Layer
+  // CLASS: Boolean Logic Gate
+  //
+  // VERSION: 1.0.0
+  // ═══════════════════════════════════════════════════════════════════════
+
+  metadata: {
+    gate_type: "boolean",
+    gate_name: "AND",
+    gate_symbol: "∧",
+    version: "1.0.0",
+    layer: "MBC",
+    classification: "Symbolic Tool",
+    role: "Execute formal reasoning inside boxes"
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // LOGICAL DEFINITION
+  // ═══════════════════════════════════════════════════════════════════════
+
+  logical_definition: {
+    operation: "conjunction",
+    arity: "n-ary (minimum 2 inputs)",
+
+    truth_table_binary: [
+      { A: false, B: false, output: false },
+      { A: false, B: true,  output: false },
+      { A: true,  B: false, output: false },
+      { A: true,  B: true,  output: true  }
+    ],
+
+    semantic_interpretation: "Returns true if ALL input propositions are simultaneously true",
+
+    algebraic_properties: [
+      "Commutative: A ∧ B = B ∧ A",
+      "Associative: (A ∧ B) ∧ C = A ∧ (B ∧ C)",
+      "Idempotent: A ∧ A = A",
+      "Identity element: A ∧ true = A",
+      "Annihilator: A ∧ false = false",
+      "Absorption: A ∧ (A ∨ B) = A",
+      "De Morgan: ¬(A ∧ B) = ¬A ∨ ¬B"
+    ]
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // IMPLEMENTATION SPECIFICATION
+  // ═══════════════════════════════════════════════════════════════════════
+
+  implementation: {
+    input_schema: {
+      type: "array",
+      minItems: 2,
+      items: {
+        type: "boolean",
+        description: "Input proposition"
+      }
+    },
+
+    output_schema: {
+      type: "boolean",
+      description: "Conjunction of all inputs"
+    },
+
+    algorithm: {
+      description: "Iterate through all inputs; return false if any is false, otherwise return true",
+      pseudocode: `
+        function AND(inputs):
+          for each input in inputs:
+            if input == false:
+              return false
+          return true
+      `,
+      complexity: {
+        time: "O(n) where n is number of inputs",
+        space: "O(1)"
+      }
+    },
+
+    short_circuit_evaluation: {
+      enabled: true,
+      behavior: "Stop evaluation and return false upon encountering first false input",
+      rationale: "Optimization for efficiency"
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // USAGE IN MBC SYSTEM
+  // ═══════════════════════════════════════════════════════════════════════
+
+  mbc_usage: {
+    typical_applications: [
+      "Combining multiple constraint checks",
+      "Testing simultaneous condition satisfaction",
+      "Building complex predicates from simple ones",
+      "Implementing guard conditions in rewrite rules"
+    ],
+
+    example_use_cases: [
+      {
+        scenario: "Check if box satisfies multiple invariants",
+        expression: "invariant_1 ∧ invariant_2 ∧ invariant_3",
+        interpretation: "Box is valid only if ALL invariants hold"
+      },
+      {
+        scenario: "Gate permission logic",
+        expression: "NOT_constraint_satisfied ∧ IS_commitment_satisfied",
+        interpretation: "Permit passage only if both constraint types are satisfied"
+      },
+      {
+        scenario: "Routing condition",
+        expression: "domain_A_applicable ∧ stability_maintained",
+        interpretation: "Route to domain A only if both conditions hold"
+      }
+    ],
+
+    integration_with_boxes: {
+      description: "AND gates operate on propositions within box state",
+      input_binding: "Inputs are bound to box state variables or expressions",
+      output_binding: "Output may be used for internal state updates or gate passage decisions"
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // INVARIANT PRESERVATION
+  // ═══════════════════════════════════════════════════════════════════════
+
+  invariant_guarantees: {
+    preserves_boolean_type: true,
+    preserves_determinism: true,
+    preserves_referential_transparency: true,
+    side_effect_free: true,
+
+    constraints: [
+      "Output is always deterministically computable from inputs",
+      "No external state modification",
+      "No information creation or destruction",
+      "Mathematically pure function"
+    ]
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // COMPLIANCE
+  // ═══════════════════════════════════════════════════════════════════════
+
+  compliance: {
+    math_interdiction_profile: {
+      classification: "Symbolic Tool",
+      entry_point: "MBC Operator Interface",
+      no_ontological_claims: true,
+      no_causal_claims: true,
+      pure_symbolic_operation: true
+    },
+
+    layer_discipline: {
+      operates_at: "MBC",
+      does_not_constrain: ["MSP", "MSC"],
+      does_not_override: ["NOT constraints", "IS commitments"]
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // TESTING & VALIDATION
+  // ═══════════════════════════════════════════════════════════════════════
+
+  test_vectors: [
+    { inputs: [false, false], expected_output: false },
+    { inputs: [false, true], expected_output: false },
+    { inputs: [true, false], expected_output: false },
+    { inputs: [true, true], expected_output: true },
+    { inputs: [true, true, true], expected_output: true },
+    { inputs: [true, true, false], expected_output: false },
+    { inputs: [true, true, true, true, true], expected_output: true }
+  ]
+}

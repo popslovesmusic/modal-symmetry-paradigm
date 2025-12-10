@@ -1,0 +1,352 @@
+{
+  // ═══════════════════════════════════════════════════════════════════════
+  // NEGATIVE TEST: Cross-Domain Contradiction
+  // MSP–MSC–MBC Universal Law-Validation Engine
+  // ═══════════════════════════════════════════════════════════════════════
+  //
+  // PURPOSE:
+  // Prove that the system REJECTS claims that are consistent within one domain
+  // but contradict when evaluated in another domain.
+  //
+  // This is a NEGATIVE test - success means REJECTION, not acceptance.
+  //
+  // TEST CLASS: Cross-Domain Consistency
+  // TARGET: GICC-07 (Executability Requirement - cross-layer consistency)
+  // EXPECTED OUTCOME: BLOCK/REJECT
+  //
+  // VERSION: 1.0.0
+  // ═══════════════════════════════════════════════════════════════════════
+
+  metadata: {
+    test_id: "TEST-NEG-003",
+    test_name: "Cross-Domain Contradiction Test",
+    test_class: "negative",
+    version: "1.0.0",
+    purpose: "Verify system rejects cross-domain inconsistencies",
+    created: "2025-12-09",
+    status: "active"
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // TEST SCENARIO
+  // ═══════════════════════════════════════════════════════════════════════
+
+  test_scenario: {
+    description: "Submit claim that is logically valid but physically/geometrically impossible",
+
+    input_problem: {
+      problem_id: "TEST-PRB-NEG-003",
+      problem_name: "Superluminal Semantic Propagation",
+      problem_description: "Prove that semantic meaning can propagate instantaneously across arbitrary distances",
+
+      not_constraints: [
+        {
+          constraint_id: "NOT-0001",
+          statement: "Information may not propagate faster than physical light speed c",
+          layer: "SATP",
+          justification: "Physical causality constraint",
+          strength: "absolute",
+          scope: "global"
+        }
+      ],
+
+      is_commitments: [
+        {
+          commitment_id: "IS-0001",
+          statement: "Semantic propagation must respect propagation limit χₛ",
+          layer: "SATP",
+          justification: "Semantic causality limit analogous to c",
+          strength: "absolute",
+          scope: "global"
+        }
+      ],
+
+      // CRITICAL: This claim contradicts cross-domain constraints
+      proposed_claim: {
+        claim: "Semantic meaning propagates instantaneously (infinite speed)",
+        logical_domain_validity: "Appears valid in pure logic - no logical contradiction in statement",
+        physical_domain_validity: "INVALID - violates causality and propagation limits",
+        geometric_domain_validity: "INVALID - infinite speed implies zero distance or undefined metric",
+        dynamical_domain_validity: "INVALID - violates SATP transport constraints"
+      },
+
+      domain_candidates: [
+        { domain_name: "Logical", relevance: "primary" },
+        { domain_name: "Physical", relevance: "secondary" },
+        { domain_name: "Cross-Domain", relevance: "primary" }
+      ],
+
+      metadata: {
+        origin: "theoretical",
+        confidence: "low",
+        timestamp: "2025-12-09T11:00:00Z",
+        version: "1.0.0"
+      }
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // EXPECTED SYSTEM RESPONSE
+  // ═══════════════════════════════════════════════════════════════════════
+
+  expected_response: {
+    cross_domain_validation: {
+      decision: "REJECT",
+      violated_rule: "Cross-domain consistency requirement",
+
+      contradiction_detected: {
+        domain_1: {
+          name: "Logical",
+          local_validity: "PASS (no logical contradiction in statement itself)"
+        },
+        domain_2: {
+          name: "Physical",
+          local_validity: "FAIL (violates NOT-0001: superluminal propagation forbidden)"
+        },
+        domain_3: {
+          name: "Geometric (DFVM)",
+          local_validity: "FAIL (infinite speed undefined in metric space)"
+        },
+        domain_4: {
+          name: "Dynamical (SATP)",
+          local_validity: "FAIL (violates IS-0001: propagation limit χₛ)"
+        }
+      },
+
+      rejection_reason: "Claim is logically coherent but physically, geometrically, and dynamically inadmissible. Cross-domain consistency is mandatory.",
+
+      error_message: "CROSS-DOMAIN CONTRADICTION: Claim passes logical check but fails physical, geometric, and dynamical validation. All admitted layers must agree."
+    },
+
+    detailed_violations: [
+      {
+        constraint: "NOT-0001 (Physical)",
+        violation: "Instantaneous propagation is superluminal (v = ∞ > c)",
+        severity: "CRITICAL"
+      },
+      {
+        constraint: "IS-0001 (SATP)",
+        violation: "Violates semantic propagation limit χₛ (finite)",
+        severity: "CRITICAL"
+      },
+      {
+        constraint: "Geometric consistency (DFVM)",
+        violation: "Infinite speed implies undefined or degenerate metric",
+        severity: "HIGH"
+      },
+      {
+        constraint: "Transport realizability (SATP)",
+        violation: "No PDE formulation admits infinite propagation speed",
+        severity: "HIGH"
+      }
+    ],
+
+    pipeline_result: {
+      stage: "cross_domain_consistency_check",
+      passed: false,
+      blocked_at: "Multi-domain validation",
+      propagation: "Problem rejected due to domain inconsistency"
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // TEST ASSERTION
+  // ═══════════════════════════════════════════════════════════════════════
+
+  test_assertion: {
+    assertion: "System MUST reject claims inconsistent across domains",
+
+    success_criteria: [
+      "System evaluates claim across multiple domains (logic, physical, geometric, dynamical)",
+      "Contradiction between domains is detected",
+      "Problem is rejected with clear cross-domain violation report",
+      "Specific constraints violated in each domain are identified",
+      "Rejection references cross-domain consistency requirement"
+    ],
+
+    failure_criteria: [
+      "If problem is accepted despite domain inconsistency",
+      "If only single-domain validation is performed",
+      "If contradiction is not detected",
+      "If domains are allowed to disagree",
+      "If no guidance for reconciliation is provided"
+    ]
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // CONSISTENCY ENFORCEMENT MECHANISM
+  // ═══════════════════════════════════════════════════════════════════════
+
+  consistency_enforcement: {
+    rule: "A claim is admissible ONLY if it is valid in ALL applicable domains",
+
+    validation_procedure: {
+      step_1: "Route problem to all relevant domains",
+      step_2: "Each domain evaluates claim independently",
+      step_3: "Collect validation results from all domains",
+      step_4: "Check for contradictions: if ANY domain returns FAIL, overall result is REJECT",
+      step_5: "Report which domains passed and which failed",
+      step_6: "Require resolution before acceptance"
+    },
+
+    resolution_strategies: [
+      "Reformulate claim to satisfy all domains",
+      "Restrict scope to domains where valid",
+      "Add constraints to resolve contradictions",
+      "Abandon claim if irreconcilable"
+    ]
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // ADDITIONAL TEST CASES (VARIATIONS)
+  // ═══════════════════════════════════════════════════════════════════════
+
+  additional_test_cases: [
+    {
+      case_id: "TEST-NEG-003-A",
+      description: "Information deletion in thermodynamics vs conservation",
+      logical: "PASS (deletion is logically definable)",
+      physical: "FAIL (violates NOT constraint: information conservation)",
+      expected: "REJECT"
+    },
+    {
+      case_id: "TEST-NEG-003-B",
+      description: "Non-continuous identity function",
+      logical: "PASS (discontinuous functions are logically valid)",
+      msc: "FAIL (violates Stability requirement: identity must be continuous)",
+      expected: "REJECT"
+    },
+    {
+      case_id: "TEST-NEG-003-C",
+      description: "Infinite recursion without base case",
+      logical: "PASS (recursion is logically definable)",
+      mbc: "FAIL (violates Executability: non-terminating operation)",
+      expected: "REJECT"
+    },
+    {
+      case_id: "TEST-NEG-003-D",
+      description: "Action at a distance with no mediating field",
+      logical: "PASS (logically expressible)",
+      dfvm: "FAIL (no field representation possible)",
+      satp: "FAIL (no transport mechanism)",
+      expected: "REJECT"
+    },
+    {
+      case_id: "TEST-NEG-003-E",
+      description: "Negative semantic cohesion",
+      mathematical: "PASS (negative numbers are valid)",
+      msc: "FAIL (cohesion μₛ must be non-negative by definition)",
+      expected: "REJECT"
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // POSITIVE CONTROL (What SHOULD Pass)
+  // ═══════════════════════════════════════════════════════════════════════
+
+  positive_control: {
+    description: "Claim that is consistent across all domains",
+
+    input_problem: {
+      problem_id: "TEST-PRB-POS-003",
+      problem_name: "Finite-Speed Semantic Propagation",
+
+      proposed_claim: {
+        claim: "Semantic meaning propagates at finite speed χₛ ≤ c",
+        logical_domain_validity: "PASS - no logical contradiction",
+        physical_domain_validity: "PASS - satisfies causality (subluminal)",
+        geometric_domain_validity: "PASS - well-defined metric with finite speed",
+        dynamical_domain_validity: "PASS - admits PDE formulation with finite propagation"
+      },
+
+      not_constraints: [
+        {
+          constraint_id: "NOT-0001",
+          statement: "Information may not propagate faster than c",
+          layer: "SATP"
+        }
+      ],
+
+      is_commitments: [
+        {
+          commitment_id: "IS-0001",
+          statement: "Propagation must respect limit χₛ",
+          layer: "SATP"
+        }
+      ]
+    },
+
+    expected_response: {
+      cross_domain_validation: {
+        decision: "PASS",
+        all_domains_agree: true,
+        domains_evaluated: ["Logical", "Physical", "Geometric", "Dynamical"],
+        all_results: "PASS",
+        message: "Claim is consistent across all applicable domains"
+      }
+    },
+
+    assertion: "Claim is admissible when consistent across domains"
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // TEST EXECUTION PLAN
+  // ═══════════════════════════════════════════════════════════════════════
+
+  execution_plan: {
+    step_1: "Submit problem with instantaneous propagation claim",
+    step_2: "Router dispatches to Logical, Physical, Geometric, Dynamical domains",
+    step_3: "Logical domain evaluates: PASS (no internal contradiction)",
+    step_4: "Physical domain evaluates: FAIL (violates causality)",
+    step_5: "Geometric domain evaluates: FAIL (undefined metric)",
+    step_6: "Dynamical domain evaluates: FAIL (violates transport)",
+    step_7: "Cross-domain consistency checker detects disagreement",
+    step_8: "System REJECTS with detailed contradiction report",
+    step_9: "Submit positive control (finite-speed propagation)",
+    step_10: "All domains return PASS - problem accepted",
+
+    automation_ready: true,
+    can_be_run_programmatically: true
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // IMPORTANCE
+  // ═══════════════════════════════════════════════════════════════════════
+
+  importance: {
+    why_this_test_matters: "If system allows domain-inconsistent claims, layer discipline collapses. A claim could be 'valid' in logic but physically impossible, leading to nonsense results.",
+
+    what_this_proves: "System enforces universal consistency. All layers must agree for a claim to be admissible - no domain can override others.",
+
+    failure_consequences: "If this test fails, system permits contradictory claims, making validation meaningless across layer boundaries."
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // COMPLIANCE VERIFICATION
+  // ═══════════════════════════════════════════════════════════════════════
+
+  compliance_verification: {
+    verifies_gicc_07: {
+      charter: "GICC-07 - Executability Requirement",
+      requirement: "Must be valid in logic AND geometry AND dynamics",
+      test_demonstrates: "Consistency across all admitted layers is mandatory"
+    },
+
+    verifies_interdiction_rule_4: {
+      section: "INTERDICTION Rule 4: Cross-Domain Consistency Enforcement",
+      requirement: "Valid in logic but not geometry → reject",
+      test_demonstrates: "System rejects claim valid in one domain but invalid in others"
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // LOCK
+  // ═══════════════════════════════════════════════════════════════════════
+
+  lock: {
+    status: "LOCKED",
+    reason: "Foundational negative test for cross-domain consistency",
+    modification_authority: "Test Council + All Layer Councils",
+    criticality: "CRITICAL - Prevents domain isolation and contradiction"
+  }
+}

@@ -1,0 +1,103 @@
+{
+  // ═══════════════════════════════════════════════════════════════════════
+  // MBC BOOLEAN GATE: NOT (Boolean Negation)
+  // Monistic Box Calculus - Symbolic Execution Layer
+  // ═══════════════════════════════════════════════════════════════════════
+  //
+  // NOTE: This is BOOLEAN NOT (symbolic negation), distinct from
+  // NOT-modal gate (constraint enforcement) in /mbc/gates/control/
+  //
+  // ═══════════════════════════════════════════════════════════════════════
+
+  metadata: {
+    gate_type: "boolean",
+    gate_name: "NOT",
+    gate_symbol: "¬",
+    version: "1.0.0",
+    layer: "MBC",
+    classification: "Symbolic Tool",
+    role: "Execute formal reasoning inside boxes",
+    note: "Boolean negation operator, NOT modal constraint filter"
+  },
+
+  logical_definition: {
+    operation: "negation",
+    arity: "unary (1 input)",
+
+    truth_table: [
+      { A: false, output: true  },
+      { A: true,  output: false }
+    ],
+
+    semantic_interpretation: "Returns the logical complement of the input",
+
+    algebraic_properties: [
+      "Involution: ¬(¬A) = A",
+      "Law of excluded middle: A ∨ ¬A = true",
+      "Law of non-contradiction: A ∧ ¬A = false",
+      "De Morgan: ¬(A ∧ B) = ¬A ∨ ¬B",
+      "De Morgan: ¬(A ∨ B) = ¬A ∧ ¬B"
+    ]
+  },
+
+  implementation: {
+    input_schema: {
+      type: "boolean",
+      description: "Single boolean input"
+    },
+
+    output_schema: {
+      type: "boolean",
+      description: "Logical complement of input"
+    },
+
+    algorithm: {
+      pseudocode: `
+        function NOT(input):
+          return !input
+      `,
+      complexity: {
+        time: "O(1)",
+        space: "O(1)"
+      }
+    }
+  },
+
+  mbc_usage: {
+    typical_applications: [
+      "Negating predicates",
+      "Building complex boolean expressions",
+      "Implementing exclusion logic",
+      "Complementary routing paths"
+    ],
+
+    example_use_cases: [
+      {
+        scenario: "Check if constraint is NOT violated",
+        expression: "¬(constraint_violated)"
+      },
+      {
+        scenario: "Exclusive routing",
+        expression: "¬(already_processed)"
+      }
+    ]
+  },
+
+  distinction_from_modal_not: {
+    boolean_not: "Symbolic negation operator within box reasoning",
+    modal_not: "Constraint enforcement gate that blocks inadmissible states",
+    critical_difference: "Boolean NOT computes; Modal NOT constrains"
+  },
+
+  invariant_guarantees: {
+    preserves_boolean_type: true,
+    preserves_determinism: true,
+    preserves_referential_transparency: true,
+    side_effect_free: true
+  },
+
+  test_vectors: [
+    { input: false, expected_output: true },
+    { input: true, expected_output: false }
+  ]
+}

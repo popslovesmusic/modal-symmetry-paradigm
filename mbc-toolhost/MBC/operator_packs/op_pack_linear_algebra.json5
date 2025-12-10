@@ -1,0 +1,487 @@
+{
+  // ═══════════════════════════════════════════════════════════════════════
+  // MBC OPERATOR PACK: Linear Algebra
+  // Monistic Box Calculus - Operator Library
+  // ═══════════════════════════════════════════════════════════════════════
+  //
+  // PURPOSE:
+  // Provides linear algebra operations as symbolic tools for MBC reasoning.
+  // This is the FIRST controlled test of Math Interdiction Profile compliance.
+  //
+  // CRITICAL:
+  // All operators in this pack are classified as [Symbolic Tool] and enter
+  // through MBC Operator Interface. NO ontological or causal claims permitted.
+  //
+  // LAYER: MBC Operator Layer
+  // CLASSIFICATION: Symbolic Tool
+  // ENTRY POINT: MBC Operator Interface
+  //
+  // VERSION: 1.0.0
+  // ═══════════════════════════════════════════════════════════════════════
+
+  metadata: {
+    pack_name: "Linear Algebra Operator Pack",
+    pack_id: "OP-PACK-LINALG-001",
+    version: "1.0.0",
+    classification: "Symbolic Tool",
+    entry_point: "MBC Operator Interface",
+    layer: "MBC",
+    purpose: "Provide linear algebra operations for symbolic reasoning"
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // MATH INTERDICTION COMPLIANCE
+  // ═══════════════════════════════════════════════════════════════════════
+
+  interdiction_compliance: {
+    classification_tag: "Symbolic Tool",
+
+    entry_point_validation: {
+      interface: "MBC Operator Interface",
+      allowed: true,
+      reason: "Linear algebra is symbolic manipulation - valid for MBC layer"
+    },
+
+    forbidden_claims_check: {
+      makes_ontological_claims: false,
+      makes_modal_claims: false,
+      makes_causal_claims: false,
+      overrides_NOT_constraints: false,
+      overrides_IS_commitments: false,
+      replaces_delta_phi_pi: false
+    },
+
+    enforcement_rules_satisfied: {
+      must_be_executable: true,
+      must_preserve_invariants: true,
+      must_terminate: true,
+      no_NOT_violations: true,
+      no_IS_violations: true
+    },
+
+    status: "COMPLIANT with math_interdiction_profile.json5"
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // OPERATOR CATALOG
+  // ═══════════════════════════════════════════════════════════════════════
+
+  operators: {
+
+    // ─────────────────────────────────────────────────────────────────────
+    // VECTOR OPERATIONS
+    // ─────────────────────────────────────────────────────────────────────
+
+    vector_addition: {
+      operator_id: "OP-LA-VADD",
+      operator_name: "Vector Addition",
+      symbol: "+",
+
+      signature: {
+        inputs: [
+          { name: "v1", type: "vector", dimension: "n" },
+          { name: "v2", type: "vector", dimension: "n" }
+        ],
+        output: { type: "vector", dimension: "n" }
+      },
+
+      definition: "Component-wise addition: (v1 + v2)[i] = v1[i] + v2[i]",
+
+      properties: [
+        "Commutative: v1 + v2 = v2 + v1",
+        "Associative: (v1 + v2) + v3 = v1 + (v2 + v3)",
+        "Identity: v + 0 = v",
+        "Inverse: v + (-v) = 0"
+      ],
+
+      implementation_note: "Pure symbolic operation - no physical interpretation assigned",
+
+      complexity: { time: "O(n)", space: "O(n)" }
+    },
+
+    scalar_multiplication: {
+      operator_id: "OP-LA-SMUL",
+      operator_name: "Scalar Multiplication",
+      symbol: "·",
+
+      signature: {
+        inputs: [
+          { name: "c", type: "scalar" },
+          { name: "v", type: "vector", dimension: "n" }
+        ],
+        output: { type: "vector", dimension: "n" }
+      },
+
+      definition: "Scalar multiplication: (c · v)[i] = c * v[i]",
+
+      properties: [
+        "Distributive over vector addition: c · (v1 + v2) = c · v1 + c · v2",
+        "Distributive over scalar addition: (c1 + c2) · v = c1 · v + c2 · v",
+        "Associative: (c1 * c2) · v = c1 · (c2 · v)",
+        "Identity: 1 · v = v"
+      ],
+
+      implementation_note: "Scales vector - no ontological meaning",
+
+      complexity: { time: "O(n)", space: "O(n)" }
+    },
+
+    dot_product: {
+      operator_id: "OP-LA-DOT",
+      operator_name: "Dot Product (Inner Product)",
+      symbol: "⟨·,·⟩",
+
+      signature: {
+        inputs: [
+          { name: "v1", type: "vector", dimension: "n" },
+          { name: "v2", type: "vector", dimension: "n" }
+        ],
+        output: { type: "scalar" }
+      },
+
+      definition: "⟨v1, v2⟩ = Σᵢ v1[i] * v2[i]",
+
+      properties: [
+        "Commutative: ⟨v1, v2⟩ = ⟨v2, v1⟩ (for real vectors)",
+        "Linear in first argument: ⟨c·v1 + w1, v2⟩ = c⟨v1,v2⟩ + ⟨w1,v2⟩",
+        "Positive definite: ⟨v, v⟩ ≥ 0, equality iff v = 0",
+        "Cauchy-Schwarz: |⟨v1,v2⟩| ≤ ||v1|| ||v2||"
+      ],
+
+      use_cases: [
+        "Similarity measure between vectors",
+        "Projection calculations",
+        "Orthogonality testing (dot product = 0)"
+      ],
+
+      no_physical_claim: "Does NOT assert physical distance or causation",
+
+      complexity: { time: "O(n)", space: "O(1)" }
+    },
+
+    vector_norm: {
+      operator_id: "OP-LA-NORM",
+      operator_name: "Vector Norm (Euclidean)",
+      symbol: "||·||",
+
+      signature: {
+        inputs: [
+          { name: "v", type: "vector", dimension: "n" }
+        ],
+        output: { type: "scalar", constraint: "non-negative" }
+      },
+
+      definition: "||v|| = √(⟨v, v⟩) = √(Σᵢ v[i]²)",
+
+      properties: [
+        "Non-negativity: ||v|| ≥ 0",
+        "Definiteness: ||v|| = 0 iff v = 0",
+        "Homogeneity: ||c·v|| = |c| ||v||",
+        "Triangle inequality: ||v1 + v2|| ≤ ||v1|| + ||v2||"
+      ],
+
+      use_cases: [
+        "Magnitude calculation",
+        "Normalization (v / ||v||)",
+        "Distance metrics"
+      ],
+
+      no_ontological_claim: "Computes magnitude - does NOT define what magnitude 'means'",
+
+      complexity: { time: "O(n)", space: "O(1)" }
+    },
+
+    // ─────────────────────────────────────────────────────────────────────
+    // MATRIX OPERATIONS
+    // ─────────────────────────────────────────────────────────────────────
+
+    matrix_addition: {
+      operator_id: "OP-LA-MADD",
+      operator_name: "Matrix Addition",
+      symbol: "+",
+
+      signature: {
+        inputs: [
+          { name: "A", type: "matrix", dimensions: "m×n" },
+          { name: "B", type: "matrix", dimensions: "m×n" }
+        ],
+        output: { type: "matrix", dimensions: "m×n" }
+      },
+
+      definition: "(A + B)[i,j] = A[i,j] + B[i,j]",
+
+      properties: [
+        "Commutative",
+        "Associative",
+        "Identity element (zero matrix)",
+        "Inverse element (negation)"
+      ],
+
+      complexity: { time: "O(mn)", space: "O(mn)" }
+    },
+
+    matrix_multiplication: {
+      operator_id: "OP-LA-MMUL",
+      operator_name: "Matrix Multiplication",
+      symbol: "·",
+
+      signature: {
+        inputs: [
+          { name: "A", type: "matrix", dimensions: "m×n" },
+          { name: "B", type: "matrix", dimensions: "n×p" }
+        ],
+        output: { type: "matrix", dimensions: "m×p" }
+      },
+
+      definition: "(A · B)[i,j] = Σₖ A[i,k] * B[k,j]",
+
+      properties: [
+        "Associative: (AB)C = A(BC)",
+        "Distributive: A(B+C) = AB + AC",
+        "Identity: AI = IA = A",
+        "NOT commutative in general: AB ≠ BA"
+      ],
+
+      use_cases: [
+        "Linear transformations",
+        "Operator composition",
+        "System evolution"
+      ],
+
+      no_causal_claim: "Represents composition - does NOT cause transformations",
+
+      complexity: { time: "O(mnp)", space: "O(mp)" }
+    },
+
+    matrix_transpose: {
+      operator_id: "OP-LA-TRANSPOSE",
+      operator_name: "Matrix Transpose",
+      symbol: "ᵀ",
+
+      signature: {
+        inputs: [
+          { name: "A", type: "matrix", dimensions: "m×n" }
+        ],
+        output: { type: "matrix", dimensions: "n×m" }
+      },
+
+      definition: "(Aᵀ)[i,j] = A[j,i]",
+
+      properties: [
+        "(Aᵀ)ᵀ = A",
+        "(A + B)ᵀ = Aᵀ + Bᵀ",
+        "(AB)ᵀ = Bᵀ Aᵀ (reverses order)",
+        "(cA)ᵀ = c Aᵀ"
+      ],
+
+      complexity: { time: "O(mn)", space: "O(mn)" }
+    },
+
+    matrix_inverse: {
+      operator_id: "OP-LA-INV",
+      operator_name: "Matrix Inverse",
+      symbol: "⁻¹",
+
+      signature: {
+        inputs: [
+          { name: "A", type: "matrix", dimensions: "n×n", constraint: "invertible" }
+        ],
+        output: { type: "matrix", dimensions: "n×n" }
+      },
+
+      definition: "A⁻¹ is the unique matrix such that A · A⁻¹ = A⁻¹ · A = I",
+
+      properties: [
+        "(A⁻¹)⁻¹ = A",
+        "(AB)⁻¹ = B⁻¹ A⁻¹",
+        "(Aᵀ)⁻¹ = (A⁻¹)ᵀ",
+        "det(A⁻¹) = 1/det(A)"
+      ],
+
+      preconditions: [
+        "Matrix must be square (n×n)",
+        "Determinant must be non-zero",
+        "Matrix must be non-singular"
+      ],
+
+      failure_mode: "If matrix is singular, inverse does NOT exist - operation fails",
+
+      complexity: { time: "O(n³)", space: "O(n²)" }
+    },
+
+    // ─────────────────────────────────────────────────────────────────────
+    // EIGENANALYSIS
+    // ─────────────────────────────────────────────────────────────────────
+
+    eigenvalues: {
+      operator_id: "OP-LA-EIGENVAL",
+      operator_name: "Eigenvalue Computation",
+      symbol: "λ(A)",
+
+      signature: {
+        inputs: [
+          { name: "A", type: "matrix", dimensions: "n×n" }
+        ],
+        output: { type: "vector", dimension: "n", note: "May be complex" }
+      },
+
+      definition: "Eigenvalues λ satisfy det(A - λI) = 0",
+
+      properties: [
+        "Trace: Σᵢ λᵢ = tr(A)",
+        "Determinant: Πᵢ λᵢ = det(A)",
+        "Spectral radius: ρ(A) = max |λᵢ|"
+      ],
+
+      use_cases: [
+        "Stability analysis (check if all Re(λ) < 0)",
+        "Spectral properties",
+        "Dominant modes identification"
+      ],
+
+      no_modal_claim: "Computes eigenvalues - does NOT determine what is 'possible'",
+
+      complexity: { time: "O(n³)", space: "O(n²)" }
+    },
+
+    eigenvectors: {
+      operator_id: "OP-LA-EIGENVEC",
+      operator_name: "Eigenvector Computation",
+      symbol: "v(A)",
+
+      signature: {
+        inputs: [
+          { name: "A", type: "matrix", dimensions: "n×n" }
+        ],
+        output: { type: "matrix", dimensions: "n×n", note: "Column vectors are eigenvectors" }
+      },
+
+      definition: "Eigenvectors v satisfy A·v = λ·v for corresponding eigenvalue λ",
+
+      properties: [
+        "Eigenvectors corresponding to distinct eigenvalues are linearly independent",
+        "For symmetric matrices, eigenvectors are orthogonal",
+        "Eigenvectors span invariant subspaces"
+      ],
+
+      use_cases: [
+        "Principal component analysis",
+        "Modal decomposition",
+        "Basis transformations"
+      ],
+
+      complexity: { time: "O(n³)", space: "O(n²)" }
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // USAGE CONSTRAINTS
+  // ═══════════════════════════════════════════════════════════════════════
+
+  usage_constraints: {
+    permitted_uses: [
+      "Symbolic manipulation of vectors and matrices",
+      "Computing transformations within boxes",
+      "Analyzing operator properties",
+      "Solving linear systems",
+      "Performing basis changes"
+    ],
+
+    forbidden_uses: [
+      "Claiming linear algebra 'creates' reality",
+      "Asserting matrices 'cause' physical effects",
+      "Using eigenvalues to define modal possibility",
+      "Treating matrices as ontological entities",
+      "Bypassing NOT/IS constraints via linear algebra"
+    ],
+
+    layer_restrictions: {
+      allowed_at: "MBC",
+      not_allowed_to_override: ["MSP", "MSC"],
+      may_be_used_by: ["DFVM (for geometric representations)", "SATP (for numerical methods)"]
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // INTEGRATION WITH MBC
+  // ═══════════════════════════════════════════════════════════════════════
+
+  mbc_integration: {
+    how_operators_bind: "Linear algebra operators are callable from MBC boxes as pure functions",
+
+    example_usage: {
+      scenario: "Compute semantic projection using dot product",
+      box_state: {
+        semantic_vector_1: "[0.8, 0.6, 0.3]",
+        semantic_vector_2: "[0.5, 0.7, 0.2]"
+      },
+      operation: "dot_product(semantic_vector_1, semantic_vector_2)",
+      result: "0.8*0.5 + 0.6*0.7 + 0.3*0.2 = 0.88",
+      interpretation: "Projection value computed - NO claim that this 'is' similarity, just the number"
+    },
+
+    invariant_preservation: {
+      information_preservation: "Linear operations preserve information (invertible transformations)",
+      determinism: "All operations are deterministic",
+      termination: "All operations terminate in finite time",
+      type_safety: "Dimension mismatches cause errors, not silent failures"
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // VALIDATION & TESTING
+  // ═══════════════════════════════════════════════════════════════════════
+
+  validation: {
+    interdiction_test: {
+      test_name: "Linear Algebra Interdiction Compliance",
+      test_id: "TEST-OP-LA-INTERDICTION",
+
+      checks: [
+        {
+          check: "Classification tag is [Symbolic Tool]",
+          expected: true,
+          actual: true,
+          status: "PASS"
+        },
+        {
+          check: "Enters through MBC Operator Interface",
+          expected: true,
+          actual: true,
+          status: "PASS"
+        },
+        {
+          check: "Makes no ontological claims",
+          expected: false,
+          actual: false,
+          status: "PASS"
+        },
+        {
+          check: "Makes no causal claims",
+          expected: false,
+          actual: false,
+          status: "PASS"
+        },
+        {
+          check: "Preserves all enforcement rules",
+          expected: true,
+          actual: true,
+          status: "PASS"
+        }
+      ],
+
+      verdict: "COMPLIANT - Linear algebra operator pack satisfies all interdiction requirements"
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // LOCK
+  // ═══════════════════════════════════════════════════════════════════════
+
+  lock: {
+    status: "LOCKED",
+    reason: "First controlled test of math interdiction - canonical reference",
+    modification_authority: "MBC Operator Council",
+    extensibility: "Additional linear algebra operators may be added following same pattern"
+  }
+}

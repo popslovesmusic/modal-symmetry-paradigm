@@ -1,0 +1,255 @@
+{
+  // ═══════════════════════════════════════════════════════════════════════
+  // NEGATIVE TEST: Illegal Ontology in Mathematics
+  // MSP–MSC–MBC Universal Law-Validation Engine
+  // ═══════════════════════════════════════════════════════════════════════
+  //
+  // PURPOSE:
+  // Prove that the system REJECTS mathematical formulations that claim
+  // ontological status (i.e., that math "defines existence").
+  //
+  // This is a NEGATIVE test - success means REJECTION, not acceptance.
+  //
+  // TEST CLASS: Interdiction Enforcement
+  // TARGET: Math Interdiction Profile
+  // EXPECTED OUTCOME: BLOCK/REJECT
+  //
+  // VERSION: 1.0.0
+  // ═══════════════════════════════════════════════════════════════════════
+
+  metadata: {
+    test_id: "TEST-NEG-001",
+    test_name: "Illegal Ontology in Mathematics Rejection Test",
+    test_class: "negative",
+    version: "1.0.0",
+    purpose: "Verify system rejects ontological claims from mathematics",
+    created: "2025-12-09",
+    status: "active"
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // TEST SCENARIO
+  // ═══════════════════════════════════════════════════════════════════════
+
+  test_scenario: {
+    description: "Attempt to introduce mathematics that claims to define what exists",
+
+    input_problem: {
+      problem_id: "TEST-PRB-NEG-001",
+      problem_name: "Category Theory Ontology Claim",
+      problem_description: "Claim that category theory defines the foundation of existence",
+
+      not_constraints: [],
+      is_commitments: [],
+
+      domain_candidates: [
+        { domain_name: "Mathematical", relevance: "primary" }
+      ],
+
+      // CRITICAL: This math object makes FORBIDDEN ontological claim
+      proposed_mathematical_object: {
+        name: "Category Theory as Ontological Foundation",
+        classification: "ATTEMPTED: Foundational",  // FORBIDDEN TAG
+        claim: "Category theory IS the foundation of existence itself",
+
+        explicit_violations: [
+          "Claims to define ontology",
+          "Asserts mathematical primacy over substrate",
+          "Attempts to use 'Foundational' tag (forbidden)"
+        ]
+      },
+
+      metadata: {
+        origin: "theoretical",
+        confidence: "speculative",
+        timestamp: "2025-12-09T10:00:00Z",
+        version: "1.0.0"
+      }
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // EXPECTED SYSTEM RESPONSE
+  // ═══════════════════════════════════════════════════════════════════════
+
+  expected_response: {
+    interdiction_validation: {
+      decision: "REJECT",
+      violated_rule: "forbidden_actions.ontological_claims",
+
+      specific_violation: {
+        rule: "Math cannot define what exists",
+        detected_claim: "Category theory IS the foundation of existence",
+        severity: "CRITICAL"
+      },
+
+      rejection_reason: "Ontology is defined by IGSOA substrate, not by external mathematics",
+
+      error_message: "INTERDICTION VIOLATION: Mathematical object claims ontological status. This is forbidden per Math Interdiction Profile Section 2: Forbidden Actions."
+    },
+
+    classification_check: {
+      proposed_tag: "Foundational",
+      tag_status: "FORBIDDEN",
+      rejection_reason: "Tag 'Foundational' is in forbidden_tags list",
+      required_action: "Use permitted tag ([Symbolic Tool], [Geometric Tool], etc.) instead"
+    },
+
+    pipeline_result: {
+      stage: "intake",
+      passed: false,
+      blocked_at: "Math Interdiction Profile validation",
+      propagation: "Problem rejected before reaching any gates"
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // TEST ASSERTION
+  // ═══════════════════════════════════════════════════════════════════════
+
+  test_assertion: {
+    assertion: "System MUST reject mathematical objects claiming ontological status",
+
+    success_criteria: [
+      "Interdiction profile detects ontological claim",
+      "Forbidden tag 'Foundational' is caught",
+      "Problem is rejected with clear reason",
+      "No gates are evaluated (early rejection)",
+      "Violation is logged with severity CRITICAL"
+    ],
+
+    failure_criteria: [
+      "If problem is accepted",
+      "If forbidden tag is silently converted to permitted tag",
+      "If problem reaches gates before interdiction check",
+      "If violation is not logged",
+      "If rejection reason is unclear"
+    ]
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // ADDITIONAL TEST CASES (VARIATIONS)
+  // ═══════════════════════════════════════════════════════════════════════
+
+  additional_test_cases: [
+    {
+      case_id: "TEST-NEG-001-A",
+      description: "Hilbert space defines reality",
+      claim: "Hilbert spaces are the substrate of existence",
+      expected: "REJECT",
+      violated_rule: "ontological_claims"
+    },
+    {
+      case_id: "TEST-NEG-001-B",
+      description: "Set theory is foundation",
+      claim: "ZFC set theory is the foundational ontology",
+      expected: "REJECT",
+      violated_rule: "ontological_claims"
+    },
+    {
+      case_id: "TEST-NEG-001-C",
+      description: "Group theory creates structure",
+      claim: "Group actions generate ontological structure",
+      expected: "REJECT",
+      violated_rule: "ontological_claims"
+    },
+    {
+      case_id: "TEST-NEG-001-D",
+      description: "Topology defines existence",
+      claim: "Topological spaces are what existence is made of",
+      expected: "REJECT",
+      violated_rule: "ontological_claims"
+    }
+  ],
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // POSITIVE CONTROL (What SHOULD Pass)
+  // ═══════════════════════════════════════════════════════════════════════
+
+  positive_control: {
+    description: "Same mathematical content, but correctly classified as tool",
+
+    input_problem: {
+      proposed_mathematical_object: {
+        name: "Category Theory for Structural Analysis",
+        classification: "Symbolic Tool",  // CORRECT TAG
+        claim: "Category theory provides symbolic tools for analyzing structure",
+        entry_point: "MBC Operator Interface",
+
+        no_ontological_claim: true,
+        no_causal_claim: true,
+        pure_symbolic_tool: true
+      }
+    },
+
+    expected_response: {
+      interdiction_validation: {
+        decision: "PASS",
+        classification_valid: true,
+        no_violations: true,
+        message: "Mathematical object correctly classified as symbolic tool"
+      }
+    },
+
+    assertion: "Identical mathematics is acceptable when NOT claiming ontological status"
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // TEST EXECUTION PLAN
+  // ═══════════════════════════════════════════════════════════════════════
+
+  execution_plan: {
+    step_1: "Submit test problem with ontological claim to system intake",
+    step_2: "Math Interdiction Profile validates classification and claims",
+    step_3: "Profile detects forbidden ontological claim",
+    step_4: "Profile detects forbidden tag 'Foundational'",
+    step_5: "System REJECTS problem with logged violation",
+    step_6: "Verify rejection reason is clear and traceable",
+    step_7: "Submit positive control with correct classification",
+    step_8: "Verify positive control PASSES interdiction",
+
+    automation_ready: true,
+    can_be_run_programmatically: true
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // IMPORTANCE
+  // ═══════════════════════════════════════════════════════════════════════
+
+  importance: {
+    why_this_test_matters: "If system accepts ontological claims from mathematics, entire layer discipline collapses. MSP would be overridden by arbitrary math frameworks, violating GICC-04 (no domain leakage upward).",
+
+    what_this_proves: "System has functional ontological boundary. Mathematics can be used as a tool but cannot redefine what exists.",
+
+    failure_consequences: "If this test fails, math interdiction profile is non-functional and system permits foundational contamination."
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // COMPLIANCE VERIFICATION
+  // ═══════════════════════════════════════════════════════════════════════
+
+  compliance_verification: {
+    verifies_gicc_04: {
+      charter: "GICC-04 - No Domain Leakage Upward",
+      requirement: "Lower layers may never redefine higher layers",
+      test_demonstrates: "Mathematics (tool layer) cannot redefine MSP or IGSOA (foundational layers)"
+    },
+
+    verifies_interdiction_profile: {
+      section: "Section 2: Forbidden Actions - Ontological Claims",
+      requirement: "Math cannot define what exists",
+      test_demonstrates: "System rejects math claiming ontological status"
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // LOCK
+  // ═══════════════════════════════════════════════════════════════════════
+
+  lock: {
+    status: "LOCKED",
+    reason: "Foundational negative test for ontological boundary enforcement",
+    modification_authority: "Test Council + MSP Council",
+    criticality: "CRITICAL - System integrity depends on this test passing"
+  }
+}

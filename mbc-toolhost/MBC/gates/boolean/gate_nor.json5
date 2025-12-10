@@ -1,0 +1,92 @@
+{
+  // ═══════════════════════════════════════════════════════════════════════
+  // MBC BOOLEAN GATE: NOR (NOT-OR)
+  // Monistic Box Calculus - Symbolic Execution Layer
+  // ═══════════════════════════════════════════════════════════════════════
+
+  metadata: {
+    gate_type: "boolean",
+    gate_name: "NOR",
+    gate_symbol: "↓",
+    version: "1.0.0",
+    layer: "MBC",
+    classification: "Symbolic Tool",
+    role: "Execute formal reasoning inside boxes",
+    note: "Functionally complete - can build all other gates from NOR alone"
+  },
+
+  logical_definition: {
+    operation: "negated disjunction",
+    arity: "n-ary (minimum 2 inputs)",
+    composition: "¬(A ∨ B)",
+
+    truth_table_binary: [
+      { A: false, B: false, output: true  },
+      { A: false, B: true,  output: false },
+      { A: true,  B: false, output: false },
+      { A: true,  B: true,  output: false }
+    ],
+
+    semantic_interpretation: "Returns true if ALL inputs are false, otherwise false",
+
+    algebraic_properties: [
+      "Functional completeness: Can construct all boolean functions from NOR",
+      "NOT via NOR: ¬A = A ↓ A",
+      "OR via NOR: A ∨ B = (A ↓ B) ↓ (A ↓ B)",
+      "AND via NOR: A ∧ B = (A ↓ A) ↓ (B ↓ B)",
+      "Peirce arrow: Named after Charles Sanders Peirce"
+    ]
+  },
+
+  implementation: {
+    input_schema: {
+      type: "array",
+      minItems: 2,
+      items: { type: "boolean" }
+    },
+
+    output_schema: {
+      type: "boolean"
+    },
+
+    algorithm: {
+      pseudocode: `
+        function NOR(inputs):
+          return NOT(OR(inputs))
+      `,
+      complexity: {
+        time: "O(n)",
+        space: "O(1)"
+      }
+    }
+  },
+
+  mbc_usage: {
+    typical_applications: [
+      "Testing for complete absence of conditions",
+      "Universal gate construction (alternative to NAND)",
+      "Default/fallback logic",
+      "Simultaneous negation checks"
+    ],
+
+    functional_completeness: {
+      description: "NOR is functionally complete for boolean logic",
+      implication: "Like NAND, entire boolean layer could be built from NOR",
+      duality: "NOR and NAND are duals under De Morgan's laws"
+    }
+  },
+
+  invariant_guarantees: {
+    preserves_boolean_type: true,
+    preserves_determinism: true,
+    preserves_referential_transparency: true,
+    side_effect_free: true
+  },
+
+  test_vectors: [
+    { inputs: [false, false], expected_output: true },
+    { inputs: [false, true], expected_output: false },
+    { inputs: [true, false], expected_output: false },
+    { inputs: [true, true], expected_output: false }
+  ]
+}

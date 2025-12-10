@@ -1,0 +1,420 @@
+//==============================================================================
+// IGSOA LAYER MANIFEST
+//==============================================================================
+//
+// Layer: IGSOA (Informational Ground State Ontology & Asymmetry)
+// Purpose: Ontological grounding layer - defines what exists and what doesn't
+// Position: Layer 4 in the 6-layer stack (MSP > MSC > MBC > IGSOA > DFVM > SATP)
+//
+// KEY PRINCIPLE:
+//   Ontology is NOT defined by mathematics.
+//   Mathematics is a TOOL that operates WITHIN the ontology defined here.
+//
+// CORE STRUCTURE: δ-Φ-Π Operators
+//   - δ (Deviation): Fundamental difference/asymmetry operator
+//   - Φ (Projection): Mapping into modal/semantic space
+//   - Π (Evaluation/Memory): Consistency testing and memory
+//
+// Version: 1.0.0
+// Date: 2025-12-10
+// Status: Phase 2 - In Development
+//
+//==============================================================================
+
+{
+  metadata: {
+    layer_name: "IGSOA",
+    layer_id: "L4-IGSOA",
+    full_name: "Informational Ground State Ontology & Asymmetry",
+    version: "1.0.0",
+    status: "Phase 2 - In Development",
+
+    position_in_hierarchy: {
+      level: 4,
+      constrained_by: ["MSP", "MSC", "MBC"],
+      constrains: ["DFVM", "SATP"],
+      override_flow: "downward_only"
+    }
+  },
+
+  //============================================================================
+  // LAYER PURPOSE & SCOPE
+  //============================================================================
+
+  purpose: {
+    primary_role: "Ontological grounding - defines what exists",
+
+    responsibilities: [
+      "Define existence criteria (what counts as 'real' in the system)",
+      "Provide fundamental asymmetry via δ operator",
+      "Map symbolic structures (MBC) into geometric structures (DFVM)",
+      "Enforce identity and difference relationships",
+      "Ground all higher-layer abstractions in substrate reality"
+    ],
+
+    what_this_layer_does_NOT_do: [
+      "Does NOT define possibility/necessity (that's MSP)",
+      "Does NOT define stability/cohesion (that's MSC)",
+      "Does NOT perform logical computation (that's MBC)",
+      "Does NOT represent geometric fields (that's DFVM)",
+      "Does NOT simulate dynamics (that's SATP)",
+      "Does NOT allow mathematics to define ontology (per interdiction)"
+    ]
+  },
+
+  //============================================================================
+  // CORE OPERATORS: δ-Φ-Π STRUCTURE
+  //============================================================================
+
+  core_operators: {
+    overview: "The δ-Φ-Π structure is the foundational triad of IGSOA",
+
+    delta_operator: {
+      symbol: "δ",
+      name: "Deviation",
+      tier: "Tier 01 (foundational)",
+      role: "Fundamental difference and asymmetry operator",
+      specification_file: "operator_delta.json5",
+
+      conceptual_definition: [
+        "δ measures difference between states",
+        "δ is the source of all asymmetry in the system",
+        "δ enables identity: A = B if and only if δ(A,B) = 0",
+        "δ grounds all higher operators (cannot be derived from anything else)"
+      ],
+
+      properties: [
+        "Non-negativity: δ(A,B) ≥ 0",
+        "Symmetry: δ(A,B) = δ(B,A)",
+        "Identity of indiscernibles: δ(A,B) = 0 ⟺ A = B",
+        "Triangle inequality: δ(A,C) ≤ δ(A,B) + δ(B,C)"
+      ]
+    },
+
+    phi_operator: {
+      symbol: "Φ",
+      name: "Projection",
+      tier: "Tier 02 (mapping)",
+      role: "Projects symbolic structures into modal/semantic space",
+      specification_file: "operator_phi.json5",
+
+      conceptual_definition: [
+        "Φ maps MBC symbolic structures into DFVM geometric structures",
+        "Φ preserves identity relationships defined by δ",
+        "Φ enables geometric representation of meaning",
+        "Φ is the bridge from logic (MBC) to geometry (DFVM)"
+      ],
+
+      properties: [
+        "Structure-preserving: If δ(A,B) = 0, then Φ(A) = Φ(B)",
+        "Continuity: Small δ implies small geometric distance",
+        "Invertibility: Φ has a pseudo-inverse (can recover symbolic from geometric)",
+        "Constrained by MSP/MSC: Preserves modal and stability constraints"
+      ]
+    },
+
+    pi_operator: {
+      symbol: "Π",
+      name: "Evaluation / Memory",
+      tier: "Tier 03 (consistency)",
+      role: "Tests consistency and maintains system memory",
+      specification_file: "operator_pi.json5",
+
+      conceptual_definition: [
+        "Π evaluates whether a state is consistent with prior states",
+        "Π maintains system memory of past configurations",
+        "Π enforces temporal coherence across state transitions",
+        "Π connects to Stability gate (MSC) for structural consistency"
+      ],
+
+      properties: [
+        "Reflexivity: Π(A,A) = 1 (state is consistent with itself)",
+        "Temporal ordering: Π respects causal precedence",
+        "Memory decay: Π may weight recent states more heavily",
+        "Violation detection: Π(A,B) = 0 signals inconsistency"
+      ]
+    }
+  },
+
+  //============================================================================
+  // SUBSTRATE DEFINITION
+  //============================================================================
+
+  substrate: {
+    overview: "The substrate is the 'ground floor' - what ontologically exists before any mathematics",
+    specification_file: "substrate_rules.json5",
+
+    substrate_principles: [
+      "The substrate is informationally grounded (not materially grounded)",
+      "The substrate is asymmetric (δ ≠ 0 in general)",
+      "The substrate has no inherent metric (metric comes from DFVM)",
+      "The substrate is what δ-Φ-Π operators operate ON"
+    ],
+
+    relationship_to_mathematics: {
+      status: "Mathematics describes substrate, does NOT define substrate",
+      interdiction_compliance: "REQUIRED",
+
+      forbidden: [
+        "Mathematical objects claiming to BE the substrate",
+        "Set theory claiming ontological primacy",
+        "Category theory claiming foundational status",
+        "Any math claiming to generate existence"
+      ],
+
+      permitted: [
+        "Mathematics as a tool to DESCRIBE substrate properties",
+        "Geometry as a tool to REPRESENT substrate structure (DFVM)",
+        "Dynamics as a tool to SIMULATE substrate evolution (SATP)"
+      ]
+    }
+  },
+
+  //============================================================================
+  // LAYER BINDINGS
+  //============================================================================
+
+  layer_bindings: {
+    overview: "How IGSOA connects to adjacent layers",
+
+    binding_to_mbc_above: {
+      direction: "receives_constraints_from_MBC",
+      specification_file: "binding_igsoa_to_mbc.json5",
+
+      what_MBC_provides: [
+        "Symbolic problem representations (from problem objects)",
+        "Executability constraints (from Executability gate)",
+        "Logical consistency requirements",
+        "Boolean gate results (truth values)"
+      ],
+
+      what_IGSOA_provides_back: [
+        "Ontological grounding for symbols",
+        "Existence criteria for logical entities",
+        "δ-based identity relationships",
+        "Validation that symbols refer to real substrate states"
+      ],
+
+      key_principle: "MBC symbols must map to IGSOA substrate states via Φ"
+    },
+
+    binding_to_dfvm_below: {
+      direction: "constrains_DFVM",
+      specification_file: "binding_igsoa_to_dfvm.json5",
+
+      what_IGSOA_provides: [
+        "Ontologically grounded states to be geometrically represented",
+        "δ operator (becomes metric in DFVM)",
+        "Φ projection (defines coordinate charts in DFVM)",
+        "Identity relationships to be preserved"
+      ],
+
+      what_DFVM_provides_back: [
+        "Geometric representation (scalar/vector/tensor fields)",
+        "Metric structure derived from δ",
+        "Curvature (semantic bias) λ",
+        "Field configurations representing substrate states"
+      ],
+
+      key_principle: "DFVM geometry must be compatible with IGSOA δ-Φ-Π structure"
+    }
+  },
+
+  //============================================================================
+  // ONTOLOGICAL ENFORCEMENT RULES
+  //============================================================================
+
+  ontological_enforcement: {
+    overview: "How IGSOA enforces 'what exists' vs 'what doesn't'",
+
+    existence_criteria: {
+      definition: "An entity exists in IGSOA if and only if:",
+
+      criteria: [
+        "1. It has a well-defined δ-distance from at least one substrate state",
+        "2. It can be mapped via Φ into geometric space (DFVM)",
+        "3. It is consistent with Π memory (not contradicting past states)",
+        "4. It satisfies all MSP NOT constraints (not forbidden to exist)",
+        "5. It satisfies all MSP IS commitments (required to exist if committed)",
+        "6. It is stable under MSC cohesion (has identity persistence)",
+        "7. It is executable under MBC rules (symbolically consistent)"
+      ],
+
+      rejection_reasons: [
+        "Cannot define δ-distance (no substrate grounding)",
+        "Cannot be Φ-projected (no geometric realization)",
+        "Violates Π consistency (contradicts history)",
+        "Blocked by NOT constraint",
+        "Missing required IS commitment",
+        "Unstable (no identity)",
+        "Non-executable (logical contradiction)"
+      ]
+    },
+
+    anti_mathematical_primacy: {
+      principle: "Mathematics does NOT define what exists",
+
+      examples_of_violations: [
+        {
+          violation: "Claiming set theory defines ontology",
+          why_forbidden: "Sets are a TOOL to organize substrate, not the substrate itself",
+          correct_usage: "Use sets to DESCRIBE substrate collections, labeled as [Symbolic Tool]"
+        },
+        {
+          violation: "Claiming category theory is the foundation",
+          why_forbidden: "Categories are a TOOL to relate substrate objects, not the objects themselves",
+          correct_usage: "Use categories to MAP substrate relationships, labeled as [Geometric Tool]"
+        },
+        {
+          violation: "Claiming numbers exist independently",
+          why_forbidden: "Numbers are symbolic representations (MBC) of substrate quantities",
+          correct_usage: "Numbers represent cardinality/magnitude of substrate states"
+        }
+      ],
+
+      enforcement_mechanism: "All mathematical objects must pass interdiction check before entering IGSOA"
+    }
+  },
+
+  //============================================================================
+  // VALIDATION INTEGRATION
+  //============================================================================
+
+  validation_integration: {
+    position_in_pipeline: "After MBC Executability gate, before DFVM field validation",
+
+    validation_steps: [
+      {
+        step: 1,
+        name: "Substrate Grounding Check",
+        question: "Does the problem reference ontologically grounded entities?",
+        pass_condition: "All entities have substrate correspondence",
+        fail_action: "REJECT - ungrounded entities"
+      },
+      {
+        step: 2,
+        name: "δ-Distance Definability",
+        question: "Can we define δ-distances between all referenced states?",
+        pass_condition: "δ(A,B) is well-defined for all A,B",
+        fail_action: "REJECT - undefined differences"
+      },
+      {
+        step: 3,
+        name: "Φ-Projectability",
+        question: "Can symbolic structures be Φ-projected into geometric space?",
+        pass_condition: "Φ mapping exists and preserves identity",
+        fail_action: "REJECT - cannot geometrize"
+      },
+      {
+        step: 4,
+        name: "Π-Consistency",
+        question: "Is the problem consistent with system memory?",
+        pass_condition: "Π(current, history) ≥ threshold",
+        fail_action: "REJECT - historical contradiction"
+      }
+    ]
+  },
+
+  //============================================================================
+  // FILES IN THIS LAYER
+  //============================================================================
+
+  layer_files: {
+    total_files: 7,
+
+    files: [
+      {
+        file_name: "igsoa_manifest.json5",
+        purpose: "This file - layer overview and specification",
+        status: "In development"
+      },
+      {
+        file_name: "operator_delta.json5",
+        purpose: "δ (Deviation) operator - fundamental difference",
+        status: "Pending"
+      },
+      {
+        file_name: "operator_phi.json5",
+        purpose: "Φ (Projection) operator - symbolic-to-geometric mapping",
+        status: "Pending"
+      },
+      {
+        file_name: "operator_pi.json5",
+        purpose: "Π (Evaluation/Memory) operator - consistency testing",
+        status: "Pending"
+      },
+      {
+        file_name: "substrate_rules.json5",
+        purpose: "Substrate definition and existence rules",
+        status: "Pending"
+      },
+      {
+        file_name: "binding_igsoa_to_mbc.json5",
+        purpose: "Interface to MBC layer above",
+        status: "Pending"
+      },
+      {
+        file_name: "binding_igsoa_to_dfvm.json5",
+        purpose: "Interface to DFVM layer below",
+        status: "Pending"
+      }
+    ]
+  },
+
+  //============================================================================
+  // COMPLIANCE
+  //============================================================================
+
+  compliance: {
+    interdiction_status: "COMPLIANT",
+
+    interdiction_checklist: {
+      makes_ontological_claims: true,  // YES - This layer DOES define ontology (authorized)
+      makes_modal_claims: false,       // NO - Modal claims are MSP only
+      makes_causal_claims: false,      // NO - Causal dynamics are SATP only
+      overrides_NOT_constraints: false,
+      overrides_IS_commitments: false,
+      replaces_delta_phi_pi: false     // This layer DEFINES δ-Φ-Π
+    },
+
+    layer_discipline: {
+      receives_constraints_from: ["MSP", "MSC", "MBC"],
+      imposes_constraints_on: ["DFVM", "SATP"],
+      never_overrides: ["MSP", "MSC", "MBC"],
+      always_enforces: "Ontological grounding for all layers below"
+    },
+
+    gicc_compliance: {
+      "GICC-01": "COMPLIANT - IGSOA is domain-neutral (governs ontology for all domains)",
+      "GICC-02": "COMPLIANT - IGSOA validates, does not solve",
+      "GICC-03": "COMPLIANT - IGSOA does not generate answers",
+      "GICC-04": "COMPLIANT - IGSOA never redefines MSP/MSC/MBC",
+      "GICC-05": "COMPLIANT - IGSOA enforces explicit NOT/IS from MSP",
+      "GICC-06": "COMPLIANT - IGSOA respects hierarchy and pipeline",
+      "GICC-07": "COMPLIANT - IGSOA bridges symbolic and geometric executability",
+      "GICC-08": "COMPLIANT - IGSOA supports general problem routing"
+    }
+  },
+
+  //============================================================================
+  // NEXT STEPS
+  //============================================================================
+
+  implementation_status: {
+    current_phase: "Phase 2 - IGSOA Layer Development",
+
+    completed: [
+      "IGSOA manifest (this file)"
+    ],
+
+    next_tasks: [
+      "Define δ operator specification",
+      "Define Φ operator specification",
+      "Define Π operator specification",
+      "Define substrate rules",
+      "Create MBC binding",
+      "Create DFVM binding",
+      "Test with Phase 1 problem objects"
+    ]
+  }
+}

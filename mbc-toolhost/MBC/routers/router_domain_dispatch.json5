@@ -1,0 +1,512 @@
+{
+  // ═══════════════════════════════════════════════════════════════════════
+  // MBC ROUTER: Domain Dispatch
+  // Monistic Box Calculus - Routing Layer
+  // ═══════════════════════════════════════════════════════════════════════
+  //
+  // PURPOSE:
+  // Routes validated boxes to appropriate domain-specific processing paths.
+  // This is the PRIMARY router that determines "where does this problem go next?"
+  //
+  // CRITICAL: Router does NOT solve problems - it only dispatches to domains
+  // that MAY be able to process them further.
+  //
+  // ROLE: Constrained dispatcher
+  // LAYER: MBC Routing
+  // CLASS: Domain Router
+  //
+  // VERSION: 1.0.0
+  // ═══════════════════════════════════════════════════════════════════════
+
+  metadata: {
+    router_type: "domain_dispatch",
+    router_name: "Domain Dispatch Router",
+    version: "1.0.0",
+    layer: "MBC",
+    purpose: "Route boxes to domain-specific processing",
+    classification: "Routing Tool",
+    role: "Determine admissible domain targets"
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // ROUTER DEFINITION
+  // ═══════════════════════════════════════════════════════════════════════
+
+  router_definition: {
+    purpose: "Determine which domain(s) a validated box should be routed to",
+
+    input: {
+      type: "object",
+      required: ["box", "validation_state", "domain_candidates"],
+      schema: {
+        box: "Box object that has passed all gates",
+        validation_state: {
+          gates_passed: "List of gates successfully passed",
+          constraints_satisfied: "NOT/IS constraints that are satisfied",
+          stability_confirmed: "Stability analysis result",
+          executability_confirmed: "Executability analysis result"
+        },
+        domain_candidates: "Domain candidates from problem object",
+        routing_context: "Additional context for routing decision"
+      }
+    },
+
+    output: {
+      type: "object",
+      schema: {
+        decision: {
+          type: "string",
+          enum: ["ROUTE", "MULTI_ROUTE", "NO_VALID_ROUTE", "DEFER"],
+          description: "Routing decision type"
+        },
+        target_domains: {
+          type: "array",
+          items: {
+            domain_name: "string",
+            priority: "number (1-10, 10 = highest)",
+            rationale: "string"
+          },
+          description: "Ordered list of domain targets"
+        },
+        routing_metadata: {
+          confidence: "Confidence in routing decision",
+          ambiguity: "Whether multiple domains equally applicable",
+          fallback_domains: "Backup domains if primary fails"
+        }
+      }
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // SUPPORTED DOMAINS
+  // ═══════════════════════════════════════════════════════════════════════
+
+  supported_domains: {
+    mathematical: {
+      domain_id: "DOM-MATH",
+      domain_name: "Mathematical",
+      description: "Problems requiring mathematical formalization, proofs, or analysis",
+
+      typical_characteristics: [
+        "Requires formal proof",
+        "Involves symbolic manipulation",
+        "Needs quantitative analysis",
+        "Deals with abstract structures (groups, spaces, categories)"
+      ],
+
+      routing_triggers: [
+        "Problem explicitly references mathematical objects",
+        "Requires numerical computation",
+        "Needs theorem proving",
+        "Involves optimization or extremization"
+      ],
+
+      downstream_layers: ["IGSOA (optional)", "DFVM (if geometric)", "SATP (if dynamical)"]
+    },
+
+    logical: {
+      domain_id: "DOM-LOGIC",
+      domain_name: "Logical",
+      description: "Problems requiring formal logical reasoning or deduction",
+
+      typical_characteristics: [
+        "Involves propositional or predicate logic",
+        "Requires proof by contradiction or induction",
+        "Deals with logical consistency",
+        "Needs formal verification"
+      ],
+
+      routing_triggers: [
+        "Problem is stated as logical premises and conclusions",
+        "Requires satisfiability checking",
+        "Needs logical equivalence proofs",
+        "Involves modal logic"
+      ],
+
+      downstream_layers: ["MBC boolean gates", "Rewrite systems"]
+    },
+
+    physical: {
+      domain_id: "DOM-PHYS",
+      domain_name: "Physical",
+      description: "Problems involving physical systems, dynamics, or field theories",
+
+      typical_characteristics: [
+        "Involves spacetime, matter, energy, or fields",
+        "Requires conservation laws",
+        "Needs causal structure",
+        "Deals with measurement or observation"
+      ],
+
+      routing_triggers: [
+        "Problem references physical quantities or units",
+        "Requires field equations or transport dynamics",
+        "Involves physical causality",
+        "Needs experimental validation"
+      ],
+
+      downstream_layers: ["IGSOA", "DFVM", "SATP"]
+    },
+
+    cognitive: {
+      domain_id: "DOM-COG",
+      domain_name: "Cognitive",
+      description: "Problems involving meaning, semantics, belief, or mental states",
+
+      typical_characteristics: [
+        "Involves semantic content or meaning",
+        "Deals with beliefs, concepts, or mental representations",
+        "Requires perspective or observer-dependence",
+        "Needs coherence or consistency of understanding"
+      ],
+
+      routing_triggers: [
+        "Problem involves semantic fields or meaning spaces",
+        "References belief systems or cognitive structures",
+        "Deals with understanding or interpretation",
+        "Involves multi-agent perspectives"
+      ],
+
+      downstream_layers: ["IGSOA", "DFVM (semantic geometry)", "SATP (semantic dynamics)"]
+    },
+
+    computational: {
+      domain_id: "DOM-COMP",
+      domain_name: "Computational",
+      description: "Problems requiring algorithmic solutions or computational methods",
+
+      typical_characteristics: [
+        "Involves algorithms or data structures",
+        "Requires computational complexity analysis",
+        "Needs simulation or numerical methods",
+        "Deals with computability or decidability"
+      ],
+
+      routing_triggers: [
+        "Problem asks for algorithm design",
+        "Requires simulation or Monte Carlo methods",
+        "Needs complexity bounds (P, NP, etc.)",
+        "Involves computational implementation"
+      ],
+
+      downstream_layers: ["MBC execution", "SATP (simulation)"]
+    },
+
+    social: {
+      domain_id: "DOM-SOCIAL",
+      domain_name: "Social",
+      description: "Problems involving multi-agent systems, consensus, or collective dynamics",
+
+      typical_characteristics: [
+        "Involves multiple interacting agents",
+        "Deals with consensus, conflict, or coordination",
+        "Requires game-theoretic or strategic analysis",
+        "Needs social dynamics or network effects"
+      ],
+
+      routing_triggers: [
+        "Problem involves multiple perspectives or agents",
+        "Requires collective decision-making",
+        "Deals with communication or information flow",
+        "Involves polarization, echo chambers, or alignment"
+      ],
+
+      downstream_layers: ["Multi-agent semantics", "DFVM (social geometry)", "SATP (collective dynamics)"]
+    },
+
+    biological: {
+      domain_id: "DOM-BIO",
+      domain_name: "Biological",
+      description: "Problems involving living systems, evolution, or information processing in biology",
+
+      typical_characteristics: [
+        "Involves organisms, cells, or biological processes",
+        "Deals with evolution, adaptation, or selection",
+        "Requires energy flow or metabolic analysis",
+        "Needs biological information processing"
+      ],
+
+      routing_triggers: [
+        "Problem references biological entities or processes",
+        "Requires evolutionary or adaptive dynamics",
+        "Deals with biological networks or signaling",
+        "Involves genetic or epigenetic information"
+      ],
+
+      downstream_layers: ["IGSOA", "DFVM", "SATP"]
+    },
+
+    engineering: {
+      domain_id: "DOM-ENG",
+      domain_name: "Engineering",
+      description: "Problems involving design, optimization, or system implementation",
+
+      typical_characteristics: [
+        "Involves design constraints and objectives",
+        "Requires optimization under constraints",
+        "Deals with system reliability or robustness",
+        "Needs practical implementation considerations"
+      ],
+
+      routing_triggers: [
+        "Problem asks for design or optimization",
+        "Requires constraint satisfaction",
+        "Deals with trade-offs or Pareto frontiers",
+        "Involves hardware or software implementation"
+      ],
+
+      downstream_layers: ["Optimization methods", "SATP (simulation and testing)"]
+    },
+
+    philosophical: {
+      domain_id: "DOM-PHIL",
+      domain_name: "Philosophical",
+      description: "Problems involving ontology, epistemology, or foundational questions",
+
+      typical_characteristics: [
+        "Deals with fundamental nature of reality or knowledge",
+        "Requires conceptual analysis or clarification",
+        "Involves normative or value-based reasoning",
+        "Needs meta-level reflection"
+      ],
+
+      routing_triggers: [
+        "Problem asks 'what is' or 'what can be known'",
+        "Requires disambiguation of concepts",
+        "Deals with possibility, necessity, or contingency",
+        "Involves ethical or aesthetic considerations"
+      ],
+
+      downstream_layers: ["MSP (modal analysis)", "Conceptual clarification"]
+    },
+
+    abstract: {
+      domain_id: "DOM-ABSTRACT",
+      domain_name: "Abstract",
+      description: "Problems not fitting into specific domains - pure structural reasoning",
+
+      typical_characteristics: [
+        "Domain-agnostic",
+        "Purely structural or relational",
+        "No commitment to specific interpretation",
+        "Universally applicable patterns"
+      ],
+
+      routing_triggers: [
+        "Problem is completely domain-neutral",
+        "Requires only structural analysis",
+        "No specific domain markers present"
+      ],
+
+      downstream_layers: ["General rewrite systems", "Category-theoretic methods"]
+    },
+
+    cross_domain: {
+      domain_id: "DOM-CROSS",
+      domain_name: "Cross-Domain",
+      description: "Problems spanning multiple domains simultaneously",
+
+      typical_characteristics: [
+        "Requires integration across domains",
+        "Deals with correspondences or analogies between domains",
+        "Needs multi-domain consistency",
+        "Involves translation between representations"
+      ],
+
+      routing_triggers: [
+        "Problem explicitly spans multiple domains",
+        "Requires verification across domain boundaries",
+        "Deals with inter-domain mappings"
+      ],
+
+      downstream_layers: ["All applicable domain layers", "Cross-domain consistency checking"]
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // ROUTING ALGORITHM
+  // ═══════════════════════════════════════════════════════════════════════
+
+  routing_algorithm: {
+    description: "Determine best domain match based on box characteristics",
+
+    pseudocode: `
+      function ROUTE_TO_DOMAIN(box, validation_state, domain_candidates):
+        domain_scores = {}
+
+        // Step 1: Score each candidate domain
+        for each candidate in domain_candidates:
+          domain = LOOKUP_DOMAIN(candidate.domain_name)
+          score = 0
+
+          // Check routing triggers
+          for each trigger in domain.routing_triggers:
+            if TRIGGER_MATCHES(box, trigger):
+              score += TRIGGER_WEIGHT
+
+          // Check characteristics
+          for each char in domain.typical_characteristics:
+            if BOX_HAS_CHARACTERISTIC(box, char):
+              score += CHARACTERISTIC_WEIGHT
+
+          // Apply candidate relevance
+          if candidate.relevance == "primary":
+            score *= 2.0
+          elif candidate.relevance == "secondary":
+            score *= 1.2
+
+          domain_scores[candidate.domain_name] = score
+
+        // Step 2: Select top domain(s)
+        if domain_scores.is_empty():
+          return {
+            decision: "NO_VALID_ROUTE",
+            message: "No suitable domain found"
+          }
+
+        max_score = MAX(domain_scores.values())
+        top_domains = FILTER(domain_scores, score >= 0.8 * max_score)
+
+        if top_domains.length == 1:
+          return {
+            decision: "ROUTE",
+            target_domains: [top_domains[0]],
+            confidence: "high"
+          }
+        else:
+          return {
+            decision: "MULTI_ROUTE",
+            target_domains: SORT_BY_SCORE(top_domains),
+            confidence: "medium",
+            ambiguity: true
+          }
+    `,
+
+    complexity: {
+      time: "O(d * t) where d = number of domains, t = number of triggers",
+      space: "O(d)"
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // ROUTING POLICIES
+  // ═══════════════════════════════════════════════════════════════════════
+
+  routing_policies: {
+    policy_1_domain_neutrality: {
+      description: "Router must not prefer any domain a priori",
+      enforcement: "All domains start with equal weight, differentiated only by box characteristics"
+    },
+
+    policy_2_no_solution_generation: {
+      description: "Router only dispatches, never solves",
+      enforcement: "Router output is routing decision, NOT answer to problem"
+    },
+
+    policy_3_multi_routing_allowed: {
+      description: "Router may dispatch to multiple domains for parallel exploration",
+      enforcement: "MULTI_ROUTE decision is valid if multiple domains equally applicable"
+    },
+
+    policy_4_conservative_routing: {
+      description: "When uncertain, route to multiple domains or defer",
+      enforcement: "Prefer MULTI_ROUTE or DEFER over mis-routing to wrong domain"
+    },
+
+    policy_5_traceability: {
+      description: "All routing decisions must be logged with rationale",
+      enforcement: "Routing metadata must include clear justification"
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // EXAMPLES
+  // ═══════════════════════════════════════════════════════════════════════
+
+  examples: {
+    example_1_mathematical: {
+      box: {
+        id: "BOX-001",
+        problem: "Prove that semantic cohesion μₛ is a continuous function of curvature λ",
+        characteristics: ["Requires proof", "Involves functions and continuity", "Mathematical structure"]
+      },
+      domain_candidates: [
+        { domain_name: "Mathematical", relevance: "primary" },
+        { domain_name: "Physical", relevance: "secondary" }
+      ],
+      routing_result: {
+        decision: "ROUTE",
+        target_domains: [
+          { domain_name: "Mathematical", priority: 10, rationale: "Requires formal proof of continuity" }
+        ],
+        confidence: "high"
+      }
+    },
+
+    example_2_cross_domain: {
+      box: {
+        id: "BOX-002",
+        problem: "How does semantic curvature (cognitive) correspond to spacetime curvature (physical)?",
+        characteristics: ["Spans cognitive and physical domains", "Requires correspondence mapping", "Needs consistency checking"]
+      },
+      domain_candidates: [
+        { domain_name: "Cognitive", relevance: "primary" },
+        { domain_name: "Physical", relevance: "primary" },
+        { domain_name: "Cross-Domain", relevance: "primary" }
+      ],
+      routing_result: {
+        decision: "MULTI_ROUTE",
+        target_domains: [
+          { domain_name: "Cross-Domain", priority: 10, rationale: "Explicit cross-domain mapping required" },
+          { domain_name: "Cognitive", priority: 8, rationale: "Need semantic curvature analysis" },
+          { domain_name: "Physical", priority: 8, rationale: "Need spacetime curvature analysis" }
+        ],
+        confidence: "medium",
+        ambiguity: true
+      }
+    },
+
+    example_3_no_valid_route: {
+      box: {
+        id: "BOX-003",
+        problem: "Undefined problem with no clear structure",
+        characteristics: []
+      },
+      domain_candidates: [],
+      routing_result: {
+        decision: "NO_VALID_ROUTE",
+        message: "Box lacks sufficient structure for domain routing",
+        recommendation: "Reformulate problem with explicit constraints and characteristics"
+      }
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // COMPLIANCE
+  // ═══════════════════════════════════════════════════════════════════════
+
+  compliance: {
+    gicc_02: {
+      domain_neutrality: "SATISFIED - Router does not prefer any domain a priori"
+    },
+
+    gicc_03: {
+      no_answer_generation: "SATISFIED - Router only dispatches, does not solve"
+    },
+
+    gicc_08: {
+      general_problem_routing: "SATISFIED - Supports routing to all domain categories"
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // LOCK
+  // ═══════════════════════════════════════════════════════════════════════
+
+  lock: {
+    status: "LOCKED",
+    reason: "Domain dispatch is core routing infrastructure",
+    modification_authority: "MBC Routing Council",
+    extensibility: "New domains may be added via standardized extension mechanism"
+  }
+}
