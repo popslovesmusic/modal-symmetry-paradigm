@@ -1,0 +1,167 @@
+{
+  metadata: {
+    artifact_type: "operator_pack",
+    artifact_id: "Tier_01_Core_Deviation_Operator_Pack",
+    version: "0.1.0",
+    tier: 1,
+    status: "DRAFT_TEST_ARTIFACT",
+    description:
+      "Minimal Tier-01 operator pack capturing a core deviation operator and simple compositional structure for audit testing.",
+    author: "JH+LLM",
+    created_at: "2025-12-10",
+    registry_ref: "MBC_REGISTRY::Tier_01::Operator_Packs::Core_Deviation"
+  },
+
+  context: {
+    assumes_primitives: [
+      "PRIM::SUBSTRATE",
+      "PRIM::MODE",
+      "PRIM::DIFFERENCE"
+    ],
+
+    exports_operators: [
+      "OP::DELTA",
+      "OP::MERGE",
+      "OP::BOX_EMBED"
+    ],
+
+    external_refs: [
+      "BOX::Generic_Mode_Box",
+      "INV::Deviation_Measure"
+    ]
+  },
+
+  operators: [
+    {
+      operator_id: "OP::DELTA",
+      name: "Deviation Operator",
+      symbol: "δ",
+      arity: 2,
+      domain: ["MODE", "MODE"],
+      codomain: "DIFFERENCE",
+
+      description:
+        "Given two modes m1 and m2 on the same substrate, δ(m1, m2) returns the semantic difference relation capturing how m2 deviates from m1.",
+
+      laws: {
+        antisymmetry: "δ(m1, m2) = -δ(m2, m1)",
+        identity_element:
+          "For identity mode m*, δ(m*, m*) = 0_DIFFERENCE (null deviation).",
+        triangle_like:
+          "For modes m1, m2, m3: δ(m1, m3) = δ(m1, m2) + δ(m2, m3) when all three share a coherent substrate chart."
+      },
+
+      constraints: {
+        substrate_compatibility:
+          "m1 and m2 must be defined on the same substrate region; otherwise δ is undefined.",
+        domain_totality:
+          "δ is only total over pairs of modes whose semantic encoding is compatible (e.g., same mode family).",
+        invariants_preserved: [
+          "INV::Deviation_Measure"
+        ]
+      },
+
+      notes:
+        "This is the canonical candidate for a Tier-01 deviation operator connecting MSP primitives to MBC Box-level constructions."
+    },
+
+    {
+      operator_id: "OP::MERGE",
+      name: "Mode Merge Operator",
+      symbol: "⊕",
+      arity: 2,
+      domain: ["MODE", "MODE"],
+      codomain: "MODE",
+
+      description:
+        "Given two compatible modes m1 and m2, ⊕ produces a composite mode m3 = m1 ⊕ m2 that encodes both patterns on the same substrate region.",
+
+      laws: {
+        commutative:
+          "m1 ⊕ m2 = m2 ⊕ m1 when modes are compatible.",
+        associative:
+          "(m1 ⊕ m2) ⊕ m3 = m1 ⊕ (m2 ⊕ m3) within a single semantic frame.",
+        neutral_element:
+          "There exists a neutral mode m0 such that m ⊕ m0 = m for all m."
+      },
+
+      constraints: {
+        compatibility:
+          "⊕ is only defined when m1 and m2 are semantically compatible (e.g., same carrier type / frame).",
+        non_destructive:
+          "Merging does not erase either constituent mode; information may overlap but must not be annihilated without explicit cancellation semantics."
+      },
+
+      notes:
+        "⊕ is the basic compositional glue for building complex semantic fields from simpler modes."
+    },
+
+    {
+      operator_id: "OP::BOX_EMBED",
+      name: "Box Embedding Operator",
+      symbol: "□↦",
+      arity: 2,
+      domain: ["BOX", "MODE"],
+      codomain: "BOX",
+
+      description:
+        "Given a Box B and a mode m compatible with B’s interface, BOX_EMBED(B, m) returns a new Box B' whose internal state includes m as part of its configuration.",
+
+      laws: {
+        idempotent_on_same_mode:
+          "Embedding the same mode m into B multiple times yields a configuration equivalent up to internal Box equivalence.",
+        functorial_hint:
+          "Composition of embeddings corresponds to composition of Box morphisms when defined."
+      },
+
+      constraints: {
+        interface_match:
+          "m must satisfy B’s input schema/interface; otherwise embedding is undefined.",
+        no_global_side_effects:
+          "BOX_EMBED must not implicitly modify external Boxes; its action is local to B."
+      },
+
+      notes:
+        "This operator is the bridge from mode-level semantics into Box-level system configuration, and is a primary target for structural and semantic audits."
+    }
+  ],
+
+  rewrites: [
+    {
+      rule_id: "RW::Delta_Triangle_Expansion",
+      description:
+        "Express δ(m1, m3) in terms of δ(m1, m2) and δ(m2, m3) when a coherent intermediate mode m2 exists.",
+      pattern: "δ(m1, m3)",
+      rewrite_to: "δ(m1, m2) + δ(m2, m3)",
+      side_conditions: [
+        "m1, m2, m3 share a compatible substrate chart.",
+        "The semantic frame is stable across the triple (no frame jump)."
+      ]
+    },
+    {
+      rule_id: "RW::Merge_Mode_Associativity",
+      description:
+        "Normalize nested merges into a right-associated normal form.",
+      pattern: "(m1 ⊕ m2) ⊕ m3",
+      rewrite_to: "m1 ⊕ (m2 ⊕ m3)",
+      side_conditions: [
+        "All modes are mutually compatible and in the same frame."
+      ]
+    }
+  ],
+
+  invariants: [
+    {
+      invariant_id: "INV::Deviation_Measure",
+      description:
+        "There exists a deviation measure |δ| such that |δ(m1, m2)| ≥ 0 and |δ(m1, m2)| = 0 iff m1 and m2 are semantically identical in the given frame.",
+      scope: "OP::DELTA"
+    },
+    {
+      invariant_id: "INV::Merge_Information_Monotonicity",
+      description:
+        "The informational content of m1 ⊕ m2 is never strictly less than that of either constituent mode alone.",
+      scope: "OP::MERGE"
+    }
+  ]
+}
